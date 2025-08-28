@@ -11,11 +11,10 @@ jobs:
       - name: Checkout 
         uses: actions/checkout@v2
       - name: Build
-        uses: Tiryoh/actions-mkdocs@v0
+        uses: OpenHUTB/actions-mkdocs@main
         with:
           mkdocs_version: 'latest' # option
           #mkdocs_version: '1.1' # option
-          # 安装行内公式渲染的依赖(python-markdown-math)
           requirements: 'requirements.txt' # option
           configfile: 'mkdocs.yml' # option
       - name: Deploy
