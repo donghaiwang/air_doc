@@ -4,7 +4,7 @@ AirSim C++客户端库上的ROS封装。
 
 ## 安装
 
-以下步骤适用于Linux。如果在Windows上运行AirSim，则可以使用Windows Subsystem for Linux（WSL）来运行ROS包装，请参阅 [下面](#setting-up-the-build-environment-on-windows10-using-wsl1-or-wsl2) 的说明。如果由于某些问题，您无法或不喜欢在主机Linux上安装ROS和相关工具，您也可以使用Docker尝试，请参阅 [为 ROS 封装使用 Docker](#using-docker-for-ros) 中的步骤
+以下步骤适用于Linux。如果在Windows上运行AirSim，则可以使用Windows Subsystem for Linux（WSL）来运行ROS包装，请参阅 [下面](#setting-up-the-build-environment-on-windows10-using-wsl1-or-wsl2) 的说明。如果由于某些问题，您无法或不喜欢在主机Linux上安装ROS和相关工具，您也可以使用Docker尝试，请参阅 [为 ROS 封装使用 Docker](#using-docker-for-ros) 中的步骤。
 
 
 - 如果默认GCC版本不是8或更高版本（使用`GCC--version`检查） 
