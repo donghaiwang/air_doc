@@ -129,29 +129,37 @@ for response in responses:
 
 ## 常用 API
 
-* `reset`: This resets the vehicle to its original starting state. Note that you must call `enableApiControl` and `armDisarm` again after the call to `reset`.
-* `confirmConnection`: Checks state of connection every 1 sec and reports it in Console so user can see the progress for connection.
-* `enableApiControl`: For safety reasons, by default API control for autonomous vehicle is not enabled and human operator has full control (usually via RC or joystick in simulator). The client must make this call to request control via API. It is likely that human operator of vehicle might have disallowed API control which would mean that enableApiControl has no effect. This can be checked by `isApiControlEnabled`.
-* `isApiControlEnabled`: Returns true if API control is established. If false (which is default) then API calls would be ignored. After a successful call to `enableApiControl`, the `isApiControlEnabled` should return true.
-* `ping`: If connection is established then this call will return true otherwise it will be blocked until timeout.
-* `simPrintLogMessage`: Prints the specified message in the simulator's window. If message_param is also supplied then its printed next to the message and in that case if this API is called with same message value but different message_param again then previous line is overwritten with new line (instead of API creating new line on display). For example, `simPrintLogMessage("Iteration: ", to_string(i))` keeps updating same line on display when API is called with different values of i. The valid values of severity parameter is 0 to 3 inclusive that corresponds to different colors.
-* `simGetObjectPose`, `simSetObjectPose`: Gets and sets the pose of specified object in Unreal environment. Here the object means "actor" in Unreal terminology. They are searched by tag as well as name. Please note that the names shown in UE Editor are *auto-generated* in each run and are not permanent. So if you want to refer to actor by name, you must change its auto-generated name in UE Editor. Alternatively you can add a tag to actor which can be done by clicking on that actor in Unreal Editor and then going to [Tags property](https://answers.unrealengine.com/questions/543807/whats-the-difference-between-tag-and-tag.html), click "+" sign and add some string value. If multiple actors have same tag then the first match is returned. If no matches are found then NaN pose is returned. The returned pose is in NED coordinates in SI units in the world frame. For `simSetObjectPose`, the specified actor must have [Mobility](https://docs.unrealengine.com/en-us/Engine/Actors/Mobility) set to Movable or otherwise you will get undefined behavior. The `simSetObjectPose` has parameter `teleport` which means object is [moved through other objects](https://www.unrealengine.com/en-US/blog/moving-physical-objects) in its way and it returns true if move was successful
+* `reset`: 这会将车辆重置到其原始启动状态。请注意，调用 reset 后必须再次调用 `enableApiControl` 和 `armDisarm` 。
+* `confirmConnection`: 每 1 秒检查一次连接状态并在控制台中报告，以便用户可以看到连接进度。
+* `enableApiControl`: 出于安全考虑，自动驾驶车辆的 API 控制默认未启用，人类操作员拥有完全控制权（通常通过 RC 或模拟器中的操纵杆）。客户端必须发出此调用才能通过 API 请求控制。车辆的人类操作员可能已禁用 API 控制，这意味着 enableApiControl 无效。可以通过`isApiControlEnabled`检查这一点。 
+* `isApiControlEnabled`: 如果已建立 API 控制，则返回 true。如果返回 false（默认值），则 API 调用将被忽略。成功调用 `enableApiControl` 后，`isApiControlEnabled` 应该返回 true。
+* `ping`: 如果连接建立，则此调用将返回 true，否则将被阻止直至超时。
+* `simPrintLogMessage`: 在模拟器窗口中打印指定消息。如果同时提供了 message_param，则该消息会打印在消息旁边。在这种情况下，如果再次使用相同的消息值但不同的 message_param 调用此 API，则上一行将被新行覆盖（而不是 API 在显示屏上创建新行）。例如，当使用不同的 i 值调用 API 时，`simPrintLogMessage("Iteration: ", to_string(i))` 会持续更新显示屏上的同一行。严重性参数的有效值为 0 到 3（含），分别对应不同的颜色。 
+* `simGetObjectPose`, `simSetObjectPose`: 获取并设置虚幻环境中指定对象的姿势。此处，对象在虚幻术语中表示"actor"。它们通过标签和名称进行搜索。请注意，虚幻编辑器中显示的名称是每次运行时 *自动生成的* ，并非永久的。因此，如果您想通过名称引用actor，则必须在虚幻编辑器中更改其自动生成的名称。或者，您可以为actor添加标签，方法是在虚幻编辑器中点击该actor，然后转到 [Tags 属性](https://answers.unrealengine.com/questions/543807/whats-the-difference-between-tag-and-tag.html) ，点击“+”号并添加一些字符串值。如果多个actor具有相同的标签，则返回第一个匹配的actor。如果没有找到匹配项，则返回NaN姿势。返回的姿势以世界坐标系中的NED坐标系表示，采用SI单位。对于`simSetObjectPose`，指定的actor必须将 [Mobility](https://docs.unrealengine.com/en-us/Engine/Actors/Mobility) 设置为Movable，否则将导致未定义的行为。`simSetObjectPose`具有参数`teleport`，表示对象在其路径上 [移动穿过其他对象](https://www.unrealengine.com/en-US/blog/moving-physical-objects) ，如果移动成功，则返回true。 
 
-### Image / Computer Vision APIs
-AirSim offers comprehensive images APIs to retrieve synchronized images from multiple cameras along with ground truth including depth, disparity, surface normals and vision. You can set the resolution, FOV, motion blur etc parameters in [settings.json](settings.md). There is also API for detecting collision state. See also [complete code](https://github.com/Microsoft/AirSim/tree/main/Examples/DataCollection/StereoImageGenerator.hpp) that generates specified number of stereo images and ground truth depth with normalization to camera plane, computation of disparity image and saving it to [pfm format](pfm.md).
+### 图像 / 计算机视觉 APIs
 
-More on [image APIs and Computer Vision mode](image_apis.md).
-For vision problems that can benefit from domain randomization, there is also an [object retexturing API](retexturing.md), which can be used in supported scenes.
-
-### Pause and Continue APIs
-AirSim allows to pause and continue the simulation through `pause(is_paused)` API. To pause the simulation call `pause(True)` and to continue the simulation call `pause(False)`. You may have scenario, especially while using reinforcement learning, to run the simulation for specified amount of time and then automatically pause. While simulation is paused, you may then do some expensive computation, send a new command and then again run the simulation for specified amount of time. This can be achieved by API `continueForTime(seconds)`. This API runs the simulation for the specified number of seconds and then pauses the simulation. For example usage, please see [pause_continue_car.py](https://github.com/Microsoft/AirSim/tree/main/PythonClient//car/pause_continue_car.py) and [pause_continue_drone.py](https://github.com/Microsoft/AirSim/tree/main/PythonClient//multirotor/pause_continue_drone.py).
+AirSim 提供全面的图像 API，用于检索来自多个摄像头的同步图像以及包括深度、视差、表面法线和视觉在内的地面实况。您可以在 [settings.json](settings.md) 中设置分辨率、FOV、运动模糊等参数。此外，还提供了用于检测碰撞状态的 API。另请参阅 [完整代码](https://github.com/Microsoft/AirSim/tree/main/Examples/DataCollection/StereoImageGenerator.hpp) ，该代码生成指定数量的立体图像和地面实况深度，并根据相机平面进行归一化、计算视差图像并将其保存为 [pfm 格式](pfm.md) 。
 
 
-### Collision API
-The collision information can be obtained using `simGetCollisionInfo` API. This call returns a struct that has information not only whether collision occurred but also collision position, surface normal, penetration depth and so on.
+更多关于 [图像 API 和计算机视觉模式的信息](image_apis.md) 。对于可以从域随机化中获益的视觉问题，还有一个 [object retexturing API](retexturing.md) ，可在支持的场景中使用。
 
-### Time of Day API
-AirSim assumes there exist sky sphere of class `EngineSky/BP_Sky_Sphere` in your environment with [ADirectionalLight actor](https://github.com/microsoft/AirSim/blob/v1.4.0-linux/Unreal/Plugins/AirSim/Source/SimMode/SimModeBase.cpp#L224). By default, the position of the sun in the scene doesn't move with time. You can use [settings](settings.md#timeofday) to set up latitude, longitude, date and time which AirSim uses to compute the position of sun in the scene.
+
+### 暂停和继续 API
+
+AirSim 允许通过 `pause(is_paused)` API 暂停和继续模拟。要暂停模拟，请调用 `pause(True)` ；要继续模拟，请调用 `pause(False)` 。您可能会遇到一些情况，尤其是在使用强化学习时，需要模拟运行指定的时间后自动暂停。在模拟暂停期间，您可以进行一些高开销的计算，发送新命令，然后再次运行模拟指定的时间。这可以通过 API `continueForTime(seconds)` 实现。此 API 会运行模拟指定的秒数，然后暂停模拟。有关用法示例，请参阅 [pause_continue_car.py](https://github.com/Microsoft/AirSim/tree/main/PythonClient//car/pause_continue_car.py) 和 [pause_continue_drone.py](https://github.com/Microsoft/AirSim/tree/main/PythonClient//multirotor/pause_continue_drone.py) 。
+
+
+### 碰撞 API
+
+可以使用 `simGetCollisionInfo` API 获取碰撞信息。此调用返回一个结构体，该结构体不仅包含碰撞是否发生的信息，还包含碰撞位置、表面法线、穿透深度等信息。
+
+
+### 时间 API
+
+AirSim 假设您的环境中存在 `EngineSky/BP_Sky_Sphere` 类的天空球体，并且包含 [ADirectionalLight actor](https://github.com/microsoft/AirSim/blob/v1.4.0-linux/Unreal/Plugins/AirSim/Source/SimMode/SimModeBase.cpp#L224) 。默认情况下，场景中的太阳位置不会随时间移动。您可以使用 [设置](settings.md#timeofday) 来设置 AirSim 用于计算场景中太阳位置的纬度、经度、日期和时间。
+
+您还可以使用以下 API 调用根据给定的日期时间设置太阳位置：
 
 You can also use following API call to set the sun position according to given date time:
 

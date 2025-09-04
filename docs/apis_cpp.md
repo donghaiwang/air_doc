@@ -1,21 +1,23 @@
 # 使用 C++ APIs for AirSim
 
-Please read [general API doc](apis.md) first if you haven't already. This document describes C++ examples and other C++ specific details.
+如果您还没有阅读 [通用 API 文档](apis.md) ，请先阅读。本文档描述了 C++ 示例和其他 C++ 相关的细节。
 
-## Quick Start
 
-Fastest way to get started is to open AirSim.sln in Visual Studio 2019. You will see [Hello Car](https://github.com/Microsoft/AirSim/tree/main/HelloCar/) and [Hello Drone](https://github.com/Microsoft/AirSim/tree/main/HelloDrone/) examples in the solution. These examples will show you the include paths and lib paths you will need to setup in your VC++ projects. If you are using Linux then you will specify these paths either in your [cmake file](https://github.com/Microsoft/AirSim/tree/main/cmake//HelloCar/CMakeLists.txt) or on compiler command line.
+## 快速入门
 
-#### Include and Lib Folders
+最快的入门方法是在 Visual Studio 2019 中打开 AirSim.sln。您将在解决方案中看到 [Hello Car](https://github.com/Microsoft/AirSim/tree/main/HelloCar/) and [Hello Drone](https://github.com/Microsoft/AirSim/tree/main/HelloDrone/) 和 [Hello Drone](https://github.com/Microsoft/AirSim/tree/main/HelloDrone/) 的示例。这些示例将向您展示需要在 VC++ 项目中设置的包含路径和库路径。如果您使用的是 Linux，则可以在 cmake 文件或编译器命令行中指定这些路径。
 
-* Include folders: `$(ProjectDir)..\AirLib\deps\rpclib\include;include;$(ProjectDir)..\AirLib\deps\eigen3;$(ProjectDir)..\AirLib\include`
-* Dependencies: `rpc.lib`
-* Lib folders: `$(ProjectDir)\..\AirLib\deps\MavLinkCom\lib\$(Platform)\$(Configuration);$(ProjectDir)\..\AirLib\deps\rpclib\lib\$(Platform)\$(Configuration);$(ProjectDir)\..\AirLib\lib\$(Platform)\$(Configuration)`
-* References: Reference AirLib and MavLinkCom to the project references. (Right click your project then go to `References`, `Add reference...`, and then select AirLib and MavLinkCom)
+
+#### 头文件和库的目录
+
+* 头文件目录: `$(ProjectDir)..\AirLib\deps\rpclib\include;include;$(ProjectDir)..\AirLib\deps\eigen3;$(ProjectDir)..\AirLib\include`
+* 依赖: `rpc.lib`
+* 库文件目录: `$(ProjectDir)\..\AirLib\deps\MavLinkCom\lib\$(Platform)\$(Configuration);$(ProjectDir)\..\AirLib\deps\rpclib\lib\$(Platform)\$(Configuration);$(ProjectDir)\..\AirLib\lib\$(Platform)\$(Configuration)`
+* 引用：将 AirLib 和 MavLinkCom 引用到项目引用中。（右键单击您的项目，然后前往`References`，`Add reference...`，然后选择 AirLib 和 MavLinkCom）
 
 ## Hello Car
 
-Here's how to use AirSim APIs using C++ to control simulated car (see also [Python example](apis.md#hello_car)):
+以下是如何使用 C++ 的 AirSim API 来控制模拟汽车（另请参阅 [Python 示例](apis.md#hello_car) ）：
 
 ```cpp
 
@@ -53,7 +55,7 @@ int main()
 
 ## Hello Drone
 
-Here's how to use AirSim APIs using C++ to control simulated quadrotor (see also [Python example](apis.md#hello_drone)):
+下面介绍了如何使用 C++ 的 AirSim API 来控制模拟四旋翼飞行器（另请参阅 [Python 示例](apis.md#hello_drone) ）：
 
 ```cpp
 
@@ -86,9 +88,9 @@ int main()
 }
 ```
 
-## See Also
+## 参见
 
-* [Examples](https://github.com/microsoft/AirSim/tree/main/Examples) of how to use internal infrastructure in AirSim in your other projects
-* [DroneShell](https://github.com/microsoft/AirSim/tree/main/DroneShell) app shows how to make simple interface using C++ APIs to control drones
-* [HelloSpawnedDrones](https://github.com/microsoft/AirSim/tree/main/HelloSpawnedDrones) app shows how to make additional vehicles on the fly
+* 如何在其它项目中使用 AirSim 内部基础设施的 [示例](https://github.com/microsoft/AirSim/tree/main/Examples) 
+* [DroneShell](https://github.com/microsoft/AirSim/tree/main/DroneShell) 应用程序展示了如何使用 C++ API 制作简单的界面来控制无人机 
+* [HelloSpawnedDrones](https://github.com/microsoft/AirSim/tree/main/HelloSpawnedDrones) 应用程序演示如何即时制造更多飞行器
 * [Python APIs](apis.md)
