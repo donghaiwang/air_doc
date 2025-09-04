@@ -41,17 +41,17 @@ AirSim 中的汽车
 ## 如何获取
 
 ### Windows
-[![Build Status](https://github.com/microsoft/AirSim/actions/workflows/test_windows.yml/badge.svg)](https://github.com/microsoft/AirSim/actions/workflows/test_windows.yml)
-* [下载二进制文件](https://github.com/Microsoft/AirSim/releases)
+[![Build Status](https://github.com/OpenHUTB/air/actions/workflows/test_windows.yml/badge.svg)](https://github.com/OpenHUTB/air/actions/workflows/test_windows.yml)
+* [下载二进制文件](https://github.com/OpenHUTB/air/releases)
 * [构建它](build_windows.md)
 
 ### Linux
-[![Build Status](https://github.com/microsoft/AirSim/actions/workflows/test_ubuntu.yml/badge.svg)](https://github.com/microsoft/AirSim/actions/workflows/test_ubuntu.yml)
-* [下载二进制文件](https://github.com/Microsoft/AirSim/releases)
+[![Build Status](https://github.com/OpenHUTB/air/actions/workflows/test_ubuntu.yml/badge.svg)](https://github.comOpenHUTB/air/actions/workflows/test_ubuntu.yml)
+* [下载二进制文件](https://github.com/OpenHUTB/air/releases)
 * [构建它](https://microsoft.github.io/AirSim/build_linux)
 
 ### macOS
-[![构建状态](https://github.com/microsoft/AirSim/actions/workflows/test_macos.yml/badge.svg)](https://github.com/microsoft/AirSim/actions/workflows/test_macos.yml)
+[![构建状态](https://github.com/OpenHUTB/air/actions/workflows/test_macos.yml/badge.svg)](https://github.com/OpenHUTB/air/actions/workflows/test_macos.yml)
 * [构建它](https://microsoft.github.io/AirSim/build_macos)
 
 有关更多详细信息，请参阅 [使用预编译二进制文件](docs/use_precompiled.md) 文档。
@@ -134,7 +134,7 @@ AirSim 的另一种使用方式是所谓的“计算机视觉”模式。在此�
 
 ### 贡献
 
-如果您正在寻找可以做出贡献的领域，请查看 [未解决的问题](https://github.com/microsoft/airsim/issues) 。
+如果您正在寻找可以做出贡献的领域，请查看 [未解决的问题](https://github.com/OpenHUTB/air/issues) 。
 
 
 * [更多关于 AirSim 设计的信息](https://microsoft.github.io/AirSim/design)
@@ -143,12 +143,12 @@ AirSim 的另一种使用方式是所谓的“计算机视觉”模式。在此�
 
 ### 谁在使用 AirSim？
 
-我们维护着一份我们所知的一些项目、人员和团体的 [列表](https://microsoft.github.io/AirSim/who_is_using) 。如果您希望被收录在此列表中，请 [在此处提交申请](https://github.com/microsoft/airsim/issues) 。
+我们维护着一份我们所知的一些项目、人员和团体的 [列表](https://microsoft.github.io/AirSim/who_is_using) 。如果您希望被收录在此列表中，请 [在此处提交申请](https://github.com/OpenHUTB/air/issues) 。
 
 
 ## 联系
 
-加入我们的 [GitHub 讨论组](https://github.com/microsoft/AirSim/discussions) 以了解最新动态或提出任何问题。
+加入我们的 [GitHub 讨论组](https://github.com/OpenHUTB/air/discussions) 以了解最新动态或提出任何问题。
 
 我们在 [Facebook](https://www.facebook.com/groups/1225832467530667/) 上还有一个 AirSim 小组。
 
@@ -172,7 +172,7 @@ AirSim 的另一种使用方式是所谓的“计算机视觉”模式。在此�
 
 ## 常问问题
 
-如果您遇到问题，请查看 [常见问题解答](https://microsoft.github.io/AirSim/faq) 并随时在 [AirSim](https://github.com/Microsoft/AirSim/issues) 存储库中发布问题。
+如果您遇到问题，请查看 [常见问题解答](https://microsoft.github.io/AirSim/faq) 并随时在 [AirSim](https://github.com/OpenHUTB/air/issues) 存储库中发布问题。
 
 ## 行为守则
 
