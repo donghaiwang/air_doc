@@ -53,36 +53,34 @@ $ ./run_airsim_image_binary.sh Blocks/Blocks.sh -- headless
 - [指定 `settings.json`](#specifying-settingsjson)
 
 ## Source
-#### Requirements:
-- Install [nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)
-- Install [ue4-docker](https://docs.adamrehn.com/ue4-docker/configuration/configuring-linux)
+#### 需要：
+- 安装 [nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)
+- 安装 [ue4-docker](https://docs.adamrehn.com/ue4-docker/configuration/configuring-linux)
 
-#### Build Unreal Engine inside docker:
-- To get access to Unreal Engine's source code, register on Epic Games' website and link it to your github account, as explained in the `Required Steps` section [here](https://docs.unrealengine.com/en-us/Platforms/Linux/BeginnerLinuxDeveloper/SettingUpAnUnrealWorkflow).
+#### 在docker中构建虚幻引擎：
+- 要访问虚幻引擎的源代码，请在 Epic Games 网站上注册并将其链接到您的 github 帐户，如 [此处](https://docs.unrealengine.com/en-us/Platforms/Linux/BeginnerLinuxDeveloper/SettingUpAnUnrealWorkflow) 的`Required Steps(必需步骤)`部分所述。
 
-    Note that you don't need to do `Step 2: Downloading UE4 on Linux`!
+    请注意，您不需要执行`步骤 2：在 Linux 上下载 UE4`！
 
-- Build unreal engine 4.19.2 docker image. We're going to use CUDA 10.0 in our example.
+- 构建虚幻引擎 4.19.2 docker 镜像。我们将在示例中使用 CUDA 10.0。
     `$ ue4-docker build 4.19.2 --cuda=10.0 --no-full`
-    - [optional] `$ ue4-docker clean` to free up some space. [Details here](https://docs.adamrehn.com/ue4-docker/commands/clean)
-    - `ue4-docker` supports all CUDA version listed on NVIDIA's cudagl dockerhub [here](https://hub.docker.com/r/nvidia/cudagl/).
-    - Please see [this page](https://docs.adamrehn.com/ue4-docker/building-images/advanced-build-options) for advanced configurations using `ue4-docker`
+    - [可选] `$ ue4-docker clean` 释放一些空间。 [详情请见此处](https://docs.adamrehn.com/ue4-docker/commands/clean)
+    - `ue4-docker` 支持 [这里](https://hub.docker.com/r/nvidia/cudagl/) NVIDIA 的 cudagl dockerhub 上列出的所有 CUDA 版本。
+    - 请参阅 [此页面](https://docs.adamrehn.com/ue4-docker/building-images/advanced-build-options) 了解使用 `ue4-docker` 的高级配置
 
-- Disk space:
-    - The unreal images and containers can take up a lot of space, especially if you try more than one version.
-    - Here's a list of useful links to monitor space used by docker and clean up intermediate builds:
-        - [Large container images primer](https://docs.adamrehn.com/ue4-docker/read-these-first/large-container-images-primer)
+- 磁盘空间：
+    - 虚幻的图像和容器会占用大量空间，特别是当您尝试多个版本时。
+    - 以下是用于监视 docker 使用的空间并清理中间构建的有用链接列表：
+        - [大型容器镜像入门](https://docs.adamrehn.com/ue4-docker/read-these-first/large-container-images-primer)
         - [`docker system df`](https://docs.docker.com/engine/reference/commandline/system_df/)
         - [`docker container prune`](https://docs.docker.com/engine/reference/commandline/container_prune/)
         - [`docker image prune`](https://docs.docker.com/engine/reference/commandline/image_prune/)
         - [`docker system prune`](https://docs.docker.com/engine/reference/commandline/system_prune/)
 
-#### Building AirSim inside UE4 docker container:
-* Build AirSim docker image (which lays over the unreal image we just built)
-  Below are the default arguments.
-    - `--base_image`: This is image over which we'll install airsim. We've tested on `adamrehn/ue4-engine:4.19.2-cudagl10.0`. See [ue4-docker](https://docs.adamrehn.com/ue4-docker/building-images/available-container-images) for other versions.
-    - `--target_image` is the desired name of your docker image.
-   Defaults to `airsim_source` with same tag as the base image
+#### 在 UE4 docker 容器内构建 AirSim：
+* 构建 AirSim docker 镜像（它覆盖我们刚刚构建的虚幻镜像）以下是默认参数。
+    - `--base_image`: 这是我们将用于安装 airsim 的镜像。我们已经在 `adamrehn/ue4-engine:4.19.2-cudagl10.0` 上进行了测试。其他版本请参见 [ue4-docker](https://docs.adamrehn.com/ue4-docker/building-images/available-container-images) 。 
+    - `--target_image` 是你想要的 Docker 镜像名称。默认为 `airsim_source` ，标签与基础镜像相同。 
 
 ```bash
 $ cd Airsim/docker;
@@ -92,25 +90,25 @@ $ python build_airsim_image.py \
    --target_image=airsim_source:4.19.2-cudagl10.0
 ```
 
-#### Running AirSim container
-* Run the airsim source image we built by:
+#### 运行 AirSim 容器
+* 运行我们构建的 airsim 源映像：
 
 ```bash
    ./run_airsim_image_source.sh airsim_source:4.19.2-cudagl10.0
 ```
 
-   Syntax is `./run_airsim_image_source.sh DOCKER_IMAGE_NAME -- headless`
-   `-- headless`: suffix this to run in optional headless mode.
+   语法为 `./run_airsim_image_source.sh DOCKER_IMAGE_NAME -- headless`
+   `-- headless`: 后缀此项可在可选的无头模式下运行。
 
-* Inside the container, you can see `UnrealEngine` and `AirSim` under `/home/ue4`.
-* Start unreal engine inside the container:
+* 在容器内部，您可以在 `/home/ue4` 下看到 `UnrealEngine` 和 `AirSim`。
+* 在容器内启动虚幻引擎：
    `ue4@HOSTMACHINE:~$ /home/ue4/UnrealEngine/Engine/Binaries/Linux/UE4Editor`
-* [Specifying an airsim settings.json](#specifying-settingsjson)
-* Continue with [AirSim's Linux docs](build_linux.md#build-unreal-environment).
+* [指定 airsim settings.json](#specifying-settingsjson)
+* 继续阅读 [AirSim 的 Linux 文档](build_linux.md#build-unreal-environment) 。
 
-#### [Misc] Packaging Unreal Environments in `airsim_source` containers
-* Let's take the Blocks environment as an example.
-    In the following script, specify the full path to your unreal uproject file by `project` and the directory where you want the binaries to be placed by `archivedirectory`
+#### [杂项] 将虚幻环境打包到 `airsim_source` 容器中
+* 我们以 Blocks 环境为例。
+    在以下脚本中，`project` 指定 Unreal UProject 文件的完整路径，`archivedirectory` 指定二进制文件所在的目录。
 
 ```bash
 $ /home/ue4/UnrealEngine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun -platform=Linux -clientconfig=Shipping -serverconfig=Shipping -noP4 -cook -allmaps -build -stage -prereqs -pak -archive \
@@ -118,13 +116,13 @@ $ /home/ue4/UnrealEngine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun -platfor
 -project=/home/ue4/AirSim/Unreal/Environments/Blocks/Blocks.uproject
 ```
 
-This would create a Blocks binary in `/home/ue4/Binaries/Blocks/`.
-You can test it by running `/home/ue4/Binaries/Blocks/LinuxNoEditor/Blocks.sh -windowed`
+这将在 `/home/ue4/Binaries/Blocks/` 中创建一个 Blocks 二进制文件。您可以运行 `/home/ue4/Binaries/Blocks/LinuxNoEditor/Blocks.sh -windowed` 来测试它。
 
-### Specifying settings.json
-#### `airsim_binary` docker image:
-  - We're mapping the host machine's `PATH/TO/Airsim/docker/settings.json` to the docker container's `/home/airsim_user/Documents/AirSim/settings.json`.
-  - Hence, we can load any settings file by simply modifying `PATH_TO_YOUR/settings.json` by modifying the following snippets in [`run_airsim_image_binary.sh`](https://github.com/Microsoft/AirSim/blob/main/docker/run_airsim_image_binary.sh)
+
+### 指定 settings.json
+#### `airsim_binary` docker 镜像：
+  - 我们将主机的 `PATH/TO/Airsim/docker/settings.json` 映射到 docker 容器的 `/home/airsim_user/Documents/AirSim/settings.json`。 
+  - 因此，我们可以通过修改 `PATH_TO_YOUR/settings.json` 来加载任何设置文件，只需修改 [`run_airsim_image_binary.sh`](https://github.com/Microsoft/AirSim/blob/main/docker/run_airsim_image_binary.sh) 中的以下代码片段即可
 
 ```bash
 nvidia-docker run --runtime=nvidia -it \
@@ -143,17 +141,17 @@ nvidia-docker run --runtime=nvidia -it \
       /bin/bash -c "$UNREAL_BINARY_COMMAND"
 ```
 
-**Note:** Docker version >=19.03 (check using `docker -v`), natively supports Nvidia GPUs, so run using `--gpus all` flag as given -
+**注意：** Docker 版本 >=19.03（使用 `docker -v` 检查），原生支持 Nvidia GPU，因此使用 `--gpus all` 标志运行：
 
 ```bash
 docker run --gpus all -it \
     ...
 ```
 
-####  `airsim_source` docker image:
+####  `airsim_source` docker 镜像:
 
-  * We're mapping the host machine's `PATH/TO/Airsim/docker/settings.json` to the docker container's `/home/airsim_user/Documents/AirSim/settings.json`.
-  * Hence, we can load any settings file by simply modifying `PATH_TO_YOUR/settings.json` by modifying the following snippets in [`run_airsim_image_source.sh`](https://github.com/Microsoft/AirSim/blob/main/docker/run_airsim_image_source.sh):
+  * 我们将主机的 `PATH/TO/Airsim/docker/settings.json` 映射到 docker 容器的 `/home/airsim_user/Documents/AirSim/settings.json`。 
+  * 因此，我们可以通过修改 [`run_airsim_image_source.sh`](https://github.com/Microsoft/AirSim/blob/main/docker/run_airsim_image_source.sh) 中的以下代码片段来修改 `PATH_TO_YOUR/settings.json` 来加载任何设置文件：
 
 ```bash
    nvidia-docker run --runtime=nvidia -it \
