@@ -15,16 +15,15 @@ LogViewer 是一款 Windows WPF 应用，用于显示从虚幻模拟器获取的
 
 ![Log Viewer](images/log_viewer.png)
 
-There is also a map option which will plot the GPS path the drone took.  You can also load multiple
-log files so you can compare the data from each.
+还有一个地图选项，可以绘制无人机的 GPS 路径。您还可以加载多个日志文件，以便比较每个日志文件的数据。
 
-### Realtime
+### 实时
 
-You can also get a realtime view if you connect the LogViewer `before` you run the simulation.
+如果在运行模拟之前连接 LogViewer，您还可以获得实时视图。
 
 ![connect](images/log_viewer_connect.png)
 
-For this to work you need to configure the `settings.json` with the following settings:
+为了使其正常工作，您需要使用以下设置配置 `settings.json`：
 ```
 {
     "SettingsVersion": 1.2,
@@ -39,36 +38,26 @@ For this to work you need to configure the `settings.json` with the following se
 }
 ```
 
-Note: do not use the "Logs" setting when you want realtime LogViewer logging.  Logging to
-a file using "Logs" is mutually exclusive with LogViewer logging.
+注意：如果您需要实时 LogViewer 日志记录，请勿使用“Logs”设置。使用“Logs”将日志记录到文件与 LogViewer 日志记录互斥。
 
-Simply press the blue connector button on the top right corner of the window, select the Socket
-`tab`, enter the port number `14388`, and your `localhost` network.  If you are using WSL 2 on
-Windows then select `vEthernet (WSL)`.
+只需按下窗口右上角的蓝色连接器按钮，选择“Socket”选项卡，输入端口号 `14388` 和您的 `localhost` 网络即可。如果您在 Windows 上使用 WSL 2，请选择 `vEthernet (WSL)`。
 
-If you do choose `vEthernet (WSL)` then make sure you also set `LocalHostIp` and
-`LogViewerHostIp` to the matching WSL ethernet address, something like `172.31.64.1`.
+如果您确实选择了 `vEthernet (WSL)`，那么请确保您还将 `LocalHostIp` 和 `LogViewerHostIp` 设置为匹配的 WSL 以太网地址，例如 `172.31.64.1`。
 
-Then press the record button (triangle on the right hand side of the toolbar). Now start the
-simulator, and the data will start streaming into LogViewer.
+然后按下记录按钮（工具栏右侧的三角形）。现在启动模拟器，数据将开始流入 LogViewer。
 
-The drone view in Log Viewer shows the actual estimated position coming from the PX4, so that is a
-great way to check whether the PX4 is in sync with the simulator.  Sometimes you can see some drift
-here as the attitude estimation catches up with reality, this can become more visible after a bad
-crash.
+日志查看器中的无人机视图显示了来自 PX4 的实际估算位置，因此这是检查 PX4 是否与模拟器同步的好方法。有时，随着姿态估算与实际情况的同步，您可能会看到一些漂移，在发生严重碰撞后，这种情况会更加明显。
 
-### Installation
+### 安装
 
-If you can't build the LogViewer.sln, there is also a [click once
-installer](https://lovettsoftwarestorage.blob.core.windows.net/downloads/Px4LogViewer/Px4LogViewer.application).
+如果您无法构建 LogViewer.sln，还可以 [单击一次安装程序。](https://lovettsoftwarestorage.blob.core.windows.net/downloads/Px4LogViewer/Px4LogViewer.application) 。
 
 
-### Configuration
+### 配置
 
-The magic port number 14388 can be configured in the simulator by editing the [settings.json
-file](settings.md).  If you change the port number in LogViewer connection dialog then be sure
-to make the matching changes in your `settings.json` file.
+您可以通过编辑 [settings.json 文件) 在模拟器中配置魔术端口号 14388。如果您在 LogViewer 连接对话框中更改了端口号，请确保在 `settings.json` 文件中进行相应的更改。
 
-### Debugging
+### 调试
 
-See [PX4 Logging](px4_logging.md) for more information on how to use the LogViewer to debug situations you are setting.
+有关如何使用 LogViewer 调试您正在设置的情况的更多信息，请参阅 [PX4 日志记录](px4_logging.md) 。
+
