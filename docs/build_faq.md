@@ -17,14 +17,14 @@
 
 ## Linux 构建
 
-* [I'm getting error `<MyProject> could not be compiled. Try rebuilding from source manually`.](#im-getting-error-myproject-could-not-be-compiled-try-rebuilding-from-source-manually)
-* [Unreal crashed! How do I know what went wrong?](#unreal-crashed-how-do-i-know-what-went-wrong)
-* [How do I use an IDE on Linux?](#how-do-i-use-an-ide-on-linux)
-* [Can I cross compile for Linux from a Windows machine?](#can-i-cross-compile-for-linux-from-a-windows-machine)
-* [What compiler and stdlib does AirSim use?](#what-compiler-and-stdlib-does-airsim-use)
-* [What version of CMake does the AirSim build use?](#what-version-of-cmake-does-the-airsim-build-use)
-* [Can I compile AirSim in BashOnWindows?](#can-i-compile-airsim-in-bashonwindows)
-* [Where can I find more info on running Unreal on Linux?](#where-can-i-find-more-info-on-running-unreal-on-linux)
+* [报错：`<MyProject> could not be compiled. Try rebuilding from source manually`.](#im-getting-error-myproject-could-not-be-compiled-try-rebuilding-from-source-manually)
+* [Unreal崩溃了！我怎么知道哪里出了问题？](#unreal-crashed-how-do-i-know-what-went-wrong)
+* [如何在 Linux 上使用 IDE？](#how-do-i-use-an-ide-on-linux)
+* [我可以从 Windows 机器交叉编译 Linux 吗？](#can-i-cross-compile-for-linux-from-a-windows-machine)
+* [AirSim 使用什么编译器和 stdlib？](#what-compiler-and-stdlib-does-airsim-use)
+* [AirSim 构建使用哪个版本的 CMake？](#what-version-of-cmake-does-the-airsim-build-use)
+* [我可以在 BashOnWindows 中编译 AirSim 吗？](#can-i-compile-airsim-in-bashonwindows)
+* [在哪里可以找到有关在 Linux 上运行 Unreal 的更多信息？](#where-can-i-find-more-info-on-running-unreal-on-linux)
 
 ---
 
@@ -133,70 +133,69 @@
 
 ###### 报错：`<MyProject> could not be compiled. Try rebuilding from source manually`.
 
->This could either happen because of compile error or the fact that your gch files are outdated. Look in to your console window. Do you see something like below?
+>这可能是由于编译错误或你的 gch 文件已过期造成的。查看你的控制台窗口。你看到下面这样的内容了吗？
 >
 >`fatal error: file '/usr/include/linux/version.h''/usr/include/linux/version.h' has been modified since the precompiled header`
 >
->If this is the case then look for *.gch file(s) that follows after that message, delete them and try again. Here's [relevant thread](https://answers.unrealengine.com/questions/412349/linux-ue4-build-precompiled-header-fatal-error.html) on Unreal Engine forums.
+>如果是这种情况，请查找该消息后面的 *.gch 文件，删除它们并重试。这是虚幻引擎论坛上的 [相关帖子](https://answers.unrealengine.com/questions/412349/linux-ue4-build-precompiled-header-fatal-error.html) 。
 >
->If you see other compile errors in console then open up those source files and see if it is due to changes you made. If not, then report it as issue on GitHub.
+>如果您在控制台中看到其他编译错误，请打开这些源文件，看看是否是由于您所做的更改造成的。如果不是，请在 [GitHub](https://github.com/OpenHUTB/air/issues) 上将其报告为问题。 
 
 <!-- ======================================================================= -->
 
-###### Unreal crashed! How do I know what went wrong?
+###### Unreal崩溃了！我怎么知道哪里出了问题？
 
->Go to the `MyUnrealProject/Saved/Crashes` folder and search for the file `MyProject.log` within its subdirectories. At the end of this file you will see the stack trace and messages.
->You can also take a look at the `Diagnostics.txt` file.
-
-<!-- ======================================================================= -->
-
-###### How do I use an IDE on Linux?
-
->You can use Qt Creator or CodeLite. Instructions for Qt Creator are available [here](https://docs.unrealengine.com/en-US/SharingAndReleasing/Linux/BeginnerLinuxDeveloper/SettingUpQtCreator/index.html).
+>前往 `MyUnrealProject/Saved/Crashes` 文件夹，并在其子目录中搜索 `MyProject.log` 文件。在该文件末尾，您将看到堆栈跟踪和消息。您还可以查看 `Diagnostics.txt` 文件。 
 
 <!-- ======================================================================= -->
 
-###### Can I cross compile for Linux from a Windows machine?
+###### 如何在 Linux 上使用 IDE？
 
->Yes, you can, but we haven't tested it. You can find the instructions [here](https://docs.unrealengine.com/latest/INT/Platforms/Linux/GettingStarted/index.html).
-
-<!-- ======================================================================= -->
-
-###### What compiler and stdlib does AirSim use?
-
->We use the same compiler that Unreal Engine uses, **Clang 8**, and stdlib, **libc++**. AirSim's `setup.sh` will automatically download them.
+>您可以使用 Qt Creator 或 CodeLite。Qt Creator 的使用说明可在 [此处](https://docs.unrealengine.com/en-US/SharingAndReleasing/Linux/BeginnerLinuxDeveloper/SettingUpQtCreator/index.html) 获取。
 
 <!-- ======================================================================= -->
 
-###### What version of CMake does the AirSim build use?
+###### 我可以从 Windows 机器交叉编译 Linux 吗？
 
->3.10.0 or higher. This is *not* the default in Ubuntu 16.04 so setup.sh installs it for you. You can check your CMake version using `cmake --version`. If you have an older version, follow [these instructions](cmake_linux.md) or see the [CMake website](https://cmake.org/install/).
-
-<!-- ======================================================================= -->
-
-###### Can I compile AirSim in BashOnWindows?
-
->Yes, however, you can't run Unreal from BashOnWindows. So this is kind of useful to check a Linux compile, but not for an end-to-end run.
->See the [BashOnWindows install guide](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
->Make sure to have the latest version (Windows 10 Creators Edition) as previous versions had various issues.
->Also, don't invoke `bash` from `Visual Studio Command Prompt`, otherwise CMake might find VC++ and try and use that!
+>是的，可以，但我们还没有测试过。您可以在 [这里](https://docs.unrealengine.com/latest/INT/Platforms/Linux/GettingStarted/index.html) 找到说明。
 
 <!-- ======================================================================= -->
 
-###### Where can I find more info on running Unreal on Linux?
->Start here: [Unreal on Linux](https://docs.unrealengine.com/latest/INT/Platforms/Linux/index.html)
->[Building Unreal on Linux](https://wiki.unrealengine.com/Building_On_Linux#Clang)
->[Unreal Linux Support](https://wiki.unrealengine.com/Linux_Support)
->[Unreal Cross Compilation](https://wiki.unrealengine.com/Compiling_For_Linux)
+###### AirSim 使用什么编译器和 stdlib？
+
+>我们使用与虚幻引擎相同的编译器 **Clang 8**，以及 stdlib **libc++**。AirSim 的 `setup.sh` 会自动下载它们。
+
+<!-- ======================================================================= -->
+
+###### AirSim 构建使用哪个版本的 CMake？
+
+>3.10.0 或更高版本。这*不是* Ubuntu 16.04 的默认版本，因此 setup.sh 会为您安装。您可以使用 `cmake --version` 检查您的 CMake 版本。如果您使用的是旧版本，请按照 [这些说明](cmake_linux.md) 操作或访问  [CMake 网站](https://cmake.org/install/) 。 
+
+<!-- ======================================================================= -->
+
+###### 我可以在 BashOnWindows 中编译 AirSim 吗？
+
+>是的，但是您无法从 BashOnWindows 运行虚幻引擎。因此，这对于检查 Linux 编译情况很有用，但对于端到端运行则不然。请参阅 [BashOnWindows 安装指南](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) 。请确保使用最新版本（Windows 10 Creators Edition），因为之前的版本存在各种问题。另外，不要从 `Visual Studio Command Prompt`中调用 `bash`，否则 CMake 可能会找到 VC++ 并尝试使用它！ 
+
+<!-- ======================================================================= -->
+
+###### 在哪里可以找到有关在 Linux 上运行 Unreal 的更多信息？
+>从这里开始： [Linux 上的引擎](https://docs.unrealengine.com/latest/INT/Platforms/Linux/index.html)
+> 
+>[在 Linux 上构建引擎](https://wiki.unrealengine.com/Building_On_Linux#Clang)
+> 
+>[Unreal 的 Linux 支持](https://wiki.unrealengine.com/Linux_Support)
+>
+>[引擎交叉编译](https://wiki.unrealengine.com/Compiling_For_Linux)
 
 ---
 
 ## 其他
 <!-- ======================================================================= -->
 
-###### Packaging a binary including the AirSim plugin
+###### 打包包含 AirSim 插件的二进制文件
 
->In order to package a custom environment with the AirSim plugin, there are a few project settings that are necessary for ensuring all required assets needed for AirSim are included inside the package. Under `Edit -> Project Settings... -> Project -> Packaging`, please ensure the following settings are configured properly:
+>为了将自定义环境与 AirSim 插件打包在一起，需要进行一些项目设置，以确保 AirSim 所需的所有资源都包含在包中。在`Edit -> Project Settings... -> Project -> Packaging`下，请确保正确配置以下设置：
 >
->- `List of maps to include in a packaged build`: ensure one entry exists for `/AirSim/AirSimAssets` 
->- `Additional Asset Directories to Cook`: ensure one entry exists for `/AirSim/HUDAssets`
+>- `List of maps to include in a packaged build`: 确保存在一个`/AirSim/AirSimAssets`条目
+>- `Additional Asset Directories to Cook`: 确保存在一个`/AirSim/HUDAssets`条目
