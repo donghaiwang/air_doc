@@ -73,7 +73,7 @@
 
 ![](../map/images/LandscapeMountains_select_car_or_quadrotor.jpg)
 
-点击“是”表示使用AirSim的车，但是 AirSimGameMode 运行时，因Town10HD_Opt 因为是分层地图，建筑没有加载，需要是地图 Town10HD，可以正常显示。按数字键`1`、`2`、`3`在场景下显示不同传感器的实时数据。
+点击“否”表示使用无人机、“是”表示使用AirSim的车，但是 AirSimGameMode 运行时，因Town10HD_Opt 因为是分层地图，建筑没有加载，需要是地图 Town10HD，可以正常显示。按数字键`1`、`2`、`3`在场景下显示不同传感器的实时数据。
 
 然后使用 [hello_drone.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/hello_drone.py) 来控制模拟四旋翼飞行器进行起飞、移动、降落的动作。
 
