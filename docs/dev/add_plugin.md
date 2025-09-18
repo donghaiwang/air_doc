@@ -26,7 +26,7 @@
 ![](../images/dev/copy_AirSim_plugin_in_HUTB.jpg)
 
 
-然后打开 `hutb\Unreal\CarlaUE4\CarlaUE4.uproject` 文件，修改其中的内容，如下图所示，添加 AirSim 的插件支持。（注意一定要用英文输入法，同时注意不要忘记逗号等分隔符，如果这里修改的有语法错误，则后面可能会出现错误。）修改完之后保存并关闭文件。
+然后打开 `hutb\Unreal\CarlaUE4\CarlaUE4.uproject` 文件，修改其中的内容，如下图所示，添加 AirSim 的插件支持（注意一定要用英文输入法，同时注意不要忘记逗号等分隔符，如果这里修改的有语法错误，则后面可能会出现错误）。修改完之后保存并关闭文件。
 
 ![](../images/dev/HUTB_add_airsim_support_AdditionalDependencies.png)
 
@@ -37,7 +37,7 @@
 
 ![](../images/dev/HUTB_add_MapsToCook.jpg)
 
-右键点击 `hutb\Unreal\CarlaUE4\CarlaUE4.uproject` 文件，选择“显示更多选项”，然后选择 `Generate Visual Studio project files` 选项，如下图所示。这一步会自动检测所有的插件和源文件，并且生成 `.sln` 工程文件。
+（可以不做）右键点击 `hutb\Unreal\CarlaUE4\CarlaUE4.uproject` 文件，选择“显示更多选项”，然后选择 `Generate Visual Studio project files` 选项，如下图所示。这一步会自动检测所有的插件和源文件，并且生成 `.sln` 工程文件。
 
 
 ![](../images/dev//HUTB_generate_vs_project_files.jpg)
@@ -68,16 +68,21 @@
 
 点击“是”表示使用AirSim的车，但是 AirSimGameMode 运行时，因Town10HD_Opt 因为是分层地图，建筑没有加载，需要是地图 Town10HD，可以正常显示。
 
+然后使用 [hello_drone.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/hello_drone.py) 来控制模拟四旋翼飞行器进行起飞、移动、降落的动作。
+
 !!! 报错
     如果点运行时提示：`There were no compatible vehicles created for current SimMode! Check your settings.json.`，在菜单中点击`运行` -> `以独立进程运行`则可以显示无人机，但是地图没有显示（从配置文件`C:\Users\Administrator\Documents\AirSim\settings.json`中加载，`"SimMode": "ComputerVision"`）。
 
 如果是第一次仿真运行这个 `Town10` 场景，点击 `运行` 后，视口中一片空白的话（只显示无人机），不要紧张，可能需要一些时间来渲染画面，随着渲染的进行，画面会一点点展示出来。不同性能的计算机的渲染时间也不一样。如果渲染的较长时间的话，也不用担心，因为仅第一次打开的时候需要渲染，第一次渲染完成后，后面的仿真操作就可以直接加载了。渲染完成之后，视口中就会出现一个飞行的四旋翼，如下图所示。点击工具栏的 `停止` 按钮，即可退出仿真。
 
-![](../images/dev/HUTB_simulation.jpg)
+![](../images/dev/HUTB_simulation.gif)
 
 
 至此 AirSim 插件已经加载到虚幻引擎场景工程中了。
 
+### 打包
+
+[打包注意事项](../build_faq.md#packaging-a-binary-including-the-airsim-plugin)
 
 ## FAQ
 

@@ -94,10 +94,9 @@ while True:
 ```
 
 ## Hello Drone
-下面介绍了如何使用 Python 的 AirSim API 来控制模拟四旋翼飞行器（另请参阅 [ C++ 示例](apis_cpp.md#hello_drone)）：
+下面介绍了如何使用 Python 的 AirSim API 来控制模拟四旋翼飞行器，准备运行示例 [hello_drone.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/hello_drone.py)（另请参阅 [ C++ 示例](apis_cpp.md#hello_drone)）：
 
 ```python
-# 准备运行示例：PythonClient/multirotor/hello_drone.py
 import airsim
 import os
 

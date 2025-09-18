@@ -193,7 +193,7 @@
 ## 其他
 <!-- ======================================================================= -->
 
-###### 打包包含 AirSim 插件的二进制文件
+###### 打包包含 AirSim 插件的二进制文件 <span id="packaging-a-binary-including-the-airsim-plugin"></span>
 
 >为了将自定义环境与 AirSim 插件打包在一起，需要进行一些项目设置，以确保 AirSim 所需的所有资源都包含在包中。在`Edit -> Project Settings... -> Project -> Packaging`下，请确保正确配置以下设置：
 >
