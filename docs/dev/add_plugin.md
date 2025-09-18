@@ -61,19 +61,26 @@
 
 ![](../images/dev/HUTB_game_mode_setting.jpg)
 
-点击工具栏中的 “运行”，就可以运行仿真了，在跳出的对话框中点 “否”，如下图所示。
+如下图所示，点击工具栏中的 “运行”，就可以运行仿真了，在跳出的对话框中点 “否”。如果是场景是可执行文件，可以在当前文件夹中添加配置文件`settings.json`，可以跳过选择步骤。
+```json
+{
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor"
+}
+```
+
 
 
 ![](../map/images/LandscapeMountains_select_car_or_quadrotor.jpg)
 
-点击“是”表示使用AirSim的车，但是 AirSimGameMode 运行时，因Town10HD_Opt 因为是分层地图，建筑没有加载，需要是地图 Town10HD，可以正常显示。
+点击“是”表示使用AirSim的车，但是 AirSimGameMode 运行时，因Town10HD_Opt 因为是分层地图，建筑没有加载，需要是地图 Town10HD，可以正常显示。按数字键`1`、`2`、`3`在场景下显示不同传感器的实时数据。
 
 然后使用 [hello_drone.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/hello_drone.py) 来控制模拟四旋翼飞行器进行起飞、移动、降落的动作。
 
 !!! 报错
     如果点运行时提示：`There were no compatible vehicles created for current SimMode! Check your settings.json.`，在菜单中点击`运行` -> `以独立进程运行`则可以显示无人机，但是地图没有显示（从配置文件`C:\Users\Administrator\Documents\AirSim\settings.json`中加载，`"SimMode": "ComputerVision"`）。
 
-如果是第一次仿真运行这个 `Town10` 场景，点击 `运行` 后，视口中一片空白的话（只显示无人机），不要紧张，可能需要一些时间来渲染画面，随着渲染的进行，画面会一点点展示出来。不同性能的计算机的渲染时间也不一样。如果渲染的较长时间的话，也不用担心，因为仅第一次打开的时候需要渲染，第一次渲染完成后，后面的仿真操作就可以直接加载了。渲染完成之后，视口中就会出现一个飞行的四旋翼，如下图所示。点击工具栏的 `停止` 按钮，即可退出仿真。
+如果是第一次仿真运行这个 `Town10` 场景，点击 `运行` 后，视口中一片空白的话（只显示无人机），不要紧张，可能需要一些时间来渲染画面，随着渲染的进行，画面会一点点展示出来。不同性能的计算机的渲染时间也不一样。如果渲染的较长时间的话，也不用担心，因为仅第一次打开的时候需要渲染，第一次渲染完成后，后面的仿真操作就可以直接加载了。如下图所示，渲染完成之后，视口中就会出现一个四旋翼飞行器。点击工具栏的 `停止` 按钮，即可退出仿真。
 
 ![](../images/dev/HUTB_simulation.gif)
 
@@ -83,6 +90,8 @@
 ### 打包
 
 [打包注意事项](../build_faq.md#packaging-a-binary-including-the-airsim-plugin)
+
+
 
 ## FAQ
 
