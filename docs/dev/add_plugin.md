@@ -91,6 +91,10 @@
 
 [打包注意事项](../build_faq.md#packaging-a-binary-including-the-airsim-plugin)
 
+打包参考 [链接](https://blog.csdn.net/nenchoumi3119/article/details/148474734)
+
+
+可执行文件位于 [链接](https://pan.baidu.com/s/1YJc4Gnhp20Og7VhKkrkXcQ?pwd=hutb) 中的 `hutb_air_v2.2.1.zip`。
 
 
 ## FAQ
