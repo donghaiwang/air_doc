@@ -1,55 +1,59 @@
-# Upgrading API Client Code
-There have been several API changes in AirSim v1.2 that we hope removes inconsistency, adds future extensibility and presents cleaner interface. Many of these changes are however *breaking changes* which means you will need to modify your client code that talks to AirSim.
+# 升级 API 客户端代码
 
-## Quicker Way
-While most changes you need to do in your client code are fairly easy, a quicker way is simply to take a look at the example code such as [Hello Drone](https://github.com/Microsoft/AirSim/tree/main/PythonClient//multirotor/hello_drone.py)or [Hello Car](https://github.com/Microsoft/AirSim/tree/main/PythonClient//car/hello_car.py) to get gist of changes.
+AirSim v1.2中有几个API更改，我们希望消除不一致性，增加未来的扩展性，并提供更干净的接口。然而，其中许多更改都是*破坏性的更改*，这意味着您需要修改与AirSim对话的客户端代码。
 
-## Importing AirSim
-Instead of,
+
+## 更快的方法
+
+虽然您需要在客户端代码中做的大多数更改都相当容易，但更快捷的方法就是查看示例代码（例如 [Hello Drone](https://github.com/OpenHUTB/air/tree/main/PythonClient/multirotor/hello_drone.py) 或 [Hello Car](https://github.com/OpenHUTB/air/tree/main/PythonClient/car/hello_car.py) ）以了解更改的要点。
+
+## 导入 AirSim
+不是
 
 ```python
 from AirSimClient import *
 ```
-use this:
+而是使用这个：
 
 ```python
 import airsim
 ```
 
-Above assumes you have installed AirSim module using, 
+以上假设您已经使用以下方式安装了 AirSim 模块，
 ```
 pip install --user airsim
 ```
 
-If you are running you code from PythonClient folder in repo then you can also do this:
+如果您正在从 repo 中的 PythonClient 文件夹运行代码，那么您也可以执行以下操作：
 
 ```python
 import setup_path 
 import airsim
 ```
 
-Here setup_path.py should exist in your folder and it will set the path of `airsim` package in `PythonClient` repo folder. All examples in PythonClient folder uses this method.
+这里 setup_path.py 应该存在于你的文件夹中，它将设置 `airsim` 包在 `PythonClient` repo 文件夹中的路径。PythonClient 文件夹中的所有示例都使用此方法。
 
-## Using AirSim Classes
-As we have everything now in package, you will need to use explicit namespace for AirSim classes like shown below.
+## 使用 AirSim 类
 
-Instead of,
+由于我们现在已将所有内容都包含在包中，因此您需要为 AirSim 类使用明确的命名空间，如下所示。
+
+不是
 
 ```python
 client1 = CarClient()
 ```
 
-use this:
+而是使用这个：
 
 ```python
 client1 = airsim.CarClient()
 ```
 
-## AirSim Types
+## AirSim 类型
 
-We have moved all types in `airsim` namespace.
+我们已将所有类型移至 `airsim` 命名空间。
 
-Instead of,
+不是
 
 ```python
 image_type = AirSimImageType.DepthVis
@@ -57,7 +61,7 @@ image_type = AirSimImageType.DepthVis
 d = DrivetrainType.MaxDegreeOfFreedom
 ```
 
-use this:
+而是使用这个：
 
 ```python
 image_type = airsim.ImageType.DepthVis
@@ -65,26 +69,29 @@ image_type = airsim.ImageType.DepthVis
 d = airsim.DrivetrainType.MaxDegreeOfFreedom
 ```
 
-## Getting Images
+## 获取图像
 
-Nothing new below, it's just combination of above. Note that all APIs that previously took `camera_id`, now takes `camera_name` instead. You can take a look at [available cameras](image_apis.md#avilable_cameras) here.
+以下内容并无新意，只是上述内容的组合。请注意，所有之前使用 `camera_id` 的 API 现在均改为使用 `camera_name`。您可以点击此处查看 [可用的相机](image_apis.md#avilable_cameras) 。
 
-Instead of,
+
+不是
 
 ```python
 responses = client.simGetImages([ImageRequest(0, AirSimImageType.DepthVis)])
 ```
 
-use this:
+而是使用这个：
 
 ```python
 responses = client.simGetImages([airsim.ImageRequest("0", airsim.ImageType.DepthVis)])
 ```
 
-## Utility Methods
-In earlier version, we provided several utility methods as part of `AirSimClientBase`. These methods are now moved to `airsim` namespace for more pythonic interface.
+## 实用方法
 
-Instead of,
+在早期版本中，我们提供了一些实用方法作为 `AirSimClientBase` 的一部分。现在，这些方法已移至 `airsim` 命名空间，以提供更具 Python 风格的接口。
+
+
+不是
 
 ```python
 AirSimClientBase.write_png(my_path, img_rgba) 
@@ -92,7 +99,7 @@ AirSimClientBase.write_png(my_path, img_rgba)
 AirSimClientBase.wait_key('Press any key')
 ```
 
-use this:
+而是使用这个：
 
 ```python
 airsim.write_png(my_path, img_rgba)
@@ -100,29 +107,31 @@ airsim.write_png(my_path, img_rgba)
 airsim.wait_key('Press any key')
 ```
 
-## Camera Names
-AirSim now uses [names](image_apis.md#available_cameras) to reference cameras instead of index numbers. However to retain backward compatibility, these names are aliased with old index numbers as string.
+## 相机名称
 
-Instead of,
+AirSim 现在使用 [名称](image_apis.md#available_cameras) （而非索引号）来引用摄像头。但为了保持向后兼容性，这些名称将使用旧索引号作为字符串别名。
+
+不是
 
 ```python
 client.simGetCameraInfo(0)
 ```
 
-use this:
+而是使用这个：
 
 ```python
 client.simGetCameraInfo("0")
 
-# or
+# 或者
 
 client.simGetCameraInfo("front-center")
 ```
 
-## Async Methods
-For multirotors, AirSim had various methods such as `takeoff` or `moveByVelocityZ` that would take long time to complete. All of such methods are now renamed by adding the suffix *Async* as shown below.
+## 异步方法
 
-Instead of,
+对于多旋翼飞行器，AirSim 中存在多种方法，例如 `takeoff` 或 `moveByVelocityZ`，这些方法需要较长时间才能完成。现在，所有这些方法都已重命名，并添加了后缀 *Async*，如下所示。
+
+不是
 
 ```python
 client.takeoff()
@@ -130,7 +139,7 @@ client.takeoff()
 client.moveToPosition(-10, 10, -10, 5)
 ```
 
-use this:
+而是使用这个：
 
 ```python
 client.takeoffAsync().join()
@@ -138,30 +147,33 @@ client.takeoffAsync().join()
 client.moveToPositionAsync(-10, 10, -10, 5).join()
 ```
 
-Here `.join()` is a call on Python's `Future` class to wait for the async call to complete. You can also choose to do some other computation instead while the call is in progress.
+这里 `.join()` 是对 Python `Future` 类的调用，用于等待异步调用完成。你也可以选择在调用过程中执行其他计算。
 
-## Simulation-Only Methods
-Now we have clear distinction between methods that are only available in simulation from the ones that may be available on actual vehicle. The simulation only methods are prefixed with `sim` as shown below.
+## 纯模拟方法
+
+现在，我们已经清楚地区分了仅在模拟中可用的方法和可能在实际车辆上可用的方法。仅用于模拟的方法以 `sim` 为前缀，如下所示。
 
 ```
-getCollisionInfo()      is renamed to       simGetCollisionInfo()
-getCameraInfo()         is renamed to       simGetCameraInfo()
-setCameraOrientation()  is renamed to       simSetCameraOrientation()
+getCollisionInfo()      重命名为       simGetCollisionInfo()
+getCameraInfo()         重命名为       simGetCameraInfo()
+setCameraOrientation()  重命名为       simSetCameraOrientation()
 ```
 
-## State Information
-Previously `CarState` mixed simulation-only information like `kinematics_true`. Moving forward, `CarState` will only contain information that can be obtained in real world.
+## 状态信息
+
+此前，`CarState` 仅包含模拟信息，例如 `kinematics_true`。未来，`CarState` 将仅包含可在现实世界中获取的信息。
+
 
 ```python
 k = car_state.kinematics_true
 ```
 
-use this:
+使用这个：
 
 ```python
 k = car_state.kinematics_estimated
 
-# or
+# 或者
 
 k = client.simGetGroundTruthKinematics()
 ```
