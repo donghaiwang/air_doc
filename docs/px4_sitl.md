@@ -1,23 +1,15 @@
-# Setting up PX4 Software-in-Loop
+# 设置 PX4 软件在环
 
-The [PX4](http://dev.px4.io) software provides a "software-in-loop" simulation (SITL) version of
-their stack that runs in Linux. If you are on Windows then you can use the [Cygwin
-Toolchain](https://dev.px4.io/master/en/setup/dev_env_windows_cygwin.html) or you can use the
-[Windows subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and follow
-the PX4 Linux toolchain setup.
+[PX4](http://dev.px4.io) 软件提供了其堆栈的“软件在环”仿真 (software-in-loop, SITL) 版本，可在 Linux 上运行。如果您使用的是 Windows，则可以使用 [Cygwin 工具链](https://dev.px4.io/master/en/setup/dev_env_windows_cygwin.html) ，或者您可以使用适用于 [Linux 的 Windows 子系统](https://docs.microsoft.com/en-us/windows/wsl/install-win10) 并按照 PX4 Linux 工具链的设置进行操作。
 
-If you are using WSL2 please read these [additional
-instructions](px4_sitl_wsl2.md).
+如果您使用的是 WSL2，请阅读这些 [附加说明](px4_sitl_wsl2.md) 。
 
-**Note** that every time you stop the unreal app you have to restart the `px4` app.
 
-1. From your bash terminal follow [these steps for
-   Linux](https://docs.px4.io/master/en/dev_setup/dev_env_linux.html) and follow **all** the
-   instructions under `NuttX based hardware` to install prerequisites. We've also included our own
-   copy of the [PX4 build instructions](px4_build.md) which is a bit more concise about what we need
-   exactly.
+**请注意** ，每次停止虚幻应用程序时，都必须重新启动 px4 应用程序。
 
-2. Get the PX4 source code and build the posix SITL version of PX4:
+1. 在您的 Bash 终端上，按照 [Linux 系统的步骤操作](https://docs.px4.io/master/en/dev_setup/dev_env_linux.html) ，并按照 `基于 NuttX 的硬件下` 的所有说明安装必备组件。我们还附上​​了我们自己的 [PX4 构建说明](px4_build.md) ，它更简洁地说明了我们的具体需求。 
+
+2. 获取 PX4 源代码并构建 PX4 的 posix SITL 版本：
     ```
     mkdir -p PX4
     cd PX4
