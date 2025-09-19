@@ -1,32 +1,26 @@
-# XBox Controller
+# XBox 控制器
 
-To use an XBox controller with AirSim follow these steps:
+要将 XBox 控制器与 AirSim 一起使用，请按照以下步骤操作：
 
-1. Connect XBox controller so it shows up in your PC Game Controllers:
+1. 连接 XBox 控制器，以便它显示在您的 PC 游戏控制器中：
 
 ![Gamecontrollers](images/game_controllers.png)
 
-2. Launch QGroundControl and you should see a new Joystick tab under settings:
+2. 启动 QGroundControl，您应该会在设置下看到一个新的操纵杆选项卡：
 
 ![Gamecontrollers](images/qgc_joystick.png)
 
-Now calibrate the radio, and setup some handy button actions.  For example, I set mine so that 
-the 'A' button arms the drone, 'B' put it in manual flight mode, 'X' puts it in altitude hold mode
-and 'Y' puts it in position hold mode.  I also prefer the feel of the controller when I check the
-box labelled "Use exponential curve on roll,pitch, yaw" because this gives me more sensitivity for
-small movements.
+现在校准无线电，并设置一些方便的按钮操作。例如，我的设置是`A`键启动无人机，`B`键将其置于手动飞行模式，`X`键将其置于高度保持模式，`Y`键将其置于位置保持模式。我还更喜欢勾选“在横滚、俯仰和偏航时使用指数曲线”复选框时控制器的感觉，因为这能让我更好地感知细微的移动。
 
-QGroundControl will find your Pixhawk via the UDP proxy port 14550 setup by MavLinkTest above.
-AirSim will find your Pixhawk via the other UDP server port 14570 also setup by MavLinkTest above.
-You can also use all the QGroundControl controls for autonomous flying at this point too.
+QGroundControl 将通过上述 MavLinkTest 设置的 UDP 代理端口 14550 找到您的 Pixhawk。AirSim 将通过上述 MavLinkTest 设置的另一个 UDP 服务器端口 14570 找到您的 Pixhawk。此时，您也可以使用所有 QGroundControl 控件进行自主飞行。
 
 
-3. Connect to Pixhawk serial port using MavLinkTest.exe like this:
+3. 使用 MavLinkTest.exe 连接到 Pixhawk 串行端口，如下所示：
 ```
 MavLinkTest.exe -serial:*,115200 -proxy:127.0.0.1:14550 -server:127.0.0.1:14570
 ```
 
-4. Run AirSim Unreal simulator with these `~/Documents/AirSim/settings.json` settings:
+4. 使用以下 `~/Documents/AirSim/settings.json` 设置运行 AirSim 虚幻模拟器：
 ```
 "Vehicles": {
     "PX4": {
@@ -41,12 +35,11 @@ MavLinkTest.exe -serial:*,115200 -proxy:127.0.0.1:14550 -server:127.0.0.1:14570
 }
 ```
 
-## Advanced
+## 高级
 
-If the Joystick tab doesn't show up in QGroundControl then Click on the purple "Q" icon on left in tool bar to reveal the Preferences panel.
-Go to General tab and check the Virtual Joystick checkbox.  Go back to settings screen (gears icon), click on Parameters tab,
-type `COM_RC_IN_MODE` in search box and change its value to either `Joystick/No RC Checks` or `Virtual RC by Joystick`.
+如果 QGroundControl 中未显示“操纵杆”选项卡，请点击工具栏左侧的紫色`Q`图标，打开“首选项”面板。前往“常规”选项卡，勾选“虚拟操纵杆”复选框。返回设置屏幕（齿轮图标），点击“参数”选项卡，在搜索框中输入 `COM_RC_IN_MODE`，并将其值更改为 `操纵杆/无 RC 检查(Joystick/No RC Checks)` 或 `Virtual RC by Joystick(通过操纵杆进行虚拟 RC)`。
 
-### Other Options
 
-See [remote controller options](remote_control.md)
+### 其他选项
+
+查看 [遥控器选项](remote_control.md)

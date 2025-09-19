@@ -1,6 +1,6 @@
-# How to Use Car in AirSim
+# 如何在 AirSim 中使用汽车
 
-By default AirSim prompts user for which vehicle to use. You can easily change this by setting [SimMode](settings.md#SimMode). For example, if you want to use car instead then just set the SimMode in your [settings.json](settings.md) which you can find in your `~/Documents/AirSim` folder, like this:
+默认情况下，AirSim 会提示用户选择要使用的车辆。您可以通过设置 [SimMode](settings.md#SimMode) 轻松更改此设置。例如，如果您想使用汽车，只需在 [settings.json](settings.md)（位于 `~/Documents/AirSim` 文件夹中）中设置 SimMode 即可，如下所示：
 
 ```
 {
@@ -9,16 +9,23 @@ By default AirSim prompts user for which vehicle to use. You can easily change t
 }
 ```
 
-Now when you restart AirSim, you should see the car spawned automatically.
+现在，当您重新启动 AirSim 时，您应该会看到汽车自动生成。
 
-## Manual Driving 
-Please use the keyboard arrow keys to drive manually. Spacebar for the handbrake. In manual drive mode, gears are set in "auto".
+## 手动驾驶
 
-## Using APIs
-You can control the car, get state and images by calling APIs in variety of client languages including C++ and Python. Please see [APIs doc](apis.md) for more details.
+请使用键盘方向键进行手动驾驶。空格键用于拉手刹。手动驾驶模式下，档位设置为“自动(auto)”。
 
-## Changing Views
-By default camera will chase the car from the back. You can get the FPV view by pressing `F` key and switch back to chasing from back view by pressing `/` key. More keyboard shortcuts can be seen by pressing F1.
+## 使用 APIs
 
-## Cameras
-By default car is installed with 5 cameras: center, left and right, driver and reverse. You can chose the images from these camera by specifying [the name](image_apis.md#available_cameras).
+您可以通过调用各种客户端语言（包括 C++ 和 Python）的 API 来控制车辆、获取状态和图像。更多详情，请参阅 [API 文档](apis.md) 。
+
+
+## 改变视角
+
+默认情况下，摄像头会从车辆后方追击。您可以按 `F` 键进入 FPV 视图，然后按 `/` 键切换回后方追击。按 F1 键可以查看更多键盘快捷键。
+
+
+## 相机
+
+车辆默认安装有 5 个摄像头：中央摄像头、左侧摄像头、右侧摄像头、驾驶员摄像头和倒车摄像头。您可以通过指定 [名称](image_apis.md#available_cameras) 来选择这些摄像头的图像。
+
