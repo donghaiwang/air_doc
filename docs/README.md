@@ -18,22 +18,22 @@
 
 该项目基于 [AirSim](https://github.com/microsoft/AirSim) 项目，可单独使用，也可以将其作为一个插件集成到  HUTB 项目中，配置方法请参考 [链接](dev/add_plugin.md) 。
 
-2017年，微软研究院创建了AirSim，作为人工智能研究和实验的模拟平台。经过五年发展，这个研究项目已实现其目标，并取得了长足进展——成为共享研究代码和测试空中人工智能开发与模拟新想法的常用方式。此外，时间也推动了我们将技术应用于现实世界的方式不断进步，尤其是在空中机动和自主系统方面。例如，无人机送货不再是科幻故事，而是商业现实，这意味着新的需求需要满足。我们在此过程中收获颇丰，并感谢社区成员一直以来的积极参与。
+2017年，微软研究院创建了AirSim，作为人工智能研究和实验的模拟平台。2022 年微软调整战略，放弃了该项目的维护，我们在 AirSim 的基础之上继续开发，经过多年发展，这个研究项目已实现其目标，并取得了长足进展——成为共享研究代码和测试空中人工智能开发与模拟新想法的常用方式。此外，时间也推动了我们将技术应用于现实世界的方式不断进步，尤其是在空中机动和自主系统方面。例如，无人机送货不再是科幻故事，而是商业现实，这意味着新的需求需要满足。我们在此过程中收获颇丰，并感谢社区成员一直以来的积极参与。
 
 
-# 欢迎来到 AirSim
+# 欢迎来到 Air
 
-AirSim 是一款基于虚幻引擎（我们现在也发布了Unity实验版）的无人机、汽车等模拟器。它是开源的跨平台仿真器，支持使用 PX4 和 ArduPilot 等主流飞行控制器进行软件在环仿真，以及使用 PX4 进行硬件在环仿真，以实现物理和视觉上逼真的模拟。它以虚幻插件的形式开发，可以轻松集成到任何虚幻环境中。同样，我们也发布了 Unity 插件的实验版。
+Air 是一款基于虚幻引擎的无人机、汽车等模拟器。它是开源的跨平台仿真器，支持使用 PX4 和 ArduPilot 等主流飞行控制器进行软件在环仿真，以及使用 PX4 进行硬件在环仿真，以实现物理和视觉上逼真的模拟。它以虚幻插件的形式开发，可以轻松集成到任何虚幻环境中。
 
-我们的目标是将 AirSim 开发为一个人工智能研究平台，用于试验自动驾驶汽车的深度学习、计算机视觉和强化学习算法。为此，AirSim 还开放了 API，以便以独立于平台的方式检索数据和控制车辆。
+我们的目标是将 Air 开发为一个人工智能研究平台，用于试验自动驾驶汽车的深度学习、计算机视觉和强化学习算法。为此，Air 还开放了 API，以便以独立于平台的方式检索数据和控制车辆。
 
 **观看 1.5 分钟的快速演示**
 
-AirSim 中的无人机
+Air 中的无人机
 
 [![AirSim Drone Demo Video](images/demo_video.png)](https://youtu.be/-WfTr1-OBGQ)
 
-AirSim 中的汽车
+Air 中的汽车
 
 [![AirSim Car Demo Video](images/car_demo_video.png)](https://youtu.be/gnz1X3UNM5Y)
 
@@ -112,7 +112,7 @@ AirSim 的另一种使用方式是所谓的“计算机视觉”模式。在此�
 - [视频 - 使用 AirSim 的现成环境](https://www.youtube.com/watch?v=y09VbdQWvQY) 
 - [网络研讨会——利用高保真仿真实现自主系统](https://note.microsoft.com/MSR-Webinar-AirSim-Registration-On-Demand.html) 
 - [使用 AirSim 进行强化学习](https://microsoft.github.io/AirSim/reinforcement_learning) 
-- [自动驾驶食谱](https://aka.ms/AutonomousDrivingCookbook) 
+- [自动驾驶烹饪手册](https://aka.ms/AutonomousDrivingCookbook) 
 - [使用 TensorFlow 实现简单的防碰撞](https://github.com/simondlevy/AirSimTensorFlow) 
 
 ## 参加
