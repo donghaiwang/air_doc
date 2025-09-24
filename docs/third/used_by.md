@@ -4,10 +4,32 @@
 <!-- 整理到的仓库：https://github.com/cvisionai/AirSim -->
 
 
-## 飞行器
+- [__飞行器__](#air)
+    - [感知](#perception)
+    - [规划](#planning)
+    - [强化学习](#rl)
+    - [控制](#control)
+    - [ROS](#ros)
+    - [大模型](#llm)
+    - [多智能体](#multi_agent)
+    - [端到端](#end_2_end)
+    - [平台](#platform)
+    - [数据](#data)
+    - [工具](#tool)
+    - [地图](#map)
+    - [比赛](#contest)
+    - [研究](#research)
+    - [模拟器定制](#custom)
+- [__人__](#humanoid)
+- [__车__](#car)
+- [__机器人__](#robot)
+- [__杂项__](#misc)
 
 
-### 感知
+## 飞行器 <span id="air"></span>
+
+
+### 感知 <span id="perception"></span>
 [从模拟环境收集的里程计数据](https://github.com/saipraneethd-zz/Robotic_Perception) - 比较最小二乘估计器（LSQ）和扩展卡尔曼滤波器（EKF）进行传感器融合
 
 [P-Agent：使用 Pedras 和 AirSim 训练自主代理识别并获取包裹](https://github.com/MichaelLee0/P-Agent)
@@ -49,7 +71,7 @@
 [能够在不同场景中探测火灾的无人机](https://github.com/michael-2509/fire-detection-drone)
 
 
-### 规划
+### 规划  <span id="planning"></span>
 
 [在复杂未知环境下训练无人机导航策略的平台](https://github.com/heleidsn/UAV_Navigation_DRL_AirSim)
 
@@ -92,7 +114,7 @@
 [使用 AirSim 中的 A* 寻路、传感器数据集成和 YOLO 物体检测的自动驾驶汽车控制系统](https://github.com/oaslananka/Airsim101_Yolov10)
 
 
-### 强化学习
+### 强化学习  <span id="rl"></span>
 
 [以模拟固定翼飞机进行强化学习 (RL)](https://github.com/AOS55/Fixedwing-Airsim)
 
@@ -169,7 +191,7 @@
 
 
 
-### 控制
+### 控制  <span id="control"></span>
 
 [AirSim中的控制](https://github.com/thechaos16/airsim_controller)
 
@@ -186,7 +208,7 @@
 [碰撞避免](https://github.com/jinwoolee1230/UAV-collision-avoidance)
 
 
-### ROS
+### ROS  <span id="ros"></span>
 
 [针对 AirSim 修改的 ROS 包装器，以及一些 vslam 相关工具](https://github.com/GimpelZhang/airsim_ros) - 主要针对 Car SimMode
 
@@ -201,7 +223,7 @@
 [SOS-Match ROS 节点](https://github.com/annika-thomas/SOS-Match-ROS)
 
 
-### 大模型
+### 大模型  <span id="llm"></span>
 
 [DroneVQA：在模拟四旋翼无人机上部署基于 Transformer 的视觉问答 (VQA) 人工智能模型进行视觉检查](https://github.com/jenniferolenchak/DroneVQA) - 通过比较答案准确性、主题理解、处理速度和模型训练改进等关键因素，比较开源模型的性能以及在无人机应用中进行微调的难易程度。用户可以在虚拟环境中驾驶无人机，并根据无人机摄像头的拍摄内容提出问题。生成了可解释的人工智能 (XAI) 结果可视化效果，从人工智能模型的角度展示提供的提示和图像，突出显示影响模型结论的关键因素以及最佳答案的权重。用户还可以选择模拟环境天气效应，例如雨、雪、灰尘和雾，以及镜头模糊、像素损坏和断线等摄像头缺陷
 
@@ -214,7 +236,7 @@
 [基于视觉语言模型引导的单目视觉无人机导航](https://github.com/gcsarker/vlm_nav) - 基于视觉语言模型（Google Gemini Flash 模型）开发了一套基于单目视觉的无人机导航与避障系统。前置摄像头捕捉的 RGB 图像通过 Depth-Anything 算法处理成深度图。生成的深度图随后被转化为三个离散动作。
 
 
-### 多智能体
+### 多智能体  <span id="multi_agent"></span>
 
 [基于熵的多智能体无人机分布式行为建模](https://github.com/sevilresearch/EntropySwarm)
 
@@ -227,14 +249,14 @@
 [单摄像头（单目）实现多个 UAS 代理的群集/聚集行为](https://github.com/ConorGagliardi/Monocular-Swarm)
 
 
-### 端到端
+### 端到端  <span id="end_2_end"></span>
 
 [利用神经网络飞越狭窄缝隙](https://github.com/hku-mars/crossgap_il_rl) - 一种端到端的规划和控制方法
 
 [基于迁移学习 (TL) 的方法，通过深度强化学习减少训练深度神经网络进行自主导航所需的机载计算量](https://github.com/Shais-coder/git-clone-https-github.com-aqeelanwar-DRLwithTL) - 对网络进行端到端训练。这些训练好的元权重随后在模拟测试环境中用作网络的初始化器，并针对最后几个全连接层进行微调。为了验证该方法的鲁棒性，我们模拟了无人机动力学和环境特性的变化。包含真实DJI Tello 无人机上
 
 
-### 平台
+### 平台  <span id="platform"></span>
 
 [使无人机能够使用机载摄像头识别并跟踪其视野范围内的人员，从而跟踪他们的运动](https://github.com/l-gonz/tfg-giaa-dronecontrol) - [利用该平台开发集成计算机视觉技术的解决方案，并利用其输入来控制无人机的运动](https://l-gonz.github.io/tfg-giaa-dronecontrol/)
 
@@ -278,7 +300,7 @@
 
 
 
-### 数据
+### 数据  <span id="data"></span>
 
 [生成执行器故障下的无人机传感器数据](https://github.com/joigalcar3/DataGatheringUE4) - 为了开发和评估基于视觉的 FDD 算法的性能，需要一个包含正常飞行和故障场景下 IMU 和摄像头输出的数据集。介绍了 UUFOSim（虚幻无人机故障注入模拟器），这是一个基于 AirSim 构建的数据收集流程，用于收集城市环境中执行器故障的合成飞行数据
 
@@ -311,7 +333,7 @@
 
 
 
-### 工具
+### 工具  <span id="tool"></span>
 
 [适用于 AirSim Multirotor 模拟器的 OpenAI Gym 环境](https://github.com/Kamaropoulos/AirSim_Gym)
 
@@ -342,7 +364,7 @@
 [无人机测试](https://github.com/lfeng0722/drone_testing)
 
 
-### 地图
+### 地图  <span id="map"></span>
 
 [基于图像的无人机3D地图构建系统](https://github.com/rainfall1998/3D_reconstruction_system)
 
@@ -352,7 +374,7 @@
 [构建了一些环境](https://github.com/ElishaAz/simple_airsim)
 
 
-### 比赛
+### 比赛 <span id="contest"></span>
 
 [方程式无人驾驶赛车](https://github.com/hoangtnm/mark1_project) - 包括素材构建流程、模仿学习（TODO）
 
@@ -371,12 +393,12 @@
 [密苏里科技大学多旋翼设计团队为 2023-2024 年学生无人机系统竞赛 (SUAS) 设计的模拟环境](https://github.com/MissouriMRR/Simulation-2024-SUAS-Enviroment)
 
 
-### 研究
+### 研究  <span id="research"></span>
 
 [资源感知分布式贪婪算法 (RAG)](https://github.com/UM-iRaL/Resource-Aware-Coordination-AirSim) - 一种用于机器人网状网络中分布式子模优化的高效通信和计算方法
 
 
-### 定制
+### 模拟器定制  <span id="custom"></span>
 
 [进行了二次开发，打造了一款可以同时控制飞机和汽车模型的多人游戏](https://github.com/9woods123/Airsim_keyboard_control_car)
 
@@ -410,12 +432,14 @@
 
 [AirSimDevVerison](https://github.com/yigitserce/AirSimDevVerison/) - clang-12 error fixed
 
+[当 ClockSpeed 设置改变时，模拟速度也会随之改变](https://github.com/GimpelZhang/AirSim)
+
 [万向节跟踪器添加需要修复 pid 控制](https://github.com/AlexanderRex/airsim_ros2)
 
 [视觉逼真的水下机器人模拟器 UNav-Sim](https://github.com/open-airlab/UNav-Sim) - 基于虚幻5
 
 
-## 人
+## 人  <span id="humanoid"></span>
 
 [多模态人机交互（Human-in-the-loop, HITL）学习](https://github.com/ritwikbera/multimodal_hitl) - 整合眼神注视和自然语言，实现人机交互学习。预测的凝视和真实凝视对比
 
@@ -428,7 +452,7 @@
 
 
 
-## 车
+## 车  <span id="car"></span>
 
 [对 Udemy 教程《应用深度学习——完整的自动驾驶汽车课程》概念流程的测试](https://github.com/absolutelynick/machine_learning_drive_data) - 使用 Keras（Tensorflow 的包装器）教汽车如何自动驾驶
 
@@ -451,12 +475,12 @@
 [从标签（由激光雷达文件生成）中提取 GPS 数据，运行模拟并使用 PID 控制器控制汽车](https://github.com/AsmaTheWizard/deepen-ai-script)
 
 
-## 机器人
+## 机器人  <span id="robot"></span>
 
 [基于深度强化学习的多机器人有效载荷运输](https://github.com/josyulakrishna/multiRobotCarry) - 场景有两种：一个是封闭空间，其中有一个目标；另一个是机器人携带有效载荷前往的狭窄通道
 
 
-## 杂项
+## 杂项  <span id="misc"></span>
 
 [智能图形学习助手](https://github.com/Srijans01/smart-graphics-learning-assistant)
 
