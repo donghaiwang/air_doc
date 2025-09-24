@@ -186,6 +186,21 @@
 [碰撞避免](https://github.com/jinwoolee1230/UAV-collision-avoidance)
 
 
+### ROS
+
+[针对 AirSim 修改的 ROS 包装器，以及一些 vslam 相关工具](https://github.com/GimpelZhang/airsim_ros) - 主要针对 Car SimMode
+
+[通用 ROS2 包，用于使用不同的 API 控制各种模拟中的车辆](https://github.com/blakermchale/robot-control)
+
+[Airsim + Python + Docker 示例](https://github.com/cognitedata/Ascend-workshop-2022) - 包括 ROS2 + Docker turtlesim 示例
+
+[包装并使用 Airsim 的摄像头和激光雷达与 ROS 2 进行交互](https://github.com/StayInSchoolKiddos/airsim_sensor)
+
+[将 Airsim 与 ROS2 连接起来](https://github.com/StayInSchoolKiddos/airsim_jsbsim) - 通过在后端运行 JSBSim 并使用来自 airsim 的 MovePosition api 来移动相机 pawn 来完成的
+
+[SOS-Match ROS 节点](https://github.com/annika-thomas/SOS-Match-ROS)
+
+
 ### 大模型
 
 [DroneVQA：在模拟四旋翼无人机上部署基于 Transformer 的视觉问答 (VQA) 人工智能模型进行视觉检查](https://github.com/jenniferolenchak/DroneVQA) - 通过比较答案准确性、主题理解、处理速度和模型训练改进等关键因素，比较开源模型的性能以及在无人机应用中进行微调的难易程度。用户可以在虚拟环境中驾驶无人机，并根据无人机摄像头的拍摄内容提出问题。生成了可解释的人工智能 (XAI) 结果可视化效果，从人工智能模型的角度展示提供的提示和图像，突出显示影响模型结论的关键因素以及最佳答案的权重。用户还可以选择模拟环境天气效应，例如雨、雪、灰尘和雾，以及镜头模糊、像素损坏和断线等摄像头缺陷
@@ -308,8 +323,6 @@
 
 [GazePointer: 包含要使用的包列表](https://github.com/ece496-Telecopter/Packages)
 
-[Airsim + Python + Docker 示例](https://github.com/cognitedata/Ascend-workshop-2022) - 包括 ROS2 + Docker turtlesim 示例
-
 [FLS（飞行光斑）显示器](https://github.com/bswaika/motill_simulation) - 能够通过占据空间中的物理体积来呈现真实或虚拟的三维物体的显示器，我们需要尺寸仅为数百微米的微型无人机，并配备一个或多个可发出不同颜色和亮度的光源
 
 [录制脚本](https://github.com/gsc2001/Airsim-Recording-Scripts) - 用于在 airsim 中记录各种 SLAM 实验的数据集；用于在给定路径上飞行无人机并记录跟踪以创建数据集的脚本
@@ -327,12 +340,6 @@
 [与训练环境 IPT 相关的文件的软件仓库](https://github.com/Eagle-Enterprises/Training-Environment) - 用于创建 Eagle Enterprises 训练环境的所有插件文件、虚幻资源和虚幻蓝图文件
 
 [无人机测试](https://github.com/lfeng0722/drone_testing)
-
-[包装并使用 Airsim 的摄像头和激光雷达与 ROS 2 进行交互](https://github.com/StayInSchoolKiddos/airsim_sensor)
-
-[将 Airsim 与 ROS2 连接起来](https://github.com/StayInSchoolKiddos/airsim_jsbsim) - 通过在后端运行 JSBSim 并使用来自 airsim 的 MovePosition api 来移动相机 pawn 来完成的
-
-[SOS-Match ROS 节点](https://github.com/annika-thomas/SOS-Match-ROS)
 
 
 ### 地图
@@ -430,8 +437,6 @@
 [自动赛车的强化学习](https://github.com/eliork/Reinforcement-Learning-on-Autonomous-Race-Car) - 使用软演员评论家 (SAC) 算法和变分自动编码器 (VAE)。
 
 [使用 TensorFlow 训练神经网络以及执行实时碰撞检测和多车模拟](https://github.com/cdsjdev/CollisionAvoidance)
-
-[通用 ROS2 包，用于使用不同的 API 控制各种模拟中的车辆](https://github.com/blakermchale/robot-control)
 
 [利用超分辨率技术实现汽车应用的快速立体摄像机模拟](https://github.com/hamedhaghighi/ETSSR) - 一种利用立体超分辨率 (SSR) 加速立体相机模拟的方法
 

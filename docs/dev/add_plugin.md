@@ -5,7 +5,7 @@
 ## 构建 AirSim
 * 安装 Visual Studio 2022。**确保**选择使用 **C++ 和 Windows 10 SDK 10.0.19041 进行桌面开发**（默认选择），并在安装 VS 2022 时在“单个组件”选项卡下选择最新的 .NET Framework SDK。 
 * 启动 `Developer Command Prompt for VS 2022`.
-* 克隆仓库：`git clone https://github.com/OpenHUTB/AirSim.git` ，然后通过 `cd AirSim` 进入 AirSim 目录。
+* 克隆仓库：`git clone https://github.com/OpenHUTB/air.git` ，然后通过 `cd air` 进入 air 目录。
 
 !!! 注意
     通常不建议将 AirSim 安装在 C 盘。这会导致脚本运行失败，并且需要以管理员模式运行 VS。建议将其克隆到其他盘，例如 D 盘或 E 盘。 
@@ -118,3 +118,10 @@ PrivateDependencyModuleNames.AddRange(new string[] { "AirSim" });
 无法打开包括文件: “Renderer/Public/GBufferView.h”: No such file or directory
 ```
 原因：[本地存在多个版本的虚幻引擎，没有使用正确的版本](https://openhutb.github.io/doc/tuto_D_windows_debug/#problems) 。
+
+###### CICD报错
+```
+2025-09-20T12:56:36.2243331Z   C:\actions-runner\_work\hutb\hutb\Unreal\CarlaUE4\Plugins\AirSim\Source\AirBlueprintLib.h(23): fatal error C1083: �޷��򿪰����ļ�: ��common/AirSimSettings.hpp��: No such file or directory
+2025-09-20T12:56:36.2273244Z   [6/61] Module.AirSim.gen.cpp
+2025-09-20T12:56:36.2303779Z   C:\actions-runner\_work\hutb\hutb\Unreal\CarlaUE4\Plugins\AirSim\Source/AirBlueprintLib.h(23): fatal error C1083: �޷��򿪰����ļ�: ��common/AirSimSettings.hpp��: No such file or directory
+```
