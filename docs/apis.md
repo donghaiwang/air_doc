@@ -34,7 +34,7 @@ python hello_car.py
 您也可以简单地通过以下方式安装 `airsim` 包：，
 
 ```
-pip install airsim
+pip install hutb
 ```
 
 您可以在代码仓库的 `PythonClient` 文件夹中找到该包的源代码和示例。
