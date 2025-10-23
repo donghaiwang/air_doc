@@ -1,6 +1,6 @@
-# Building PX4
+# 构建 PX4
 
-## Source code
+## 源代码
 
 Getting the PX4 source code is easy:
 ```
@@ -12,7 +12,7 @@ cd PX4-Autopilot
 
 Now to build it you will need the right tools.
 
-## PX4 Build tools
+## PX4 构建工具
 
 The full instructions are available on the [dev.px4.io](https://docs.px4.io/master/en/dev_setup/building_px4.html) website,
 but we've copied the relevant subset of those instructions here for your convenience.
@@ -21,7 +21,7 @@ but we've copied the relevant subset of those instructions here for your conveni
 the PX4 firmware, just follow the BashOnWindows instructions at the bottom of this page) then proceed with the 
 Ubuntu setup for PX4.
 
-## Build SITL version
+## 构建 SITL 版本
 
 Now you can make the SITL version that runs in posix, from the Firmware folder you created above:
 ```
@@ -83,7 +83,7 @@ This app is also an interactive console where you can type commands. Type 'help'
 are and just type ctrl-C to kill it. You can do that and restart it any time, that's a great way to
 reset any wonky state if you need to (it's equivalent to a Pixhawk hardware reboot).
 
-## ARM embedded tools
+## ARM 嵌入式工具
 
 If you plan to build the PX4 firmware for real Pixhawk hardware then you will need the gcc
 cross-compiler for ARM Cortex-M4 chipset. You can get this compiler by PX4 DevGuide, specifically
@@ -98,7 +98,7 @@ This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
 
-## Build PX4 for ARM hardware
+## 为 ARM 硬件构建 PX4
 
 Now  you  can build the PX4 firmware for running on real pixhawk hardware:
 
@@ -113,7 +113,7 @@ in super size-squeezing mode so it can fit all that in a 1 megabyte ROM !!
 One nice tid bit is you can plug in your pixhawk USB, and type `make px4fmu-v2_default upload` to flash the
 hardware with these brand new bits, so you don't need to use QGroundControl for that.
 
-## Some Useful Parameters
+## 一些有用的参数
 
 PX4 has many customizable parameters (over 700 of them, in fact) and to get best results with AirSim we have
 found the following parameters are handy:
@@ -137,6 +137,6 @@ param NAV_RCL_ACT 0
 param set SYS_LOGGER 1
 ```
 
-## Using BashOnWindows
+## 在 Windows 上使用 Bash
 
 See [Bash on Windows Toolchain](https://dev.px4.io/en/setup/dev_env_windows_bash_on_win.html).

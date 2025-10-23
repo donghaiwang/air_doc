@@ -1,7 +1,7 @@
 This is a tutorial for generating simulated thermal infrared (IR) images using AirSim and the AirSim Africa environment. 
 
 Pre-compiled Africa Environment can be downloaded from the Releases tab of this Github repo: 
-[Windows Pre-compiled binary](https://github.com/Microsoft/AirSim/releases/tag/v1.2.1)
+[Windows 预编译二进制包](https://github.com/OpenHUTB/air/releases)
 
 To generate your own data, you may use two python files: [create_ir_segmentation_map.py](https://github.com/Microsoft/AirSim/tree/main/PythonClient//computer_vision/create_ir_segmentation_map.py) and 
 [capture_ir_segmentation.py](https://github.com/Microsoft/AirSim/tree/main/PythonClient//computer_vision/capture_ir_segmentation.py).

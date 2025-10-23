@@ -12,7 +12,7 @@
 ## 构建 AirSim
 
 1. 您将需要 Visual Studio 2017（确保安装 VC++ 和 Windows SDK 8.x）。
-2. 启动 VS 2017 的 `x64 Native Tools Command Prompt`。为仓库创建一个文件夹并运行 `git clone https://github.com/Microsoft/AirSim.git`。
+2. 启动 VS 2017 的 `x64 Native Tools Command Prompt`。为仓库创建一个文件夹并运行 `git clone https://github.com/OpenHUTB/air.git`。
 3. 从命令行运行 `build.cmd`。这将在 `Unreal\Plugins` 文件夹中创建可立即使用的插件，可将其放入任何 Unreal 项目中。
 
 

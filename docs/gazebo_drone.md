@@ -23,7 +23,7 @@ Run from your AirSim root folder:
 ./build.sh --gcc
 ```
 
-## AirSim simulator
+## AirSim 模拟器
 
 The AirSim UE plugin needs to be built with clang, so you can't use the one compiled in the previous step. You can use [our binaries](https://github.com/microsoft/AirSim/releases) or you can clone AirSim again in another folder and buid it without the above option, then you can [run Blocks](build_linux.md#how-to-use-airsim) or your own environment.
 

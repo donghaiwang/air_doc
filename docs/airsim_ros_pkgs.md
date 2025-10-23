@@ -32,8 +32,8 @@ AirSim C++客户端库上的ROS封装。
 - 构建 AirSim
 
 ```shell
-git clone https://github.com/Microsoft/AirSim.git;
-cd AirSim;
+git clone https://github.com/OpenHUTB/air.git;
+cd air;
 ./setup.sh;
 ./build.sh;
 ```

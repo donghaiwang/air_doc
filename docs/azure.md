@@ -78,7 +78,7 @@ docker build -t <your-registry-url>/<your-image-name> -f ./docker/Dockerfile .`
 要使用不同的 AirSim 二进制文件，请首先查看官方文档：[如何在 Windows 上构建 AirSim](build_windows.md)  以及 [如何在 Linux 上构建 AirSim](build_linux.md) （如果您还想使用 Docker 运行它）
 
 
-一旦您拥有包含新 AirSim 环境的 zip 文件（或者更喜欢使用 [官方版本](https://github.com/microsoft/AirSim/releases) 中的文件），您需要修改存储库的 `azure` 目录中的某些脚本以指向新环境：
+一旦您拥有包含新 AirSim 环境的 zip 文件（或者更喜欢使用 [官方版本](https://github.com/OpenHUTB/air/releases) 中的文件），您需要修改存储库的 `azure` 目录中的某些脚本以指向新环境：
 - 在 [`azure/azure-env-creation/configure-vm.ps1`](https://github.com/microsoft/AirSim/blob/main/azure/azure-env-creation/configure-vm.ps1) 中，使用新值修改以 `$airSimBinary` 开头的所有参数
 - 在 [`azure/start-airsim.ps1`](https://github.com/microsoft/AirSim/blob/main/azure/start-airsim.ps1) 中，使用新值修改 `$airSimExecutable` 和 `$airSimProcessName`
 

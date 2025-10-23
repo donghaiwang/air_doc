@@ -20,7 +20,7 @@ conda activate air
 pip install msgpack-rpc-python
 ```
 
-您可以从 [releases](https://github.com/Microsoft/AirSim/releases) 获取 AirSim 二进制文件，也可以从源代码编译（[Windows](build_windows.md)、[Linux](build_linux.md)）。一旦您可以运行 AirSim，请选择 Car 作为载具，然后导航到 `PythonClient\car\` 文件夹并运行：
+您可以从 [releases](https://github.com/OpenHUTB/air/releases) 获取 AirSim 二进制文件，也可以从源代码编译（[Windows](build_windows.md)、[Linux](build_linux.md)）。一旦您可以运行 AirSim，请选择 Car 作为载具，然后导航到 `PythonClient\car\` 文件夹并运行：
 
 ```
 python hello_car.py
@@ -39,14 +39,47 @@ pip install airsim
 
 您可以在代码仓库的 `PythonClient` 文件夹中找到该包的源代码和示例。
 
-**笔记**
-1. 您可能会注意到在我们的示例文件夹中有一个 `setup_path.py` 文件。这个文件有一个简单的代码来检测 `airsim` 包是否在父文件夹中可用，在这种情况下，我们使用它而不是 pip 安装的包，所以您总是使用最新的代码。
-2. AirSim 仍在大量开发中，这意味着您可能需要经常更新软件包以使用新的 API。
+!!! 笔记
+    1. 您可能会注意到在我们的示例文件夹中有一个 `setup_path.py` 文件。这个文件有一个简单的代码来检测 `airsim` 包是否在父文件夹中可用，在这种情况下，我们使用它而不是 pip 安装的包，所以您总是使用最新的代码。
+    2. [低空项目](https://github.com/OpenHUTB/air) 仍在大量开发中，这意味着您可能需要经常更新软件包以使用新的 API。
 
 ## C++ 用户
 
 如果要使用 C++ 的 API 和示例，请参阅 [C++ APIs 指南](apis_cpp.md) 。
 
+
+## Hello Drone
+下面介绍了如何使用 Python 的 AirSim API 来控制模拟四旋翼飞行器，准备运行示例 [hello_drone.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/hello_drone.py)（另请参阅 [ C++ 示例](apis_cpp.md#hello_drone)）：
+
+```python
+import airsim
+import os
+
+# 连接到 AirSim 模拟器
+client = airsim.MultirotorClient()
+client.confirmConnection()
+client.enableApiControl(True)
+client.armDisarm(True)
+
+# Async 方法返回 Future。调用 join() 等待任务完成。
+client.takeoffAsync().join()
+client.moveToPositionAsync(-10, 10, -10, 5).join()
+
+# 获取图像
+responses = client.simGetImages([
+    airsim.ImageRequest("0", airsim.ImageType.DepthVis),
+    airsim.ImageRequest("1", airsim.ImageType.DepthPlanar, True)])
+print('Retrieved images: %d', len(responses))
+
+# 对图像执行一些操作
+for response in responses:
+    if response.pixels_as_float:
+        print("Type %d, size %d" % (response.image_type, len(response.image_data_float)))
+        airsim.write_pfm(os.path.normpath('/temp/py1.pfm'), airsim.get_pfm_array(response))
+    else:
+        print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
+        airsim.write_file(os.path.normpath('/temp/py1.png'), response.image_data_uint8)
+```
 
 ## Hello Car
 
@@ -93,38 +126,6 @@ while True:
             airsim.write_file('py1.png', response.image_data_uint8)
 ```
 
-## Hello Drone
-下面介绍了如何使用 Python 的 AirSim API 来控制模拟四旋翼飞行器，准备运行示例 [hello_drone.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/hello_drone.py)（另请参阅 [ C++ 示例](apis_cpp.md#hello_drone)）：
-
-```python
-import airsim
-import os
-
-# 连接到 AirSim 模拟器
-client = airsim.MultirotorClient()
-client.confirmConnection()
-client.enableApiControl(True)
-client.armDisarm(True)
-
-# Async 方法返回 Future。调用 join() 等待任务完成。
-client.takeoffAsync().join()
-client.moveToPositionAsync(-10, 10, -10, 5).join()
-
-# 获取图像
-responses = client.simGetImages([
-    airsim.ImageRequest("0", airsim.ImageType.DepthVis),
-    airsim.ImageRequest("1", airsim.ImageType.DepthPlanar, True)])
-print('Retrieved images: %d', len(responses))
-
-# 对图像执行一些操作
-for response in responses:
-    if response.pixels_as_float:
-        print("Type %d, size %d" % (response.image_type, len(response.image_data_float)))
-        airsim.write_pfm(os.path.normpath('/temp/py1.pfm'), airsim.get_pfm_array(response))
-    else:
-        print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
-        airsim.write_file(os.path.normpath('/temp/py1.png'), response.image_data_uint8)
-```
 
 ## 常用 API
 

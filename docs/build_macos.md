@@ -28,13 +28,13 @@
 
 ```bash
 # 前往克隆 GitHub 项目的文件夹
-git clone https://github.com/Microsoft/AirSim.git
-cd AirSim
+git clone https://github.com/OpenHUTB/air.git
+cd air
 ```
 
 默认情况下，AirSim 使用 clang 8 进行构建，以兼容 UE 4.25。安装脚本将安装正确版本的 cmake、llvm 和 eigen。
 
-CMake 3.19.2 is required for building on Apple Silicon.
+在 Apple Silicon 上构建需要 CMake 3.19.2 。
 
 ```bash
 ./setup.sh
