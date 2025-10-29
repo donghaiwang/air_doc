@@ -1,12 +1,12 @@
-# How to Use Lidar in AirSim
+# 如何在 AirSim 中使用激光雷达
 
-AirSim supports Lidar for multirotors and cars.
+AirSim支持多旋翼飞行器和汽车的激光雷达。
 
-The enablement of lidar and the other lidar settings can be configured via AirSimSettings json.
-Please see [general sensors](sensors.md) for information on configruation of general/shared sensor settings.
+激光雷达的启用及其他激光雷达设置可通过 AirSimSettings.json 文件进行配置。有关通用/共享传感器设置的配置信息，请参阅 [通用传感器](sensors.md) 部分。
 
-## Enabling lidar on a vehicle
-* By default, lidars are not enabled. To enable lidar, set the SensorType and Enabled attributes in settings json.
+
+## 在载具上启用激光雷达
+* 默认情况下，激光雷达未启用。要启用激光雷达，请在设置 JSON 文件中设置 SensorType 和 Enabled 属性。 
 
 ```json
     "Lidar1": {
@@ -15,27 +15,28 @@ Please see [general sensors](sensors.md) for information on configruation of gen
     }
 ```
 
-* Multiple lidars can be enabled on a vehicle.
+* 一辆载具上可以安装多个激光雷达。
 
-## Lidar configuration
-The following parameters can be configured right now via settings json.
+## 激光雷达配置
 
-Parameter                 | Description
+以下参数现在可以通过 settings.json 文件进行配置。
+
+参数                 | 描述
 --------------------------| ------------
-NumberOfChannels          | Number of channels/lasers of the lidar
-Range                     | Range, in meters
-PointsPerSecond           | Number of points captured per second
-RotationsPerSecond        | Rotations per second
-HorizontalFOVStart        | Horizontal FOV start for the lidar, in degrees
-HorizontalFOVEnd          | Horizontal FOV end for the lidar, in degrees
-VerticalFOVUpper          | Vertical FOV upper limit for the lidar, in degrees
-VerticalFOVLower          | Vertical FOV lower limit for the lidar, in degrees
-X Y Z                     | Position of the lidar relative to the vehicle (in NED, in meters)
-Roll Pitch Yaw            | Orientation of the lidar relative to the vehicle  (in degrees, yaw-pitch-roll order to front vector +X)
-DataFrame                 | Frame for the points in output ("VehicleInertialFrame" or "SensorLocalFrame")
-ExternalController        | Whether data is to be sent to external controller such as ArduPilot or PX4 if being used (default `true`) (PX4 doesn't send Lidar data currently)
+NumberOfChannels          | 激光雷达的通道/激光器数量
+Range                     | 范围，单位为米
+PointsPerSecond           | 每秒捕获的点数
+RotationsPerSecond        | 每秒旋转次数
+HorizontalFOVStart        | 激光雷达水平视场角起始值（以度为单位）
+HorizontalFOVEnd          | 激光雷达水平视场角（FOV）末端，单位为度
+VerticalFOVUpper          | 激光雷达垂直视场角上限（以度为单位）
+VerticalFOVLower          | 激光雷达垂直视场角下限（以度为单位）
+X Y Z                     | 激光雷达相对于载具的位置（NED，单位：米）
+Roll Pitch Yaw            | 激光雷达相对于载具的方位（以度为单位，偏航-俯仰-横滚顺序，以前方矢量 +X 为参考）
+DataFrame                 | 输出点的坐标系（“车辆惯性坐标系(VehicleInertialFrame)”或“传感器本地坐标系(SensorLocalFrame)”）
+ExternalController        | 是否将数据发送到外部控制器（例如 ArduPilot 或 PX4，如果使用）（默认为 `true`）（PX4 目前不发送激光雷达数据）
 
-e.g.
+例如
 
 ```json
 {
@@ -83,9 +84,9 @@ e.g.
 }
 ```
 
-## Server side visualization for debugging
+## 服务器端可视化调试
 
-By default, the lidar points are not drawn on the viewport. To enable the drawing of hit laser points on the viewport, please enable setting `DrawDebugPoints` via settings json.
+默认情况下，激光雷达点不会绘制在视口中。要启用在视口中绘制激光命中点，请通过 settings.json 文件启用 `DrawDebugPoints` 设置。
 
 ```json
     "Lidar1": {
@@ -94,28 +95,28 @@ By default, the lidar points are not drawn on the viewport. To enable the drawin
     },
 ```
 
-**Note:** Enabling `DrawDebugPoints` can cause excessive memory usage and crash in releases `v1.3.1`, `v1.3.0`. This has been fixed in the main branch and should work in later releases
+**注意：** 启用 `DrawDebugPoints` 可能会导致 `v1.3.1` 和 `v1.3.0` 版本中内存占用过高并导致程序崩溃。此问题已在主分支中修复，应该会在后续版本中得到解决。
 
-## Client API
+## 客户端 API
 
-Use `getLidarData()` API to retrieve the Lidar data.
+使用 `getLidarData()` API 获取激光雷达数据。
 
-* The API returns a Point-Cloud as a flat array of floats along with the timestamp of the capture and lidar pose.
+* API 返回一个点云，它是浮点数的扁平数组，同时还包含捕获时间戳和激光雷达姿态。
 * Point-Cloud:
-    * The floats represent [x,y,z] coordinate for each point hit within the range in the last scan.
-    * The frame for the points in the output is configurable using "DataFrame" attribute -
-        * "" or `VehicleInertialFrame` -- default; returned points are in vehicle inertial frame (in NED, in meters)
-        * `SensorLocalFrame` -- returned points are in lidar local frame (in NED, in meters)
+    * 浮点数表示上次扫描中该范围内每个命中点的 [x,y,z] 坐标。
+    * 输出数据点的框架可以通过“DataFrame”属性进行配置 -
+        * "" 或 `VehicleInertialFrame` -- 默认; 返回的点位于载具惯性坐标系中（NED 格式，单位为米）。
+        * `SensorLocalFrame` -- 返回的点坐标系为激光雷达局部坐标系（NED格式，单位为米）。
 * Lidar Pose:
-    * Lidar pose in the vehicle inertial frame (in NED, in meters)
-    * Can be used to transform points to other frames.
-* Segmentation: The segmentation of each lidar point's collided object
+    * 载具惯性系中的激光雷达姿态（单位：米，单位：NED）
+    * 可用于将点转换到其他坐标系。
+* Segmentation: 对每个激光雷达点碰撞对象进行分割 
 
-### Python Examples
-- [drone_lidar.py](https://github.com/microsoft/AirSim/blob/main/PythonClient/multirotor/drone_lidar.py)
-- [car_lidar.py](https://github.com/microsoft/AirSim/blob/main/PythonClient/car/car_lidar.py)
-- [sensorframe_lidar_pointcloud.py](https://github.com/microsoft/AirSim/blob/main/PythonClient/multirotor/sensorframe_lidar_pointcloud.py)
-- [vehicleframe_lidar_pointcloud.py](https://github.com/microsoft/AirSim/blob/main/PythonClient/multirotor/vehicleframe_lidar_pointcloud.py)
+### Python 例子
+- [drone_lidar.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/drone_lidar.py)
+- [car_lidar.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/car/car_lidar.py)
+- [sensorframe_lidar_pointcloud.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/sensorframe_lidar_pointcloud.py)
+- [vehicleframe_lidar_pointcloud.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/vehicleframe_lidar_pointcloud.py)
 
-## Coming soon
-* Visualization of lidar data on client side.
+## 即将推出
+* 在客户端可视化激光雷达数据。
