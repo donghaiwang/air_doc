@@ -1,21 +1,21 @@
-# Image APIs
+# 图像 API
 
-Please read [general API doc](apis.md) first if you are not familiar with AirSim APIs.
+如果您不熟悉 AirSim API，请先阅读 [通用 API 文档](apis.md) 。
 
-## Getting a Single Image
+## 获取单张图像
 
-Here's a sample code to get a single image from camera named "0". The returned value is bytes of png format image. To get uncompressed and other format as well as available cameras please see next sections.
+以下示例代码演示如何从名为“0”的摄像头获取单张图像。返回值是 PNG 格式图像的字节数据。要获取未压缩图像和其他格式，以及了解可用的摄像头，请参阅后续章节。
 
 ### Python
 
 ```python
-import airsim #pip install hutb
+import airsim # pip install hutb
 
-# for car use CarClient() 
+# 用于汽车的 CarClient()
 client = airsim.MultirotorClient()
 
 png_image = client.simGetImage("0", airsim.ImageType.Scene)
-# do something with image
+# 对图像进行一些操作
 ```
 
 ### C++
@@ -27,68 +27,69 @@ int getOneImage()
 {
     using namespace msr::airlib;
     
-    // for car use CarRpcLibClient
+    // 用于汽车的 CarRpcLibClient
     MultirotorRpcLibClient client;
 
     std::vector<uint8_t> png_image = client.simGetImage("0", VehicleCameraBase::ImageType::Scene);
-    // do something with images
+    // 对图像进行一些操作
 }
 ```
 
-## Getting Images with More Flexibility
+## 以更加灵活的方式获取图像
 
-The `simGetImages` API which is slightly more complex to use than `simGetImage` API, for example, you can get left camera view, right camera view and depth image from left camera in a single API call. The `simGetImages` API also allows you to get uncompressed images as well as floating point single channel images (instead of 3 channel (RGB), each 8 bit).
+`simGetImages` API 的使用比 `simGetImage` API 略微复杂一些。例如，您可以通过一次 API 调用获取左侧摄像头视图、右侧摄像头视图以及左侧摄像头的深度图像。`simGetImages` API 还允许您获取未压缩的图像以及单通道浮点图像（而不是 3 通道 (RGB)，每个通道 8 位）。
+
 
 ### Python
 
 ```python
-import airsim #pip install hutb
+import airsim  # pip install hutb
 
-# for car use CarClient() 
+# 用于汽车的 CarClient()
 client = airsim.MultirotorClient()
 
 responses = client.simGetImages([
-    # png format
+    # png 格式
     airsim.ImageRequest(0, airsim.ImageType.Scene), 
-    # uncompressed RGB array bytes
+    # 未压缩的 RGB 数组字节
     airsim.ImageRequest(1, airsim.ImageType.Scene, False, False),
-    # floating point uncompressed image
+    # 浮点未压缩图像
     airsim.ImageRequest(1, airsim.ImageType.DepthPlanar, True)])
  
- # do something with response which contains image data, pose, timestamp etc
+ # 对包含图像数据、姿态、时间戳等信息的响应进行处理
 ```
 
-#### Using AirSim Images with NumPy
+#### 使用 NumPy 处理 AirSim 图像
 
-If you plan to use numpy for image manipulation, you should get uncompressed RGB image and then convert to numpy like this:
+如果您计划使用 numpy 进行图像处理，您应该获取未压缩的 RGB 图像，然后像这样将其转换为 numpy 格式：
 
 ```python
 responses = client.simGetImages([airsim.ImageRequest("0", airsim.ImageType.Scene, False, False)])
 response = responses[0]
 
-# get numpy array
+# 获取 NumPy 数组
 img1d = np.fromstring(response.image_data_uint8, dtype=np.uint8) 
 
-# reshape array to 4 channel image array H X W X 4
+# 将数组重塑为 4 通道图像数组（高 x 宽 x 4）。
 img_rgb = img1d.reshape(response.height, response.width, 3)
 
-# original image is fliped vertically
+# 原图已垂直翻转
 img_rgb = np.flipud(img_rgb)
 
-# write to png 
+# 写入 png
 airsim.write_png(os.path.normpath(filename + '.png'), img_rgb) 
 ```
 
-#### Quick Tips
-- The API `simGetImage` returns `binary string literal` which means you can simply dump it in binary file to create a .png file. However if you want to process it in any other way than you can handy function `airsim.string_to_uint8_array`. This converts binary string literal to NumPy uint8 array.
+#### 快速提示
+- API `simGetImage` 返回二进制`字符串字面量`，这意味着您可以直接将其导出为二进制文件以创建 .png 文件。但是，如果您想以其他方式处理它，可以使用便捷的函数 `airsim.string_to_uint8_array`。该函数将二进制字符串字面量转换为 NumPy uint8 数组。 
 
-- The API `simGetImages` can accept request for multiple image types from any cameras in single call. You can specify if image is png compressed, RGB uncompressed or float array. For png compressed images, you get `binary string literal`. For float array you get Python list of float64. You can convert this float array to NumPy 2D array using
+- API `simGetImages` 可以在一次调用中接受来自任何摄像头的多种图像类型的请求。您可以指定图像是 PNG 压缩图像、RGB 未压缩图像还是浮点数组。对于 PNG 压缩图像，您将获得一个`二进制字符串字面量`。对于浮点数组，您将获得一个 Python float64 列表。您可以使用以下方法将此浮点数组转换为 NumPy 二维数组： 
     ```
     airsim.list_to_2d_float_array(response.image_data_float, response.width, response.height)
     ```
-    You can also save float array to .pfm file (Portable Float Map format) using `airsim.write_pfm()` function.
+    您还可以使用 `airsim.write_pfm()` 函数将浮点数组保存到 .pfm 文件（便携式浮点映射格式）。 
 
-- If you are looking to query position and orientation information in sync with a call to one of the image APIs, you can use `client.simPause(True)` and `client.simPause(False)` to pause the simulation while calling the image API and querying the desired physics state, ensuring that the physics state remains the same immediately after the image API call.
+- 如果您希望在调用图像 API 时同步查询位置和方向信息，可以使用 `client.simPause(True)` 和 `client.simPause(False)` 在调用图像 API 和查询所需物理状态时暂停模拟，以确保在调用图像 API 后物理状态立即保持不变。 
 
 ### C++
 
@@ -101,34 +102,36 @@ int getStereoAndDepthImages()
     typedef VehicleCameraBase::ImageResponse ImageResponse;
     typedef VehicleCameraBase::ImageType ImageType;
 
-    // for car use
+    // 用于汽车
     // CarRpcLibClient client;
     MultirotorRpcLibClient client;
 
-    // get right, left and depth images. First two as png, second as float16.
+    // 获取右图、左图和深度图。前两张图为 PNG 格式，后两张图为 float16 格式。
     std::vector<ImageRequest> request = { 
-        //png format
+        //png 格式
         ImageRequest("0", ImageType::Scene),
-        //uncompressed RGB array bytes
+        // 未压缩的 RGB 数组字节
         ImageRequest("1", ImageType::Scene, false, false),       
-        //floating point uncompressed image  
+        // 浮点未压缩图像
         ImageRequest("1", ImageType::DepthPlanar, true) 
     };
 
     const std::vector<ImageResponse>& response = client.simGetImages(request);
-    // do something with response which contains image data, pose, timestamp etc
+    // 对包含图像数据、姿态、时间戳等信息的响应进行处理
 }
 ```
 
-## Ready to Run Complete Examples
+## 可直接运行的完整示例
 
 ### Python
 
-For a more complete ready to run sample code please see [sample code in AirSimClient project](https://github.com/Microsoft/AirSim/tree/main/PythonClient//multirotor/hello_drone.py) for multirotors or [HelloCar sample](https://github.com/Microsoft/AirSim/tree/main/PythonClient//car/hello_car.py). This code also demonstrates simple activities such as saving images in files or using `numpy` to manipulate images.
+如需更完整的可直接运行的示例代码，请参阅 AirSimClient 项目中的多旋翼飞行器 [示例代码](https://github.com/Microsoft/AirSim/tree/main/PythonClient//multirotor/hello_drone.py) 或 [HelloCar 示例代码](https://github.com/Microsoft/AirSim/tree/main/PythonClient//car/hello_car.py) 。这些代码还演示了一些简单的操作，例如将图像保存到文件或使用 `numpy` 处理图像。
+
 
 ### C++
 
-For a more complete ready to run sample code please see [sample code in HelloDrone project](https://github.com/Microsoft/AirSim/tree/main/HelloDrone//main.cpp) for multirotors or [HelloCar project](https://github.com/Microsoft/AirSim/tree/main/HelloCar//main.cpp). 
+如需更完整的可运行 [示例代码](https://github.com/Microsoft/AirSim/tree/main/HelloDrone//main.cpp) ，请参阅 HelloDrone 多旋翼飞行器项目或 [HelloCar 项目的示例代码](https://github.com/Microsoft/AirSim/tree/main/HelloCar//main.cpp) 。
+
 
 See also [other example code](https://github.com/Microsoft/AirSim/tree/main/Examples/DataCollection/StereoImageGenerator.hpp) that generates specified number of stereo images along with ground truth depth and disparity and saving it to [pfm format](pfm.md).
 
