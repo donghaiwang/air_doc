@@ -1,18 +1,19 @@
-## Distance Sensor
+## 距离传感器
 
-By default, Distance Sensor points to the front of the vehicle. It can be pointed in any direction by modifying the settings
+默认情况下，距离传感器指向车辆前方。通过修改设置，可以将其指向任何方向。
 
-Configurable Parameters -
+可配置参数 -
 
-Parameter           | Description
+参数           | 描述
 --------------------|------------
-X Y Z               | Position of the sensor relative to the vehicle (in NED, in meters) (Default (0,0,0)-Multirotor, (0,0,-1)-Car)
-Yaw Pitch Roll      | Orientation of the sensor relative to the vehicle (degrees) (Default (0,0,0))
-MinDistance         | Minimum distance measured by distance sensor (metres, only used to fill Mavlink message for PX4) (Default 0.2m)
-MaxDistance         | Maximum distance measured by distance sensor (metres) (Default 40.0m)
-ExternalController  | Whether data is to be sent to external controller such as ArduPilot or PX4 if being used (default `true`)
+X Y Z               | 传感器相对于载具的位置（NED，单位为米）（默认值：(0,0,0)-多旋翼飞行器，(0,0,-1)-汽车）
+Yaw Pitch Roll      | 传感器相对于载具的朝向（度）（默认值 (0,0,0)）
+MinDistance         | 距离传感器测量的最小距离（米，仅用于填充 PX4 的 Mavlink 消息）（默认值 0.2 米）
+MaxDistance         | 距离传感器测量的最大距离（米）（默认值：40.0米）
+ExternalController  | 是否将数据发送到外部控制器，例如 ArduPilot 或 PX4（如果使用）（默认为 `true`）
 
-For example, to make the sensor point towards the ground (for altitude measurement similar to barometer), the orientation can be modified as follows -
+例如，要使传感器指向地面（用于类似气压计的高度测量），可以按如下方式修改其方向 - 
+
 
 ```json
 "Distance": {
@@ -22,4 +23,4 @@ For example, to make the sensor point towards the ground (for altitude measureme
 }
 ```
 
-**Note:** For Cars, the sensor is placed 1 meter above the vehicle center by default. This is required since otherwise the sensor gives strange data due it being inside the vehicle. This doesn't affect the sensor values say when measuring the distance between 2 cars. See [`PythonClient/car/distance_sensor_multi.py`](https://github.com/Microsoft/AirSim/blob/main/PythonClient/car/distance_sensor_multi.py) for an example usage.
+**注意：** 对于汽车，传感器默认放置在载具中心上方 1 米处。这是必需的，因为如果传感器位于车内，则可能会给出异常数据。但这不会影响传感器的测量值，例如测量两辆车之间的距离。有关使用示例，请参阅 [`PythonClient/car/distance_sensor_multi.py`](https://github.com/Microsoft/AirSim/blob/main/PythonClient/car/distance_sensor_multi.py)。 
