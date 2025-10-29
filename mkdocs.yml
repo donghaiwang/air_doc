@@ -50,7 +50,7 @@ nav:
     - "核心 APIs": 'apis.md'
     - "图像 APIs": 'image_apis.md'
     - "C++ APIs": 'apis_cpp.md'
-    - "API 参考文档": 'api_docs/html/index.html'
+    - "API 参考文档": 'api_docs/_build/html/index.html'
     - "Wiki 文档": 'wiki/index.md'
     - "开发工作流": 'dev_workflow.md'
     - "设置": 'settings.md'
