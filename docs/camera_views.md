@@ -1,29 +1,32 @@
 # 相机视角
 
-The camera views that are shown on screen are the camera views you can fetch via the [simGetImages API](image_apis.md).
+屏幕上显示的相机视图是您可以通过 [simGetImages API](image_apis.md) 获取的相机视图。
 
 ![Cameras](images/cameras.png)
 
-From left to right is the depth view, segmentation view and the FPV view. See [Image APIs](image_apis.md) for description of various available views.
 
-## Turning ON/OFF Views
+从左到右依次为深度视图、分割视图和FPV视图。有关各种可用视图的说明，请参阅 [图像 API](image_apis.md) 。
 
-Press F1 key to see keyboard shortcuts for turning on/off any or all views. You can also select various view modes there, such as "Fly with Me" mode, FPV mode and "Ground View" mode.
+## 开启/关闭视图
 
-## Controlling Manual Camera
+按下 F1 键可查看用于开启/关闭任意或所有视图的快捷键。您还可以在此处选择各种视图模式，例如“与我一起飞行(Fly with Me)”模式、第一人称主视角(First Person View, FPV)模式和“地面视角(Ground View)”模式。
 
-You can switch to manual camera control by pressing the M key. While manual camera control mode is selected, you can use the following keys to control the camera:
-|Key|Action|
+
+## 手动相机控制
+
+按下 M 键即可切换到手动相机控制模式。在手动相机控制模式下，您可以使用以下按键控制相机：
+
+|键盘|动作|
 ---|---
-|Arrow keys|move the camera forward/back and left/right|
-|Page up/down|move the camera up/down|
-|W/A/S/D|control pitch up/down and yaw left/right|
-|Left shift|increase movement speed|
-|Left control|decrease movement speed|
+|Arrow keys|前后左右移动相机|
+|Page up/down|上下移动相机|
+|W/A/S/D|控制俯仰角上下移动和偏航角左右移动|
+|Left shift|提高移动速度|
+|Left control|降低移动速度|
 
-## Configuring Sub-Windows
+## 配置子窗口
 
-Now you can select what is shown by each of above sub windows. For instance, you can chose to show surface normals in first window (instead of depth) and disparity in second window (instead of segmentation). Below is the settings value you can use in [settings.json](settings.md):
+现在您可以选择上述每个子窗口显示的内容。例如，您可以选择在第一个窗口中显示表面法线（而不是深度信息），在第二个窗口中显示视差（而不是分割信息）。以下是您可以在 [settings.json](settings.md) 文件中使用的设置值：
 
 ```
 {
@@ -34,24 +37,22 @@ Now you can select what is shown by each of above sub windows. For instance, you
 }
 ```
 
-## Performance Impact
+## 性能影响
 
-*Note*: This section is outdated and has not been updated for new performance enhancement changes.
+*注意*：本部分内容已过时，尚未更新以反映新的性能提升变化。
 
-Now rendering these views does impact the FPS performance of the game, since this is additional work for the GPU.  The following shows the impact on FPS when you open these views.
+渲染这些视图确实会影响游戏的帧率，因为这会增加 GPU 的负担。以下显示了打开这些视图时对帧率的影响。
 
 ![fps](images/fps_views.png)
 
-This is measured on Intel core i7 computer with 32 gb RAM and a GeForce GTX 1080
-graphics card running the Modular Neighborhood map, using cooked debug bits, no debugger or GameEditor open.  The normal state with no subviews open is measuring around 16 ms per frame, which means it is keeping a nice steady 60 FPS (which is the target FPS).  As it climbs up to 35ms the FPS drops to around 28 frames per second, spiking to 40ms means a few drops to 25 fps.
+这是在一台配备 Intel Core i7 处理器、32GB 内存和 GeForce GTX 1080 显卡的计算机上测试的，运行的是 Modular Neighborhood 地图，使用了预设的调试信息，没有打开任何调试器或游戏编辑器。在未打开任何子视图的正常状态下，帧延迟约为 16 毫秒/帧，这意味着它可以稳定地保持 60 FPS（目标帧率）。当帧延迟上升到 35 毫秒时，帧率下降到 28 帧/秒左右；当帧延迟飙升到 40 毫秒时，帧率会略微下降到 25 帧/秒。
 
-The simulator can still function and fly correctly when all this is going on even in the worse case because the physics is decoupled from the rendering.  However if the delay gets too high such that the communication with PX4 hardware is interrupted due to overly busy CPU then the flight can stall due to timeout in the offboard control messages.
 
-On the computer where this was measured the drone could fly the path.py program
-without any problems with all views open, and with 3 python scripts running 
-to capture each view type.  But there was one stall during this flight, but it
-recovered gracefully and completed the path.  So it was right on the limit.
+即使在最糟糕的情况下，模拟器仍然可以正常运行并正常飞行，因为物理引擎与渲染是解耦的。但是，如果延迟过高，导致CPU过载而中断与PX4硬件的通信，则飞行可能会因外部控制信息超时而停止。
 
-The following shows the impact on CPU, perhaps a bit surprisingly, the CPU impact is also non trivial.
+在进行测量的计算机上，无人机可以毫无问题地执行 path.py 程序，所有视图都打开，并且同时运行 3 个 Python 脚本来捕获每种视图类型。飞行过程中出现了一次失速，但它平稳地恢复并完成了飞行路径。因此，它的性能刚好接近极限。
+
+
+下面显示了对 CPU 的影响，或许有点出乎意料，CPU 的影响也不小。
 
 ![fps](images/cpu_views.png)

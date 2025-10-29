@@ -1,12 +1,14 @@
-# Multiple Vehicles in AirSim
+# AirSim 中的多辆载具
 
-Since release 1.2, AirSim is fully enabled for multiple vehicles. This capability allows you to create multiple vehicles easily and use APIs to control them.
+自 1.2 版本起，AirSim 已全面支持多载具模式。此功能允许您轻松创建多架载具，并使用 API 来控制它们。
 
-## Creating Multiple Vehicles
 
-It's as easy as specifying them in [settings.json](settings.md). The `Vehicles` element allows you to specify list of vehicles you want to create along with their initial positions and orientations. The positions are specified in NED coordinates in SI units with origin set at Player Start component in Unreal environment. The orientation is specified as Yaw, Pitch and Roll in degrees.
+## 创建多辆载具
 
-### Creating Multiple Cars
+只需在 [settings.json](settings.md) 文件中指定即可。`Vehicles` 元素允许您指定要创建的车辆列表，以及它们的初始位置和方向。位置以 NED 坐标系指定，单位为 SI，原点位于虚幻引擎环境中的玩家起始组件。方向以偏航角 (Yaw)、俯仰角 (Pitch) 和横滚角 (Roll) 表示，单位为度。
+
+
+### 创建多辆车
 
 ```json
 {
@@ -27,7 +29,7 @@ It's as easy as specifying them in [settings.json](settings.md). The `Vehicles` 
 }
 ```
 
-### Creating Multiple Drones
+### 创建多个无人机
 
 ```json
 {
@@ -49,45 +51,47 @@ It's as easy as specifying them in [settings.json](settings.md). The `Vehicles` 
 }
 ```
 
-## Using APIs for Multiple Vehicles
+## 使用 API 管理多辆车
 
-The new APIs since AirSim 1.2 allows you to specify `vehicle_name`. This name corresponds to keys in json settings (for example, Car1 or Drone2 above).
+自 AirSim 1.2 版本起，新的 API 允许您指定 `vehicle_name`。此名称对应于 json 设置中的键（例如，上面的 Car1 或 Drone2）。
 
-[Example code for cars](https://github.com/microsoft/AirSim/blob/main/PythonClient/car/multi_agent_car.py)
 
-[Example code for multirotors](https://github.com/microsoft/AirSim/blob/main/PythonClient/multirotor/multi_agent_drone.py)
+[多旋翼飞行器示例代码](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/multi_agent_drone.py)
 
-Using APIs for multi-vehicles requires specifying the `vehicle_name`, which needs to be hardcoded in the script or requires parsing of the settings file. There's also a simple API `listVehicles()` which returns a list (vector in C++) of strings containing names of the current vehicles. For example, with the above settings for 2 Cars -
+[汽车示例代码](https://github.com/OpenHUTB/air/blob/main/PythonClient/car/multi_agent_car.py)
+
+使用 API 管理多辆车需要指定 `vehicle_name`，该名称必须硬编码到脚本中，或者需要解析设置文件。此外，还有一个简单的 API `listVehicles()`，它返回一个包含当前车辆名称的字符串列表（在 C++ 中为 vector）。例如，对于上述 2 辆车的设置 -
 
 ```python
 >>> client.listVehicles()
 ['Car1', 'Car2']
 ```
 
-### Demo
+### 演示
 
 [![AirSimMultiple Vehicles Demo Video](images/demo_multi_vehicles.png)](https://youtu.be/35dgcuLuF5M)
 
-### Creating vehicles at runtime through API
+### 通过 API 在运行时创建载具
 
-In the latest main branch of AirSim, the `simAddVehicle` API can be used to create vehicles at runtime. This is useful to create many such vehicles without needing to specify them in the settings. There are some limitations of this currently, described below -
+在 AirSim 的最新主分支中，可以使用 `simAddVehicle` API 在运行时创建载具。这便于创建大量载具，而无需在设置中指定它们。目前此功能存在一些限制，如下所述 -
 
-`simAddVehicle` takes in the following arguments:
 
-- `vehicle_name`: Name of the vehicle to be created, this should be unique for each vehicle including any exisiting ones defined in the settings.json
-- `vehicle_type`: Type of vehicle, e.g. "simpleflight". Currently only SimpleFlight, PhysXCar, ComputerVision are supported, in their respective SimModes.
-                  Other vehicle types including PX4 and ArduPilot-related aren't supported
-- `pose`: Initial pose of the vehicle
-- `pawn_path`: Vehicle blueprint path, default empty wbich uses the default blueprint for the vehicle type
+`simAddVehicle` 函数接受以下参数：
 
-Returns: `bool` Whether vehicle was created
+- `vehicle_name`: 要创建的载具名称，此名称对于每载具（包括在 settings.json 中定义的任何现有车辆）都应该是唯一的。 
+- `vehicle_type`: 载具类型，例如“simpleflight”。目前仅支持 SimpleFlight、PhysXCar 和 ComputerVision，且仅在其各自的模拟模式下支持。其他载具类型，包括 PX4 和 ArduPilot 相关类型，均不受支持。 
+- `pose`: 载具初始姿态
+- `pawn_path`: 载具蓝图路径，默认为空，它使用载具类型的默认蓝图  Vehicle blueprint path, default empty wbich uses the default blueprint for the vehicle type
 
-The usual APIs can be used to control and interact with the vehicle once created, with the `vehicle_name` parameter. Specifying other settings such as additional cameras, etc. isn't possible currently, a future enhancement could be passing JSON string of settings for the vehicle. It also works with the `listVehicles()` API described above, so the vehicles spawned would be included in the list.
+返回：`bool` 载具是否已创建
 
-For some examples, check out [HelloSpawnedDrones.cpp](https://github.com/microsoft/AirSim/blob/main/HelloSpawnedDrones/HelloSpawnedDrones.cpp) -
+创建载具后，可以使用常规 API 通过 `vehicle_name` 参数来控制载具并与之交互。目前尚无法指定其他设置，例如额外的摄像头等，未来可能会增加传递载具设置的 JSON 字符串的功能。此外，它还支持上述的 `listVehicles()` API，因此生成的载具将被添加到列表中。
+
+
+例如，请查看 [HelloSpawnedDrones.cpp](https://github.com/OpenHUTB/air/blob/main/HelloSpawnedDrones/HelloSpawnedDrones.cpp) -
 
 ![HelloSpawnedDrones](images/HelloSpawnedDrones.gif)
 
-And [runtime_car.py](https://github.com/microsoft/AirSim/tree/main/PythonClient/car/runtime_car.py) -
+以及 [runtime_car.py](https://github.com/OpenHUTB/air/tree/main/PythonClient/car/runtime_car.py) -
 
 ![runtime_car](images/simAddVehicle_Car.gif)
