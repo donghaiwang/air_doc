@@ -4,7 +4,7 @@
 
 ### 虚幻引擎
 
-**Windows, Linux**: 从 [最新版本](https://github.com/Microsoft/AirSim/releases) 中下载适合您所选择的环境的二进制文件。
+**Windows, Linux**: 从 [最新版本](https://pan.baidu.com/s/1n2fJvWff4pbtMe97GOqtvQ?pwd=hutb) `software/air`目录中下载适合您所选择的环境的二进制文件（可编辑的场景资产位于[校园网内网服务器](http://172.20.46.154:8090/traffic/Content) 和 [Block 场景](https://github.com/OpenHUTB/air/tree/main/Unreal/Environments/Blocks) ）。
 
 一些预编译的二进制环境文件可能包含多个文件（例如 `City.zip.001` 和 `City.zip.002`）。请确保在启动环境之前下载这 2 个文件。使用 [7zip 软件](https://www.7-zip.org/download.html) （包含 7z 命令）解压这些文件。在 Linux 上，将第一个文件名`City.zip.001`作为参数传递给 7z 命令，它会检测所有其他对应的压缩文件，解压命令为：`7z x City.zip.001`。
 
