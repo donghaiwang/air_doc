@@ -6,10 +6,32 @@ on: [push]
 jobs:
   build:
     name: Deploy docs to GitHub Pages
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout 
         uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.8'
+
+      - name: Build API doc
+        run: |
+          python --version
+          ls
+          cd docs/api_docs
+          ls
+          pip install backport
+          pip install sphinx-rtd-theme
+          pip install msgpack-rpc-python
+          pip install numpy
+          ls
+          pip install .
+          make html
+          echo current directory file: 
+          ls
+          cp -r _build/html ../../site
+        
       - name: Build
         uses: OpenHUTB/actions-mkdocs@main
         with:
@@ -17,6 +39,7 @@ jobs:
           #mkdocs_version: '1.1' # option
           requirements: 'requirements.txt' # option
           configfile: 'mkdocs.yml' # option
+          
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
