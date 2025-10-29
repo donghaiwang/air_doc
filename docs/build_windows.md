@@ -59,6 +59,23 @@
 
 请参阅 [使用 API](apis.md)  和 [settings.json](settings.md)  了解各种可用选项。
 
+
+## 文档构建
+
+安装依赖：
+```shell
+pip install sphinx-rtd-theme
+pip install msgpack-rpc-python
+pip install airsim
+```
+构建：
+```shell
+cd air_doc/docs/api_docs
+make.bat html
+```
+
+
+
 # Unity 上的 AirSim (实验性)
 
 [Unity](https://unity3d.com/) 是另一个优秀的游戏引擎平台，我们目前已将 [AirSim 与 Unity](Unity.md)  集成，并进行了**实验性**测试。请注意，该集成工作仍在进行中，部分功能可能尚未完全实现。
