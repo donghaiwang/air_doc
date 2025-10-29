@@ -137,7 +137,7 @@ while True:
 * `simPrintLogMessage`: 在模拟器窗口中打印指定消息。如果同时提供了 message_param，则该消息会打印在消息旁边。在这种情况下，如果再次使用相同的消息值但不同的 message_param 调用此 API，则上一行将被新行覆盖（而不是 API 在显示屏上创建新行）。例如，当使用不同的 i 值调用 API 时，`simPrintLogMessage("Iteration: ", to_string(i))` 会持续更新显示屏上的同一行。严重性参数的有效值为 0 到 3（含），分别对应不同的颜色。 
 * `simGetObjectPose`, `simSetObjectPose`: 获取并设置虚幻环境中指定对象的姿势。此处，对象在虚幻术语中表示"actor"。它们通过标签和名称进行搜索。请注意，虚幻编辑器中显示的名称是每次运行时 *自动生成的* ，并非永久的。因此，如果您想通过名称引用actor，则必须在虚幻编辑器中更改其自动生成的名称。或者，您可以为actor添加标签，方法是在虚幻编辑器中点击该actor，然后转到 [Tags 属性](https://answers.unrealengine.com/questions/543807/whats-the-difference-between-tag-and-tag.html) ，点击“+”号并添加一些字符串值。如果多个actor具有相同的标签，则返回第一个匹配的actor。如果没有找到匹配项，则返回NaN姿势。返回的姿势以世界坐标系中的NED坐标系表示，采用SI单位。对于`simSetObjectPose`，指定的actor必须将 [Mobility](https://docs.unrealengine.com/en-us/Engine/Actors/Mobility) 设置为Movable，否则将导致未定义的行为。`simSetObjectPose`具有参数`teleport`，表示对象在其路径上 [移动穿过其他对象](https://www.unrealengine.com/en-US/blog/moving-physical-objects) ，如果移动成功，则返回true。 
 
-### 图像 / 计算机视觉 APIs
+### 图像 / 计算机视觉 API
 
 AirSim 提供全面的图像 API，用于检索来自多个摄像头的同步图像以及包括深度、视差、表面法线和视觉在内的地面实况。您可以在 [settings.json](settings.md) 中设置分辨率、FOV、运动模糊等参数。此外，还提供了用于检测碰撞状态的 API。另请参阅 [完整代码](https://github.com/Microsoft/AirSim/tree/main/Examples/DataCollection/StereoImageGenerator.hpp) ，该代码生成指定数量的立体图像和地面实况深度，并根据相机平面进行归一化、计算视差图像并将其保存为 [pfm 格式](pfm.md) 。
 
@@ -351,25 +351,27 @@ AirLib 是一个独立的库，您可以将其安装在机外计算模块（例�
 * [Building Point Clouds](https://github.com/Microsoft/AirSim/wiki/Point-Clouds)
 
 
-## FAQ
+## 经常问到的问题
 
-#### Unreal is slowed down dramatically when I run API
-If you see Unreal getting slowed down dramatically when Unreal Engine window loses focus then go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked.
+#### 运行 API 时，引擎运行速度明显变慢。
+如果发现虚幻引擎窗口失去焦点时，虚幻引擎运行速度明显变慢，则在虚幻编辑器中转到“编辑->编辑器首选项”，在“搜索”框中键入“CPU”，并确保“在后台运行时减少 CPU 使用率”未选中。
 
-#### Do I need anything else on Windows?
-You should install VS2019 with VC++, Windows SDK 10.0 and Python. To use Python APIs you will need Python 3.5 or later (install it using Anaconda).
+#### 我的Windows系统还需要其他软件吗？
 
-#### Which version of Python should I use?
-We recommend [Anaconda](https://www.anaconda.com/download/) to get Python tools and libraries. Our code is tested with Python 3.5.3 :: Anaconda 4.4.0. This is important because older version have been known to have [problems](https://stackoverflow.com/a/45934992/207661).
+您应该安装带有 VC++ 的 VS2019、Windows SDK 10.0 和 Python。要使用 Python API，您需要 Python 3.5 或更高版本（使用 Anaconda 安装）。
 
-#### I get error on `import cv2`
-You can install OpenCV using:
+#### 我应该使用哪个版本的Python？
+
+我们推荐使用 [Anaconda](https://www.anaconda.com/download/) 来获取 Python 工具和库。我们的代码已在 Python 3.5.3 和 Anaconda 4.4.0 环境下测试通过。这一点很重要，因为已知旧版本存在一些 [问题](https://stackoverflow.com/a/45934992/207661) 。
+
+#### `import cv2`时出错
+您可以使用以下命令安装 OpenCV：
 ```
 conda install opencv
 pip install opencv-python
 ```
 
-#### TypeError: unsupported operand type(s) for *: 'AsyncIOLoop' and 'float'
+#### TypeError：不支持的操作数类型：'AsyncIOLoop' 和 'float' 
 
-This error happens if you install Jupyter, which somehow breaks the msgpackrpc library.  Create a new python environment
-which the minimal required packages.
+如果您安装了 Jupyter，就会出现此错误，因为它似乎会破坏 msgpackrpc 库。请创建一个新的 Python 环境，并仅安装所需的最小软件包。
+
