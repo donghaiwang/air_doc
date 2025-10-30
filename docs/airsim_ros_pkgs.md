@@ -79,13 +79,13 @@ ROS包装器由两个ROS节点组成——第一个是AirSim多旋翼 C++ 客户
 #### 发布者：
 
 - `/airsim_node/origin_geo_point` [airsim_ros_pkgs/GPSYaw](https://github.com/microsoft/AirSim/tree/main/ros/src/airsim_ros_pkgs/msg/GPSYaw.msg)
-GPS coordinates corresponding to global NED frame. This is set in the airsim's [settings.json](https://microsoft.github.io/AirSim/settings/) file under the `OriginGeopoint` key.
+与全球 [北东地坐标系](https://baike.baidu.com/item/NED/22375709) (NED) 坐标系对应的 GPS 坐标。此设置位于 airsim 的 [settings.json](https://microsoft.github.io/AirSim/settings/) 文件中，`OriginGeopoint` 键的值即为该坐标。
 
 - `/airsim_node/VEHICLE_NAME/global_gps` [sensor_msgs/NavSatFix](https://docs.ros.org/api/sensor_msgs/html/msg/NavSatFix.html)
-This the current GPS coordinates of the drone in airsim.
+这是无人机在 Airsim 中的当前 GPS 坐标。
 
 - `/airsim_node/VEHICLE_NAME/odom_local_ned` [nav_msgs/Odometry](https://docs.ros.org/api/nav_msgs/html/msg/Odometry.html)
-Odometry in NED frame (default name: odom_local_ned, launch name and frame type are configurable) wrt take-off point.
+相对于起飞点的 NED 坐标系里程计（默认名称：odom_local_ned，发射名称和坐标系类型可配置）。 
 
 - `/airsim_node/VEHICLE_NAME/CAMERA_NAME/IMAGE_TYPE/camera_info` [sensor_msgs/CameraInfo](https://docs.ros.org/api/sensor_msgs/html/msg/CameraInfo.html)
 
@@ -246,54 +246,49 @@ Throttle, brake, steering and gear selections for control. Both automatic and ma
 
 ##### WSL1 vs WSL2
 
-WSL2 is the latest version of the Windows10 Subsystem for Linux. It is many times faster than WSL1 (if you use the native file system in `/home/...` rather
-than Windows mounted folders under `/mnt/...`) and is therefore much preferred for building the code in terms of speed.
+WSL2 是最新版本的 Windows 10 Linux 子系统。它比 WSL1 快很多倍（如果您使用 `/home/...` 下的原生​​文件系统，而不是 `/mnt/...` 下的 Windows 挂载文件夹），因此就速度而言，它是构建代码的首选。
 
-Once installed, you can switch between WSL1 or WSL2 versions as you prefer.
+安装完成后，您可以根据自己的喜好在 WSL1 或 WSL2 版本之间切换。
 
-##### WSL Setup steps
+##### WSL 设置步骤
 
-1. Follow the instructions [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Check that the ROS version you want to use is supported by the Ubuntu version you want to install.
+1. 请按照 [此处](https://docs.microsoft.com/en-us/windows/wsl/install-win10) 的说明操作。请确认您要使用的 ROS 版本与您要安装的 Ubuntu 版本兼容。 
 
-2. Congratulations, you now have a working Ubuntu subsystem under Windows, you can now go to [Ubuntu 16 / 18 instructions](#setup) and then [How to run Airsim on Windows and ROS wrapper on WSL](#how-to-run-airsim-on-windows-and-ros-wrapper-on-wsl)!
+2. 恭喜，您现在已在 Windows 下拥有一个可运行的 Ubuntu 子系统，您可以前往 [Ubuntu 16 / 18 说明](#setup) ，然后了解 [如何在 Windows 上运行 Airsim 以及在 WSL 上运行 ROS 封装程序](#how-to-run-airsim-on-windows-and-ros-wrapper-on-wsl) ！
 
-!!! note
+!!! 注意
 
-    You can run XWindows applications (including SITL) by installing [VcXsrv](https://sourceforge.net/projects/vcxsrv/)  on Windows.
-    To use it find and run `XLaunch` from the Windows start menu.
-    Select `Multiple Windows` in first popup, `Start no client` in second popup, **only** `Clipboard` in third popup. Do **not** select `Native Opengl` (and if you are not able to connect select `Disable access control`).
-    You will need to set the DISPLAY variable to point to your display: in WSL it is `127.0.0.1:0`, in WSL2 it will be the ip address of the PC's network port and can be set by using the code below. Also in WSL2 you may have to disable the firewall for public networks, or create an exception in order for VcXsrv to communicate with WSL2:
+    您可以通过在 Windows 上安装 [VcXsrv](https://sourceforge.net/projects/vcxsrv/) 来运行 XWindows 应用程序（包括 SITL）。要使用它，请从 Windows 开始菜单找到并运行 `XLaunch`。在第一个弹出窗口中选择`多窗口(Multiple Windows)`，在第二个弹出窗口中选择`启动时不启用客户端(Start no client)`，在第三个弹出窗口中选择`仅启动剪贴板`。**不要**选择`原生 OpenGL`（如果无法连接，请选择`禁用访问控制(Disable access control)`）。您需要设置 DISPLAY 变量以指向您的显示器：在 WSL 中，它是 `127.0.0.1:0`；在 WSL2 中，它是计算机网络端口的 IP 地址，可以使用以下代码进行设置。此外，在 WSL2 中，您可能需要禁用公共网络的防火墙，或者创建一个例外，以便 VcXsrv 可以与 WSL2 通信。
 
     `export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0`
 
-!!! tip
+!!! 诀窍
 
-    - If you add this line to your ~/.bashrc file you won't need to run this command again
-    - For code editing you can install VSCode inside WSL.
-    - Windows 10 includes "Windows Defender" virus scanner. It will slow down WSL quite a bit. Disabling it greatly improves disk performance but increases your risk to viruses so disable at your own risk. Here is one of many resources/videos that show you how to disable it: [How to Disable or Enable Windows Defender on Windows 10](https://youtu.be/FmjblGay3AM)
+    - 如果你将这行添加到你的 ~/.bashrc 文件中，你就不需要再次运行这个命令了。 
+    - 对于代码编辑，您可以在 WSL 中安装 VSCode。
+    - Windows 10 内置了“Windows Defender”病毒扫描程序。它会显著降低 WSL 的运行速度。禁用它可以大幅提升磁盘性能，但会增加病毒感染的风险，因此请自行承担风险。以下是众多资源/视频之一，向您展示如何禁用它：[如何在 Windows 10 上禁用或启用 Windows Defender](https://youtu.be/FmjblGay3AM)
 
-##### File System Access between WSL and Windows10
+##### WSL 和 Windows 10 之间的文件系统访问
 
-From within WSL, the Windows drives are referenced in the /mnt directory. For example, in order to list documents within your (<username>) documents folder:
+在 WSL 中，Windows 驱动器位于 /mnt 目录中。例如，要列出您的 (<用户名>) 文档文件夹中的文档：
 
     `ls /mnt/c/'Documents and Settings'/<username>/Documents`
     or
     `ls /mnt/c/Users/<username>/Documents`
 
-
-From within Windows, the WSL distribution's files are located at (type in windows Explorer address bar):
+在 Windows 系统中，WSL 发行版的文件位于（在 Windows 资源管理器地址栏中输入）：
 
    `\\wsl$\<distribution name>`
-   e.g.
+   例如
    `\\wsl$\Ubuntu-18.04`
 
-##### How to run Airsim on Windows and ROS wrapper on WSL
+##### 如何在 Windows 上运行 Airsim 以及在 WSL 上运行 ROS 封装程序
 
-For WSL 1 execute:
+对于 WSL 1，请执行以下操作：
 `export WSL_HOST_IP=127.0.0.1`
-and for WSL 2:
+对于 WSL 2：
 `export WSL_HOST_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')`
-Now, as in the [running section for linux](#running), execute the following:
+现在，就像 [在 Linux 运行部分一样](#running) ，执行以下命令： 
 
 ```shell
 source devel/setup.bash
@@ -301,19 +296,19 @@ roslaunch airsim_ros_pkgs airsim_node.launch output:=screen host:=$WSL_HOST_IP
 roslaunch airsim_ros_pkgs rviz.launch
 ```
 
-### Using Docker for ROS
+### 使用 Docker 运行 ROS
 
-A Dockerfile is present in the [`tools`](https://github.com/microsoft/AirSim/tree/main/tools/Dockerfile-ROS) directory. To build the `airsim-ros` image -
+[`tools`](https://github.com/microsoft/AirSim/tree/main/tools/Dockerfile-ROS) 目录中包含一个 Dockerfile 文件。要构建 `airsim-ros` 镜像，请执行以下操作：
 
 ```shell
 cd tools
 docker build -t airsim-ros -f Dockerfile-ROS .
 ```
 
-To run, replace the path of the AirSim folder below -
+要运行程序，请替换以下 AirSim 文件夹的路径：
 
 ```shell
 docker run --rm -it --net=host -v <your-AirSim-folder-path>:/home/testuser/AirSim airsim-ros:latest bash
 ```
 
-The above command mounts the AirSim directory to the home directory inside the container. Any changes you make in the source files from your host will be visible inside the container, which is useful for development and testing. Now follow the steps from [Build](#build) to compile and run the ROS wrapper.
+上述命令会将 AirSim 目录挂载到容器内的主目录中。您在主机上对源文件所做的任何更改都会在容器内生效，这对于开发和测试非常有用。现在，请按照 [构建](#build) 步骤编译并运行 ROS 封装程序。
