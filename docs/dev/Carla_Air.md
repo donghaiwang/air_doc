@@ -164,9 +164,11 @@ python3 examples/recording/demo_director.py \    # 🎬 多轨迹回放 + 自由
 
 ## 📜 许可证与致谢
 
-CarlaAir 站在巨人的肩膀上。我们诚挚感谢以下开源项目的开发者：
+该项目是站在巨人的肩膀上。我们诚挚感谢以下开源项目的开发者：
 - [CARLA Simulator](https://github.com/carla-simulator/carla) (MIT License)
 - [Microsoft AirSim](https://github.com/microsoft/AirSim) (MIT License)
 - [Unreal Engine](https://www.unrealengine.com/)
 
-CarlaAir 特有的代码基于 **MIT 许可证** 开源。CARLA 相关的资产遵循 CC-BY 许可证。
+
+CARLA 相关的资产遵循 CC-BY 许可证。
+其他相关资产（包括湖南工商大学大学场景、长沙中电软件园场景）和代码基于 **MIT 许可证** 开源。
