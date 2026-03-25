@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>CarlaAir 所有修改清单 - 低空模拟器</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "CarlaAir \u6240\u6709\u4fee\u6539\u6e05\u5355";
+        var mkdocs_page_input_path = "dev/modifications.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 低空模拟器
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">主页</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">主页</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">构建 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../use_precompiled/">下载二进制文件</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../build_windows/">在 Windows 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../build_linux/">在 Linux 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../build_macos/">在 macOS 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../docker_ubuntu/">Linux 上的 Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure 上的 ArSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../unreal_custenv/">定制虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../build_faq/">场景问题和回答</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">使用 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../apis/">核心 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../image_apis/">图像 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../apis_cpp/">C++ APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://openhutb.github.io/doc/python_api/#airsim.client.MultirotorClient">无人机 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api_docs/_build/html/">原始 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../wiki/">Wiki 文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev_workflow/">开发工作流</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../settings/">设置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../map/">地图</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../camera_views/">相机视角</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../using_car/">汽车模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_control/">远程控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../xbox_controller/">XBox 控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../steering_wheel_installation/">方向盘</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../multi_vehicle/">多车辆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >传感器</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../sensors/">传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lidar/">激光雷达</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../distance_sensor/">距离传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../InfraredCamera/">红外相机</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../airsim_ros_pkgs/">ROS: AirSim ROS 包装器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../airsim_tutorial_pkgs/">ROS: AirSim 教程包</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gazebo_drone/">导入 Gazebo 模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../retexturing/">域随机化</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../meshes/">网格顶点缓冲区</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../playback/">播放日志</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../voxel_grid/">体素网格生成器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../event_sim/">事件相机</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">设计</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../design/">架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../code_structure/">代码结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../adding_new_apis/">添加新的 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../modify_recording_data/">修改记录数据</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../coding_guidelines/">编码指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../flight_controller/">飞行控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../simple_flight/">简单飞行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hello_drone/">Hello Drone</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">外部飞行控制器</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >MavLink 和 PX4</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_setup/">AirSim 的 PX4 设置</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_sitl/">软件在环中的 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_sitl_wsl2/">带有 WSL 2 的 PX4 SITL</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_lockstep/">PX4 Lockstep</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_multi_vehicle/">软件在环中的 PX4 多车辆</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/1oY8Qu5maQQ">AirSim 与 Pixhawk</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/HNWdYrtw3f0">使用 AirSim 设置 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be">调试姿态估计</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages">拦截 MavLink 消息</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Rapid-Descent-on-PX4-drones">PX4 无人机快速下降</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_build/">构建 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_logging/">PX4/MavLink 日志记录</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../log_viewer/">MavLink 日志查看器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mavlinkcom/">MavLinkCom</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mavlinkcom_mocap/">MavLink MoCap</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >ArduPilot</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/building-the-code.html">ArduPilot 软件在环设置</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/sitl-with-airsim.html">AirSim & ArduPilot</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">升级</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../unreal_upgrade/">升级虚幻引擎</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../upgrade_apis/">升级 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../upgrade_settings/">升级设置</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献教程</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reinforcement_learning/">强化学习</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://www.youtube.com/watch?v=y09VbdQWvQY">使用 Marketplace 中的环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://github.com/simondlevy/AirSimTensorFlow">简单的防撞</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://aka.ms/AutonomousDrivingCookbook">Azure 上的自动驾驶</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../wiki/hexacopter/">构造六旋翼飞行器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../wiki/moveOnPath-demo/">移动路径演示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../point_clouds/">构建点云</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../drone_survey/">使用无人机进行测量</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../orbit/">轨道轨迹</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/Bp86WiLUC80">导入自定义多旋翼网格</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../object_detection/">Object Detection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/ZonkdMcwXH4">带有 MAVROS 和 PX4 的 AirSim</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">杂项</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../custom_drone/">真实无人机上的 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cmake_linux/">在 Linux 上安装 cmake</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hard_drive/">硬盘繁忙时的提示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../pfm/">pfm 格式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../unreal_proj/">设置虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../unreal_blocks/">Blocks 环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../who_is_using/">谁在使用 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../working_with_plugin_contents/">使用 UE 插件内容</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../wiki/technion/technion/">大学生方程式赛车以色列理工学院自驾赛</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">支持</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../SUPPORT/">支持</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG/">修改记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_issue/">创建问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING/">贡献</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">低空模拟器</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">CarlaAir 所有修改清单</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="carlaair">CarlaAir 所有修改清单<a class="headerlink" href="#carlaair" title="Permanent link">#</a></h1>
+<p>本文档列出了 CarlaAir 相对于原版 CARLA 0.9.16 和 AirSim 的所有代码修改，方便开发者精确了解改动范围。</p>
+<h2 id="_1">修改统计<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>数量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>新建文件</strong></td>
+<td>2</td>
+<td>SimWorldGameMode.h, SimWorldGameMode.cpp</td>
+</tr>
+<tr>
+<td><strong>修改文件</strong></td>
+<td>3</td>
+<td>CarlaGameModeBase.h, CarlaEpisode.h, SimModeBase.cpp</td>
+</tr>
+<tr>
+<td><strong>配置修改</strong></td>
+<td>1</td>
+<td>DefaultGame.ini (添加 AirSim 资源条目)</td>
+</tr>
+<tr>
+<td><strong>新建脚本</strong></td>
+<td>30+</td>
+<td>carlaAir.sh, 示例脚本, Demo 脚本</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">详细修改<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<h3 id="1-simworldgamemodeh">1. [新建] SimWorldGameMode.h<a class="headerlink" href="#1-simworldgamemodeh" title="Permanent link">#</a></h3>
+<p><strong>路径</strong>: <code>Unreal/CarlaUE4/Plugins/AirSim/Source/SimWorldGameMode.h</code>
+<strong>行数</strong>: 75 行
+<strong>放置在 AirSim 插件目录的原因</strong>: 需要引用 AirSim 头文件 (SimHUDWidget.h, SimModeBase.h, PIPCamera.h, AirSimSettings.hpp)</p>
+<p><strong>类声明</strong>:
+<div class="highlight"><pre><span></span><code><span class="n">UCLASS</span><span class="p">()</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AIRSIM_API</span><span class="w"> </span><span class="n">ASimWorldGameMode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">ACarlaGameModeBase</span>
+</code></pre></div></p>
+<p><strong>公共接口</strong>:
+- 构造函数、BeginPlay、Tick、EndPlay（override）
+- 8 个输入事件处理函数（Recording, Report, Help, Trace, SubWindow 0/1/2, All）</p>
+<p><strong>私有成员</strong>:
+- <code>USimHUDWidget* Widget_</code> — AirSim HUD 控件
+- <code>ASimModeBase* SimMode_</code> — AirSim 模拟模式 Actor
+- <code>APIPCamera* SubwindowCameras_[3]</code> — 子窗口相机</p>
+<h3 id="2-simworldgamemodecpp">2. [新建] SimWorldGameMode.cpp<a class="headerlink" href="#2-simworldgamemodecpp" title="Permanent link">#</a></h3>
+<p><strong>路径</strong>: <code>Unreal/CarlaUE4/Plugins/AirSim/Source/SimWorldGameMode.cpp</code>
+<strong>行数</strong>: 548 行</p>
+<p><strong>关键实现</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>行号</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>构造函数</td>
+<td>66-123</td>
+<td>DefaultPawnClass=nullptr, 加载BP_Weather, 注册8个Factory</td>
+</tr>
+<tr>
+<td>BeginPlay</td>
+<td>127-186</td>
+<td>CARLA初始化 → 创建SpectatorPawn → AirSim引导</td>
+</tr>
+<tr>
+<td>Tick</td>
+<td>190-198</td>
+<td>CARLA Recorder + AirSim Widget更新</td>
+</tr>
+<tr>
+<td>EndPlay</td>
+<td>202-224</td>
+<td>停止API → 销毁Widget/SimMode → CARLA清理</td>
+</tr>
+<tr>
+<td>InitializeAirSimSettings</td>
+<td>228-244</td>
+<td>读取settings.json</td>
+</tr>
+<tr>
+<td>SetUnrealEngineSettings</td>
+<td>246-259</td>
+<td>关闭MotionBlur, 启用CustomDepth</td>
+</tr>
+<tr>
+<td>CreateSimMode</td>
+<td>263-286</td>
+<td>根据SimMode类型SpawnActor</td>
+</tr>
+<tr>
+<td>CreateAirSimWidget</td>
+<td>290-327</td>
+<td>创建并初始化HUD Widget</td>
+</tr>
+<tr>
+<td>SetupAirSimInputBindings</td>
+<td>362-375</td>
+<td>绑定 R/;/F1/T/1/2/3/0 键</td>
+</tr>
+<tr>
+<td>GetSettingsText</td>
+<td>497-503</td>
+<td>搜索settings.json (4个位置)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-carlagamemodebaseh">3. [修改] CarlaGameModeBase.h<a class="headerlink" href="#3-carlagamemodebaseh" title="Permanent link">#</a></h3>
+<p><strong>路径</strong>: <code>Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Game/CarlaGameModeBase.h</code>
+<strong>修改量</strong>: 2 处，约 4 行</p>
+<p><strong>修改前</strong> (在 <code>private:</code> 区域):
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">)</span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">AWeather</span><span class="o">&gt;</span><span class="w"> </span><span class="n">WeatherClass</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">)</span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">ACarlaActorFactory</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ActorFactories</span><span class="p">;</span>
+</code></pre></div></p>
+<p><strong>修改后</strong> (移到 <code>protected:</code> 区域):
+<div class="highlight"><pre><span></span><code><span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">)</span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">AWeather</span><span class="o">&gt;</span><span class="w"> </span><span class="n">WeatherClass</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">)</span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">ACarlaActorFactory</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ActorFactories</span><span class="p">;</span>
+</code></pre></div></p>
+<p><strong>影响</strong>: 仅影响访问权限，不改变运行时行为。子类 ASimWorldGameMode 可以在构造函数中设置这些属性。</p>
+<h3 id="4-carlaepisodeh">4. [修改] CarlaEpisode.h<a class="headerlink" href="#4-carlaepisodeh" title="Permanent link">#</a></h3>
+<p><strong>路径</strong>: <code>Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Game/CarlaEpisode.h</code>
+<strong>修改量</strong>: 1 处，1 行</p>
+<p><strong>添加位置</strong>: 类声明内部，约第 338 行</p>
+<div class="highlight"><pre><span></span><code><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ASimWorldGameMode</span><span class="p">;</span>
+</code></pre></div>
+<p><strong>影响</strong>: 允许 SimWorldGameMode 直接访问 Episode 的私有成员（主要是 <code>Spectator</code> 和 <code>ActorDispatcher</code>），用于注册手动创建的 SpectatorPawn。</p>
+<h3 id="5-simmodebasecpp">5. [修改] SimModeBase.cpp<a class="headerlink" href="#5-simmodebasecpp" title="Permanent link">#</a></h3>
+<p><strong>路径</strong>: <code>Unreal/CarlaUE4/Plugins/AirSim/Source/SimMode/SimModeBase.cpp</code>
+<strong>修改量</strong>: 1 处，约 6 行</p>
+<p><strong>修改前</strong> (~第 119 行):
+<div class="highlight"><pre><span></span><code><span class="k">this</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">SetNewWorldOrigin</span><span class="p">(</span><span class="n">FIntVector</span><span class="p">(</span><span class="n">player_loc</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="n">global_ned_transform_</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">NedTransform</span><span class="p">(</span><span class="n">player_start_transform</span><span class="p">,</span>
+<span class="w">                                             </span><span class="n">UAirBlueprintLib</span><span class="o">::</span><span class="n">GetWorldToMetersScale</span><span class="p">(</span><span class="k">this</span><span class="p">)));</span>
+</code></pre></div></p>
+<p><strong>修改后</strong>:
+<div class="highlight"><pre><span></span><code><span class="c1">// NOTE: Do NOT call SetNewWorldOrigin() here. In CarlaAir (CARLA + AirSim integration),</span>
+<span class="c1">// shifting the world origin breaks CARLA&#39;s landscape/road collision, causing all ground</span>
+<span class="c1">// vehicles to fall through the map (~30m underground). The NedTransform is initialized</span>
+<span class="c1">// with the original player_start_transform, which correctly serves as the NED origin</span>
+<span class="c1">// for AirSim coordinate conversion without moving the world.</span>
+<span class="n">global_ned_transform_</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">NedTransform</span><span class="p">(</span><span class="n">player_start_transform</span><span class="p">,</span>
+<span class="w">                                             </span><span class="n">UAirBlueprintLib</span><span class="o">::</span><span class="n">GetWorldToMetersScale</span><span class="p">(</span><span class="k">this</span><span class="p">)));</span>
+</code></pre></div></p>
+<p><strong>影响</strong>: 车辆不再穿过地面（z≈0.00 正常行驶），AirSim 无人机坐标系不受影响（NedTransform 仍然使用 PlayerStart 作为原点）。</p>
+<h3 id="6-defaultgameini">6. [修改] DefaultGame.ini<a class="headerlink" href="#6-defaultgameini" title="Permanent link">#</a></h3>
+<p><strong>路径</strong>: <code>Unreal/CarlaUE4/Config/DefaultGame.ini</code>
+<strong>修改量</strong>: 新增约 8 行</p>
+<p><strong>新增内容</strong>:
+<div class="highlight"><pre><span></span><code><span class="c1"># AirSim content directories to cook</span>
+<span class="na">+DirectoriesToAlwaysCook=(Path</span><span class="o">=</span><span class="s">&quot;/AirSim/Blueprints&quot;</span><span class="na">)</span>
+<span class="na">+DirectoriesToAlwaysCook=(Path</span><span class="o">=</span><span class="s">&quot;/AirSim/HUDAssets&quot;</span><span class="na">)</span>
+<span class="na">+DirectoriesToAlwaysCook=(Path</span><span class="o">=</span><span class="s">&quot;/AirSim/Models&quot;</span><span class="na">)</span>
+<span class="na">+DirectoriesToAlwaysCook=(Path</span><span class="o">=</span><span class="s">&quot;/AirSim/Weather&quot;</span><span class="na">)</span>
+<span class="na">+DirectoriesToAlwaysCook=(Path</span><span class="o">=</span><span class="s">&quot;/AirSim/StarterContent&quot;</span><span class="na">)</span>
+<span class="na">+DirectoriesToAlwaysCook=(Path</span><span class="o">=</span><span class="s">&quot;/AirSim/VehicleAdv&quot;</span><span class="na">)</span>
+
+<span class="c1"># AirSim assets map</span>
+<span class="na">+MapsToCook=(FilePath</span><span class="o">=</span><span class="s">&quot;/AirSim/AirSimAssets&quot;</span><span class="na">)</span>
+</code></pre></div></p>
+<p><strong>影响</strong>: 打包时包含所有 AirSim 资源（无人机模型、HUD、天气特效等），共 340 个文件。</p>
+<h2 id="_3">未修改的关键文件（供参考）<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<p>以下文件是原版 CARLA/AirSim 的，未做修改但对理解系统重要：</p>
+<ul>
+<li><code>CarlaGameModeBase.cpp</code> — CARLA GameMode 实现</li>
+<li><code>CarlaEpisode.cpp</code> — Episode 管理</li>
+<li><code>SimModeWorldMultiRotor.cpp</code> — 多旋翼飞行器模式</li>
+<li><code>SimpleFlight/SimpleFlightApi.cpp</code> — 简单飞行控制器</li>
+<li><code>PIPCamera.cpp</code> — AirSim 相机实现</li>
+<li><code>AirBlueprintLib.cpp</code> — AirSim UE4 工具库</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>OpenHUTB 版权所有 &copy; 2026</p>
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
