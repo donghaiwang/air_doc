@@ -83,7 +83,7 @@ python3 examples/quick_start_showcase.py
 
 ### 选项 B：从源码编译
 
-如果您需要修改底层 C++ 代码，请参考 [源码编译指南](CarlaAir_Release/source/BUILD_GUIDE.md)，了解如何使用 UE4.26 编译 CarlaAir。
+如果您需要修改底层 C++ 代码，请参考 [源码编译指南](build_guide_ubuntu.md)，了解如何使用 UE4.26 编译 CarlaAir。
 
 ---
 
@@ -131,7 +131,7 @@ python3 examples/recording/demo_director.py \    # 🎬 多轨迹回放 + 自由
     trajectories/vehicle_*.json trajectories/drone_*.json
 ```
 
-> **文档：** [坐标系换算 (CARLA↔AirSim)](CarlaAir_Release/guide/COORDINATE_SYSTEMS.md) · [快速入门指南](CarlaAir_Release/guide/Quick-Start.md) · [常见问题](CarlaAir_Release/guide/FAQ.md)
+> **文档：** [坐标系换算 (CARLA↔AirSim)](CarlaAir_Release/guide/COORDINATE_SYSTEMS.md) · [快速入门指南](CarlaAir_Release/guide/Quick-Start.md) · [常见问题](FAQ.md)
 
 ---
 
@@ -155,10 +155,10 @@ python3 examples/recording/demo_director.py \    # 🎬 多轨迹回放 + 自由
 ## 📚 文档与示例
 
 **完整文档：**
-- [快速入门指南](CarlaAir_Release/guide/Quick-Start.md)
-- [技术架构详解](CarlaAir_Release/source/ARCHITECTURE.md)
-- [坐标系换算](examples_record_demo/COORDINATE_SYSTEMS.md)
-- [上游代码修改清单](CarlaAir_Release/source/MODIFICATIONS.md)
+- [快速入门指南](quick_start.md)
+- [技术架构详解](architecture.md)
+- [坐标系换算](coordinate_systems.md)
+- [上游代码修改清单](modifications.md)
 
 ---
 
