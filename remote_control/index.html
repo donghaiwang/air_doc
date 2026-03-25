@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>远程控制 - 低空模拟器</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u8fdc\u7a0b\u63a7\u5236";
+        var mkdocs_page_input_path = "remote_control.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 低空模拟器
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">主页</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">主页</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">构建 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../use_precompiled/">下载二进制文件</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_windows/">在 Windows 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_linux/">在 Linux 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_macos/">在 macOS 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docker_ubuntu/">Linux 上的 Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure 上的 ArSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_custenv/">定制虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_faq/">场景问题和回答</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">使用 AirSim</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../apis/">核心 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../image_apis/">图像 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../apis_cpp/">C++ APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://openhutb.github.io/doc/python_api/#airsim.client.MultirotorClient">无人机 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api_docs/_build/html/">原始 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/">Wiki 文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dev_workflow/">开发工作流</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../settings/">设置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../map/">地图</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../camera_views/">相机视角</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../using_car/">汽车模式</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">远程控制</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">默认配置的遥控设置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">其他设备</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#frsky-taranis-x9d-plus">FrSky Taranis X9D Plus 注意事项</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#linux">Linux 注意事项</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#px4">PX4 的遥控设置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#xbox-360-usb">使用 XBox 360 USB 游戏手柄</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#playstation-3">使用 Playstation 3 控制器</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dji">DJI 控制器</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#airsim-rc-usb">我正在使用默认配置，但 AirSim 说我的 RC 在 USB 上未被检测到。</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#xboxps3">使用 XBox/PS3 控制器时车辆似乎不稳定</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#airsim-rc">AirSim 中的 RC 校准在哪里？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rc-px4">我的 RC 无法与 PX4 设置配合使用。</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../xbox_controller/">XBox 控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../steering_wheel_installation/">方向盘</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../multi_vehicle/">多车辆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >传感器</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../sensors/">传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lidar/">激光雷达</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../distance_sensor/">距离传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../InfraredCamera/">红外相机</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_ros_pkgs/">ROS: AirSim ROS 包装器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_tutorial_pkgs/">ROS: AirSim 教程包</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../gazebo_drone/">导入 Gazebo 模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../retexturing/">域随机化</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../meshes/">网格顶点缓冲区</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../playback/">播放日志</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../voxel_grid/">体素网格生成器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../event_sim/">事件相机</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">设计</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../design/">架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../code_structure/">代码结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../adding_new_apis/">添加新的 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../modify_recording_data/">修改记录数据</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../coding_guidelines/">编码指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../flight_controller/">飞行控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simple_flight/">简单飞行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hello_drone/">Hello Drone</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">外部飞行控制器</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >MavLink 和 PX4</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_setup/">AirSim 的 PX4 设置</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_sitl/">软件在环中的 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_sitl_wsl2/">带有 WSL 2 的 PX4 SITL</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_lockstep/">PX4 Lockstep</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_multi_vehicle/">软件在环中的 PX4 多车辆</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/1oY8Qu5maQQ">AirSim 与 Pixhawk</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/HNWdYrtw3f0">使用 AirSim 设置 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be">调试姿态估计</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages">拦截 MavLink 消息</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Rapid-Descent-on-PX4-drones">PX4 无人机快速下降</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_build/">构建 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_logging/">PX4/MavLink 日志记录</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../log_viewer/">MavLink 日志查看器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom/">MavLinkCom</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom_mocap/">MavLink MoCap</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >ArduPilot</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/building-the-code.html">ArduPilot 软件在环设置</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/sitl-with-airsim.html">AirSim & ArduPilot</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">升级</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_upgrade/">升级虚幻引擎</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_apis/">升级 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_settings/">升级设置</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献教程</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinforcement_learning/">强化学习</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://www.youtube.com/watch?v=y09VbdQWvQY">使用 Marketplace 中的环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://github.com/simondlevy/AirSimTensorFlow">简单的防撞</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://aka.ms/AutonomousDrivingCookbook">Azure 上的自动驾驶</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/hexacopter/">构造六旋翼飞行器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/moveOnPath-demo/">移动路径演示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../point_clouds/">构建点云</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../drone_survey/">使用无人机进行测量</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../orbit/">轨道轨迹</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/Bp86WiLUC80">导入自定义多旋翼网格</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../object_detection/">Object Detection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/ZonkdMcwXH4">带有 MAVROS 和 PX4 的 AirSim</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">杂项</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom_drone/">真实无人机上的 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cmake_linux/">在 Linux 上安装 cmake</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hard_drive/">硬盘繁忙时的提示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pfm/">pfm 格式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_proj/">设置虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_blocks/">Blocks 环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../who_is_using/">谁在使用 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../working_with_plugin_contents/">使用 UE 插件内容</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/technion/technion/">大学生方程式赛车以色列理工学院自驾赛</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">支持</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SUPPORT/">支持</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CHANGELOG/">修改记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../create_issue/">创建问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING/">贡献</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">低空模拟器</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">使用 AirSim</li>
+      <li class="breadcrumb-item active">远程控制</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">遥控<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<p>要手动飞行，您需要遥控器或 RC(Remote Control)。如果没有遥控器，您可以使用 <a href="../apis/">APIs</a> 以编程方式飞行，或者使用所谓的 <a href="../image_apis/">计算机视觉模式</a> 通过键盘操控飞行。</p>
+<h2 id="_2">默认配置的遥控设置<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>默认情况下，AirSim 使用 <a href="../simple_flight/">simple_flight</a>  作为其飞行控制器，通过 USB 端口将 RC 连接到您的计算机。</p>
+<p>您可以使用 XBox 控制器或 <a href="https://hobbyking.com/en_us/frsky-2-4ghz-accst-taranis-x9d-plus-and-x8r-combo-digital-telemetry-radio-system-mode-2.html">FrSky Taranis X9D Plus</a>。请注意，XBox 360 控制器不够精准，如果您想要更真实的游戏体验，不推荐使用。如果出现问题，请参阅下方的常见问题解答。</p>
+<h3 id="_3">其他设备<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<p>AirSim 可以检测各种设备，但除上述设备外，其他设备可能需要额外配置。未来我们将添加通过 settings.json 设置此配置的功能。目前，如果一切正常，您可以尝试 <a href="http://www.x360ce.com/">x360ce</a> 等变通方法，或更改 <a href="https://github.com/microsoft/AirSim/blob/main/Unreal/Plugins/AirSim/Source/SimJoyStick/SimJoyStick.cpp#L50">SimJoystick.cpp 文件</a> 中的代码。</p>
+<h3 id="frsky-taranis-x9d-plus">FrSky Taranis X9D Plus 注意事项<a class="headerlink" href="#frsky-taranis-x9d-plus" title="Permanent link">#</a></h3>
+<p><a href="https://hobbyking.com/en_us/frsky-2-4ghz-accst-taranis-x9d-plus-and-x8r-combo-digital-telemetry-radio-system-mode-2.html">FrSky Taranis X9D Plus</a> 是一款真正的无人机遥控器，其优势在于它配备 USB 端口，可直接连接到电脑。您可以 <a href="../misc/AirSim_FrSkyTaranis.bin">下载 AirSim 配置文件</a> ，并 <a href="https://www.youtube.com/watch?v=qe-13Gyb0sw">按照本教程</a> 将其导入您的遥控器。之后，您应该会在遥控器中看到所有通道均已正确配置的“sim”模型。</p>
+<h3 id="linux">Linux 注意事项<a class="headerlink" href="#linux" title="Permanent link">#</a></h3>
+<p>目前 Linux 上的默认配置适用于 Xbox 控制器。这意味着其他设备可能无法正常工作。未来我们将在 settings.json 中添加配置 RC 的功能，但目前您 <em>可能</em> 需要修改 <a href="https://github.com/microsoft/AirSim/blob/main/Unreal/Plugins/AirSim/Source/SimJoyStick/SimJoyStick.cpp#L340">SimJoystick.cpp file</a> 文件中的代码才能使用其他设备。</p>
+<h2 id="px4">PX4 的遥控设置<a class="headerlink" href="#px4" title="Permanent link">#</a></h2>
+<p>AirSim 支持 PX4 飞行控制器，但设置方法有所不同。四旋翼飞行器可以使用多种遥控选项。我们已成功将 FrSky Taranis X9D Plus、FlySky FS-TH9X 和 Futaba 14SG 与 AirSim 配合使用。以下是配置遥控器的详细步骤：</p>
+<ol>
+<li>如果您要使用硬件在环模式，您需要与您的 RC 品牌对应的遥控器进行绑定。您可以在 RC 的用户指南中找到相关信息。 </li>
+<li>对于硬件在环模式，您需要将发射器连接到 Pixhawk。通常您可以找到在线文档或 YouTube 视频教程来了解如何操作。 </li>
+<li><a href="https://docs.qgroundcontrol.com/en/SetupView/Radio.html">在 QGroundControl 中校准您的 RC。</a>.</li>
+</ol>
+<p>请参阅 <a href="https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html">PX4 RC 配置</a> 并参阅 <a href="https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html#px4-compatible-receivers">本指南</a> 以了解更多信息。</p>
+<h3 id="xbox-360-usb">使用 XBox 360 USB 游戏手柄<a class="headerlink" href="#xbox-360-usb" title="Permanent link">#</a></h3>
+<p>您也可以在 SITL 模式下使用 Xbox 控制器，但它的精度不如真正的 RC 控制器。有关如何设置的详细信息，请参阅 <a href="../xbox_controller/">Xbox 控制器</a> 。</p>
+<h3 id="playstation-3">使用 Playstation 3 控制器<a class="headerlink" href="#playstation-3" title="Permanent link">#</a></h3>
+<p>已确认 Playstation 3 控制器可以用作 AirSim 控制器。但在 Windows 上，需要使用模拟器才能使其看起来像 Xbox 360 控制器。网上有很多不同的解决方案，例如 <a href="https://github.com/x360ce/x360ce">x360ce Xbox 360 控制器模拟器</a> 。</p>
+<h3 id="dji">DJI 控制器<a class="headerlink" href="#dji" title="Permanent link">#</a></h3>
+<p>Nils Tijtgat 写了一篇关于如何让 <a href="https://timebutt.github.io/static/using-a-phantom-dji-controller-in-airsim/">DJI 控制器与 AirSim 协同工作</a> 的精彩博客。</p>
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">#</a></h2>
+<h4 id="airsim-rc-usb">我正在使用默认配置，但 AirSim 说我的 RC 在 USB 上未被检测到。<a class="headerlink" href="#airsim-rc-usb" title="Permanent link">#</a></h4>
+<p>如果您连接了多个遥控器或 XBox/Playstation 游戏手柄等，通常会发生这种情况。在 Windows 系统中，按下 Windows+S 键并搜索“设置 USB 游戏控制器”（在旧版 Windows 中，请尝试“游戏杆”）。这将显示所有连接到您电脑的游戏控制器。如果您没有看到您的控制器，则表示 Windows 尚未检测到它，因此您需要先解决该问题。如果您看到了您的控制器，但不在列表顶部（即索引 0），则需要告知 AirSim，因为 AirSim 默认尝试使用索引 0 处的 RC。为此，请导航到您的 <code>~/Documents/AirSim</code> 文件夹，打开 <code>settings.json</code> 并添加/修改以下设置。以下设置告知 AirSim 使用索引 = 2 处的 RC。</p>
+<div class="highlight"><pre><span></span><code>{
+    &quot;SettingsVersion&quot;: 1.2,
+    &quot;SimMode&quot;: &quot;Multirotor&quot;,
+    &quot;Vehicles&quot;: {
+        &quot;SimpleFlight&quot;: {
+            &quot;VehicleType&quot;: &quot;SimpleFlight&quot;,
+            &quot;RC&quot;: {
+              &quot;RemoteControlID&quot;: 2
+            }
+        }
+    }
+}
+</code></pre></div>
+<h4 id="xboxps3">使用 XBox/PS3 控制器时车辆似乎不稳定<a class="headerlink" href="#xboxps3" title="Permanent link">#</a></h4>
+<p>普通游戏手柄精度不高，而且有很多随机噪声。大多数情况下，您还可能会看到明显的偏移（例如，摇杆位置为 0 时，输出不为 0）。因此，这种行为是可以预料的。</p>
+<h4 id="airsim-rc">AirSim 中的 RC 校准在哪里？<a class="headerlink" href="#airsim-rc" title="Permanent link">#</a></h4>
+<p>我们尚未实现此功能。这意味着您的 RC 固件目前需要具备校准功能。</p>
+<h4 id="rc-px4">我的 RC 无法与 PX4 设置配合使用。<a class="headerlink" href="#rc-px4" title="Permanent link">#</a></h4>
+<p>首先，您需要确保您的遥控器在 <a href="https://docs.qgroundcontrol.com/en/SetupView/Radio.html">QGroundControl</a> 中正常工作。如果无法正常工作，则肯定无法在 AirSim 中正常工作。PX4 模式适合具有中级以上经验的用户，能够处理与 PX4 相关的各种问题，我们通常建议您从 PX4 论坛获取帮助。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../using_car/" class="btn btn-neutral float-left" title="汽车模式"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
+        <a href="../xbox_controller/" class="btn btn-neutral float-right" title="XBox 控制器">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>OpenHUTB 版权所有 &copy; 2026</p>
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../using_car/" style="color: #fcfcfc">&laquo; 前一页</a></span>
+    
+    
+      <span><a href="../xbox_controller/" style="color: #fcfcfc">后一页 &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

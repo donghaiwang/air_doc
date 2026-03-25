@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>软件在环中的 PX4 - 低空模拟器</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u8f6f\u4ef6\u5728\u73af\u4e2d\u7684 PX4";
+        var mkdocs_page_input_path = "px4_sitl.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 低空模拟器
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">主页</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">主页</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">构建 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../use_precompiled/">下载二进制文件</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_windows/">在 Windows 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_linux/">在 Linux 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_macos/">在 macOS 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docker_ubuntu/">Linux 上的 Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure 上的 ArSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_custenv/">定制虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_faq/">场景问题和回答</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">使用 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../apis/">核心 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../image_apis/">图像 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../apis_cpp/">C++ APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://openhutb.github.io/doc/python_api/#airsim.client.MultirotorClient">无人机 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api_docs/_build/html/">原始 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/">Wiki 文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dev_workflow/">开发工作流</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../settings/">设置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../map/">地图</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../camera_views/">相机视角</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../using_car/">汽车模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_control/">远程控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../xbox_controller/">XBox 控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../steering_wheel_installation/">方向盘</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../multi_vehicle/">多车辆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >传感器</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../sensors/">传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lidar/">激光雷达</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../distance_sensor/">距离传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../InfraredCamera/">红外相机</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_ros_pkgs/">ROS: AirSim ROS 包装器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_tutorial_pkgs/">ROS: AirSim 教程包</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../gazebo_drone/">导入 Gazebo 模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../retexturing/">域随机化</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../meshes/">网格顶点缓冲区</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../playback/">播放日志</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../voxel_grid/">体素网格生成器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../event_sim/">事件相机</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">设计</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../design/">架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../code_structure/">代码结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../adding_new_apis/">添加新的 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../modify_recording_data/">修改记录数据</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../coding_guidelines/">编码指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../flight_controller/">飞行控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simple_flight/">简单飞行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hello_drone/">Hello Drone</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">外部飞行控制器</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" >MavLink 和 PX4</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../px4_setup/">AirSim 的 PX4 设置</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">软件在环中的 PX4</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#gps">设置 GPS 原点</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#smooth-offboard-transitions">Smooth Offboard Transitions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">检查主位置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#wsl-2">WSL 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">没有遥控器</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">手动设置参数</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">建立多载具仿真</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#virtualbox-ubuntu">使用 VirtualBox Ubuntu</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">遥控器</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_sitl_wsl2/">带有 WSL 2 的 PX4 SITL</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_lockstep/">PX4 Lockstep</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_multi_vehicle/">软件在环中的 PX4 多车辆</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/1oY8Qu5maQQ">AirSim 与 Pixhawk</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/HNWdYrtw3f0">使用 AirSim 设置 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be">调试姿态估计</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages">拦截 MavLink 消息</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Rapid-Descent-on-PX4-drones">PX4 无人机快速下降</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_build/">构建 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_logging/">PX4/MavLink 日志记录</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../log_viewer/">MavLink 日志查看器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom/">MavLinkCom</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom_mocap/">MavLink MoCap</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >ArduPilot</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/building-the-code.html">ArduPilot 软件在环设置</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/sitl-with-airsim.html">AirSim & ArduPilot</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">升级</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_upgrade/">升级虚幻引擎</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_apis/">升级 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_settings/">升级设置</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献教程</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinforcement_learning/">强化学习</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://www.youtube.com/watch?v=y09VbdQWvQY">使用 Marketplace 中的环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://github.com/simondlevy/AirSimTensorFlow">简单的防撞</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://aka.ms/AutonomousDrivingCookbook">Azure 上的自动驾驶</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/hexacopter/">构造六旋翼飞行器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/moveOnPath-demo/">移动路径演示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../point_clouds/">构建点云</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../drone_survey/">使用无人机进行测量</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../orbit/">轨道轨迹</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/Bp86WiLUC80">导入自定义多旋翼网格</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../object_detection/">Object Detection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/ZonkdMcwXH4">带有 MAVROS 和 PX4 的 AirSim</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">杂项</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom_drone/">真实无人机上的 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cmake_linux/">在 Linux 上安装 cmake</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hard_drive/">硬盘繁忙时的提示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pfm/">pfm 格式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_proj/">设置虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_blocks/">Blocks 环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../who_is_using/">谁在使用 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../working_with_plugin_contents/">使用 UE 插件内容</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/technion/technion/">大学生方程式赛车以色列理工学院自驾赛</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">支持</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SUPPORT/">支持</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CHANGELOG/">修改记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../create_issue/">创建问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING/">贡献</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">低空模拟器</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">外部飞行控制器</li>
+          <li class="breadcrumb-item">MavLink 和 PX4</li>
+      <li class="breadcrumb-item active">软件在环中的 PX4</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="px4">设置 PX4 软件在环<a class="headerlink" href="#px4" title="Permanent link">#</a></h1>
+<p><a href="http://dev.px4.io">PX4</a> 软件提供了其堆栈的“软件在环”仿真 (software-in-loop, SITL) 版本，可在 Linux 上运行。如果您使用的是 Windows，则可以使用 <a href="https://dev.px4.io/master/en/setup/dev_env_windows_cygwin.html">Cygwin 工具链</a> ，或者您可以使用适用于 <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Linux 的 Windows 子系统</a> 并按照 PX4 Linux 工具链的设置进行操作。</p>
+<p>如果您使用的是 WSL2，请阅读这些 <a href="../px4_sitl_wsl2/">附加说明</a> 。</p>
+<p><strong>请注意</strong> ，每次停止虚幻应用程序时，都必须重新启动 px4 应用程序。</p>
+<ol>
+<li>
+<p>在您的 Bash 终端上，按照 <a href="https://docs.px4.io/master/en/dev_setup/dev_env_linux.html">Linux 系统的步骤操作</a> ，并按照 <code>基于 NuttX 的硬件下</code> 的所有说明安装必备组件。我们还附上​​了我们自己的 <a href="../px4_build/">PX4 构建说明</a> ，它更简洁地说明了我们的具体需求。 </p>
+</li>
+<li>
+<p>获取 PX4 源代码并构建 PX4 的 posix SITL 版本：
+    <div class="highlight"><pre><span></span><code>mkdir -p PX4
+cd PX4
+git clone https://github.com/PX4/PX4-Autopilot.git --recursive
+bash ./PX4-Autopilot/Tools/setup/ubuntu.sh --no-nuttx --no-sim-tools
+cd PX4-Autopilot
+</code></pre></div>
+    从 <a href="https://github.com/PX4/PX4-Autopilot/releases">https://github.com/PX4/PX4-Autopilot/releases</a> 找到最新的稳定版本，并检出与该版本匹配的源代码，例如：
+    <div class="highlight"><pre><span></span><code>git checkout v1.11.3
+</code></pre></div></p>
+</li>
+<li>
+<p>使用以下命令在 SITL 模式下构建并启动 PX4 固件：
+    <div class="highlight"><pre><span></span><code>make px4_sitl_default none_iris
+</code></pre></div>
+   如果您使用的是旧版本 v1.8.*，请改用以下命令：<code>make posix_sitl_ekf2 none_iris</code>。 </p>
+</li>
+<li>
+<p>您应该会看到一条消息，提示 SITL PX4 应用正在等待模拟器 (AirSim) 连接。您还会看到有关为 PX4 应用的 MAVLink 连接配置了哪些端口的信息。默认端口最近有所更改，因此请仔细检查以确保 AirSim 设置正确。
+    <div class="highlight"><pre><span></span><code>INFO  [simulator] Waiting for simulator to connect on TCP port 4560
+INFO  [init] Mixer: etc/mixers/quad_w.main.mix on /dev/pwm_output0
+INFO  [mavlink] mode: Normal, data rate: 4000000 B/s on udp port 14570 remote port 14550
+INFO  [mavlink] mode: Onboard, data rate: 4000000 B/s on udp port 14580 remote port 14540
+</code></pre></div></p>
+<p>注意：这也是一个交互式 PX4 控制台，输入 <code>help</code> 可查看可在此处输入的命令列表。这些命令大多是底层 PX4 命令，但其中一些可用于调试。</p>
+</li>
+<li>
+<p>现在编辑 <a href="../settings/">AirSim 设置</a> 文件，确保 UDP 和 TCP 端口设置匹配：
+    <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;SettingsVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SimMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Multirotor&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ClockType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SteppableClock&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Vehicles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;PX4&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;VehicleType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PX4Multirotor&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;UseSerial&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;LockStep&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;UseTcp&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;TcpPort&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4560</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ControlPortLocal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14540</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ControlPortRemote&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14580</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Sensors&quot;</span><span class="p">:{</span>
+<span class="w">                </span><span class="nt">&quot;Barometer&quot;</span><span class="p">:{</span>
+<span class="w">                    </span><span class="nt">&quot;SensorType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;PressureFactorSigma&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001825</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;NAV_RCL_ACT&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;NAV_DLL_ACT&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;COM_OBL_ACT&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LPE_LAT&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">47.641468</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LPE_LON&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.140165</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+    请注意，PX4 <code>[simulator]</code> 使用的是 TCP 协议，因此我们需要添加<code>"UseTcp": true,</code>。另外，我们还启用了 <code>LockStep</code> 功能，更多信息请参阅 <a href="../px4_lockstep/">PX4 LockStep</a> 文档。气压计设置能够让 PX4 正常工作，因为 AirSim 默认的气压计会产生过多的噪声。此设置可以稍微降低噪声，从而使 PX4 更快地锁定 GPS 信号。</p>
+</li>
+<li>
+<p>使用防火墙配置打开入站 TCP 端口 4560 和入站 UDP 端口 14540。</p>
+</li>
+<li>
+<p>现在运行你的 Unreal AirSim 环境，它应该会通过 TCP 连接到 SITL PX4。你应该会在 SITL PX4 窗口中看到一系列消息。具体来说，以下消息会告诉你 AirSim 已正确连接，并且 GPS 融合稳定：
+    <div class="highlight"><pre><span></span><code>INFO  [simulator] Simulator connected on UDP port 14560
+INFO  [mavlink] partner IP: 127.0.0.1
+INFO  [ecl/EKF] EKF GPS checks passed (WGS-84 origin set)
+INFO  [ecl/EKF] EKF commencing GPS fusion
+</code></pre></div></p>
+<p>如果您没有看到这些消息，请检查您的端口设置。</p>
+</li>
+<li>
+<p>您应该也可以在 SITL 模式下使用 QGroundControl。请确保没有插入 Pixhawk 硬件，否则 QGroundControl 会选择使用它。请注意，由于我们没有实体飞控板，因此无法直接连接遥控器。所以，您可以选择使用 Xbox 360 控制器，或者通过 USB 连接遥控器（例如，FrSky Taranis X9D Plus），或者使用教练 USB 线缆连接到您的电脑。这样，您的遥控器就会像一个虚拟摇杆一样工作。您需要在 QGroundControl 中进行额外的设置才能使用虚拟摇杆进行遥控器控制。除非您计划在 AirSim 中手动操控无人机，否则无需进行此操作。使用 Python API 进行自主飞行不需要遥控器，请参阅下文“无遥控器（<code>No Remote Control</code>）”部分。 </p>
+</li>
+</ol>
+<h2 id="gps">设置 GPS 原点<a class="headerlink" href="#gps" title="Permanent link">#</a></h2>
+<p>请注意，以上设置是在 <code>settings.json</code> 文件的 <code>params</code> 部分中提供的：
+<div class="highlight"><pre><span></span><code>    &quot;LPE_LAT&quot;: 47.641468,
+    &quot;LPE_LON&quot;: -122.140165,
+</code></pre></div></p>
+<p>需要配置 PX4 SITL 模式才能正确获取原点位置。原点位置需要设置为与 <a href="../settings/#origingeopoint">OriginGeopoint</a> 中定义的坐标相同的坐标。</p>
+<p>您也可以在 SITL PX4 控制台窗口中运行以下命令，以检查这些值是否设置正确。</p>
+<div class="highlight"><pre><span></span><code>param show LPE_LAT
+param show LPE_LON
+</code></pre></div>
+<h2 id="smooth-offboard-transitions">Smooth Offboard Transitions<a class="headerlink" href="#smooth-offboard-transitions" title="Permanent link">#</a></h2>
+<p>请注意，上述设置在 <code>settings.json</code> 文件的 <code>params</code> 部分中提供：
+<div class="highlight"><pre><span></span><code>    &quot;COM_OBL_ACT&quot;: 1
+</code></pre></div></p>
+<p>这会使无人机在每次完成远程控制指令后自动悬停（默认设置为降落）。悬停可以使多个远程指令之间的过渡更加平滑。您可以通过运行以下 PX4 控制台命令来检查此设置：</p>
+<div class="highlight"><pre><span></span><code>param show COM_OBL_ACT
+</code></pre></div>
+<h2 id="_1">检查主位置<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p>如果您使用 DroneShell 执行命令（解锁、起飞等），则应等待返航位置设置完毕。您将在 PX4 SITL 控制台中看到以下消息输出：</p>
+<div class="highlight"><pre><span></span><code>INFO  [commander] home: 47.6414680, -122.1401672, 119.99
+INFO  [tone_alarm] home_set
+</code></pre></div>
+<p>现在，DroneShell 的“pos”命令应该会报告这个位置，并且 PX4 应该会接受这些命令。如果您尝试在没有返航位置的情况下起飞，您将会看到以下消息：</p>
+<div class="highlight"><pre><span></span><code>WARN  [commander] Takeoff denied, disarm and re-try
+</code></pre></div>
+<p>设置好归位位置后，检查“pos”命令报告的本地位置：</p>
+<div class="highlight"><pre><span></span><code>Local position: x=-0.0326988, y=0.00656854, z=5.48506
+</code></pre></div>
+<p>如果 z 坐标值像这样过大，则起飞可能无法按预期进行。重置 SITL 和仿真应该可以解决这个问题。</p>
+<h2 id="wsl-2">WSL 2<a class="headerlink" href="#wsl-2" title="Permanent link">#</a></h2>
+<p>适用于 Linux 的 Windows 子系统版本 2 在虚拟机中运行。这需要额外的设置——请参阅 <a href="../px4_sitl_wsl2/">其他说明</a> 。</p>
+<h2 id="_2">没有遥控器<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>请注意，上述设置在 <code>settings.json</code> 文件的 <code>params</code> 部分中提供：</p>
+<div class="highlight"><pre><span></span><code>    &quot;NAV_RCL_ACT&quot;: 0,
+    &quot;NAV_DLL_ACT&quot;: 0,
+</code></pre></div>
+<p>如果您计划不使用遥控器，仅通过 Python 脚本等方式操控 SITL 模式的 PX4，则需要进行此设置。这些参数可以防止 PX4 在每次移动指令完成后都触发“安全模式”。您可以使用以下 PX4 命令来检查这些值是否设置正确：</p>
+<div class="highlight"><pre><span></span><code>param show NAV_RCL_ACT
+param show NAV_DLL_ACT
+</code></pre></div>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><code>请勿</code>在真正的无人机上进行此操作，因为如果没有这些安全措施，飞行非常危险。</p>
+</div>
+<h2 id="_3">手动设置参数<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<p>您也可以在 PX4 控制台中运行以下命令来手动设置所有这些参数：</p>
+<div class="highlight"><pre><span></span><code>param set NAV_RCL_ACT 0
+param set NAV_DLL_ACT 0
+</code></pre></div>
+<h2 id="_4">建立多载具仿真<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<p>您可以使用 AirSim 在 SITL 模式下模拟多架无人机。但是，这需要设置多个 PX4 固件模拟器实例，以便监听每架无人机在独立 TCP 端口（4560、4561 等）上的连接。请参阅 <a href="../px4_multi_vehicle/">此专门页面</a> ，了解如何在 SITL 模式下设置多个 PX4 实例。</p>
+<h2 id="virtualbox-ubuntu">使用 VirtualBox Ubuntu<a class="headerlink" href="#virtualbox-ubuntu" title="Permanent link">#</a></h2>
+<p>如果您想在 <code>VirtualBox Ubuntu</code> 虚拟机中运行上述 posix_sitl 程序，那么它的 IP 地址将与本地主机不同。因此，在这种情况下，您需要编辑 <a href="../settings/">配置文件</a> ，将 UdpIp 和 SitlIp 更改为虚拟机的 IP 地址，并将 LocalIpAddress 设置为运行虚幻引擎的主机的 IP 地址。</p>
+<h2 id="_5">遥控器<a class="headerlink" href="#_5" title="Permanent link">#</a></h2>
+<p>模拟无人机的操控方式有多种，可以使用遥控器或类似 Xbox 游戏手柄的操纵杆。请参阅 <a href="../remote_control/#rc-setup-for-px4">遥控器</a> 部分。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../px4_setup/" class="btn btn-neutral float-left" title="AirSim 的 PX4 设置"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
+        <a href="../px4_sitl_wsl2/" class="btn btn-neutral float-right" title="带有 WSL 2 的 PX4 SITL">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>OpenHUTB 版权所有 &copy; 2026</p>
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../px4_setup/" style="color: #fcfcfc">&laquo; 前一页</a></span>
+    
+    
+      <span><a href="../px4_sitl_wsl2/" style="color: #fcfcfc">后一页 &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

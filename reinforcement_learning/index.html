@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>强化学习 - 低空模拟器</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5f3a\u5316\u5b66\u4e60";
+        var mkdocs_page_input_path = "reinforcement_learning.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 低空模拟器
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">主页</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">主页</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">构建 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../use_precompiled/">下载二进制文件</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_windows/">在 Windows 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_linux/">在 Linux 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_macos/">在 macOS 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docker_ubuntu/">Linux 上的 Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure 上的 ArSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_custenv/">定制虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_faq/">场景问题和回答</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">使用 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../apis/">核心 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../image_apis/">图像 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../apis_cpp/">C++ APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://openhutb.github.io/doc/python_api/#airsim.client.MultirotorClient">无人机 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api_docs/_build/html/">原始 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/">Wiki 文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dev_workflow/">开发工作流</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../settings/">设置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../map/">地图</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../camera_views/">相机视角</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../using_car/">汽车模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_control/">远程控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../xbox_controller/">XBox 控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../steering_wheel_installation/">方向盘</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../multi_vehicle/">多车辆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >传感器</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../sensors/">传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lidar/">激光雷达</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../distance_sensor/">距离传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../InfraredCamera/">红外相机</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_ros_pkgs/">ROS: AirSim ROS 包装器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_tutorial_pkgs/">ROS: AirSim 教程包</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../gazebo_drone/">导入 Gazebo 模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../retexturing/">域随机化</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../meshes/">网格顶点缓冲区</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../playback/">播放日志</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../voxel_grid/">体素网格生成器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../event_sim/">事件相机</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">设计</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../design/">架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../code_structure/">代码结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../adding_new_apis/">添加新的 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../modify_recording_data/">修改记录数据</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../coding_guidelines/">编码指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../flight_controller/">飞行控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simple_flight/">简单飞行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hello_drone/">Hello Drone</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">外部飞行控制器</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >MavLink 和 PX4</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_setup/">AirSim 的 PX4 设置</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_sitl/">软件在环中的 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_sitl_wsl2/">带有 WSL 2 的 PX4 SITL</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_lockstep/">PX4 Lockstep</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_multi_vehicle/">软件在环中的 PX4 多车辆</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/1oY8Qu5maQQ">AirSim 与 Pixhawk</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/HNWdYrtw3f0">使用 AirSim 设置 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be">调试姿态估计</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages">拦截 MavLink 消息</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Rapid-Descent-on-PX4-drones">PX4 无人机快速下降</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_build/">构建 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_logging/">PX4/MavLink 日志记录</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../log_viewer/">MavLink 日志查看器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom/">MavLinkCom</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom_mocap/">MavLink MoCap</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >ArduPilot</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/building-the-code.html">ArduPilot 软件在环设置</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/sitl-with-airsim.html">AirSim & ArduPilot</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">升级</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_upgrade/">升级虚幻引擎</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_apis/">升级 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_settings/">升级设置</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献教程</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">强化学习</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">免责声明</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gym-wrapper">Gym wrapper</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rl">RL 与汽车</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rl_1">RL 与四旋翼飞行器</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">相关内容</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://www.youtube.com/watch?v=y09VbdQWvQY">使用 Marketplace 中的环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://github.com/simondlevy/AirSimTensorFlow">简单的防撞</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://aka.ms/AutonomousDrivingCookbook">Azure 上的自动驾驶</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/hexacopter/">构造六旋翼飞行器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/moveOnPath-demo/">移动路径演示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../point_clouds/">构建点云</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../drone_survey/">使用无人机进行测量</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../orbit/">轨道轨迹</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/Bp86WiLUC80">导入自定义多旋翼网格</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../object_detection/">Object Detection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/ZonkdMcwXH4">带有 MAVROS 和 PX4 的 AirSim</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">杂项</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom_drone/">真实无人机上的 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cmake_linux/">在 Linux 上安装 cmake</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hard_drive/">硬盘繁忙时的提示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pfm/">pfm 格式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_proj/">设置虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_blocks/">Blocks 环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../who_is_using/">谁在使用 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../working_with_plugin_contents/">使用 UE 插件内容</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/technion/technion/">大学生方程式赛车以色列理工学院自驾赛</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">支持</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SUPPORT/">支持</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CHANGELOG/">修改记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../create_issue/">创建问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING/">贡献</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">低空模拟器</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">贡献教程</li>
+      <li class="breadcrumb-item active">强化学习</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="airsim">AirSim 中的强化学习<a class="headerlink" href="#airsim" title="Permanent link">#</a></h1>
+<p>下面我们将介绍如何在 AirSim 中实现 DQN，具体方法是使用 OpenAI Gym 封装 AirSim API 的包装器，并使用标准强化学习算法的稳定基线实现。为了运行这些示例，我们建议安装 stable-baselines3（请参阅 https://github.com/DLR-RM/stable-baselines3）。</p>
+<h4 id="_1">免责声明<a class="headerlink" href="#_1" title="Permanent link">#</a></h4>
+<p>这仍在积极开发中。下面我们分享的是一个可以扩展和调整以获得更佳性能的框架。</p>
+<h4 id="gym-wrapper">Gym wrapper<a class="headerlink" href="#gym-wrapper" title="Permanent link">#</a></h4>
+<p>为了将 AirSim 用作训练环境，我们扩展并重新实现了 AirSim 及其相关任务所需的基础方法，例如 <code>step</code>、<code>_get_obs</code>、<code>_compute_reward</code> 和 <code>reset</code>。这些示例中用于汽车和无人机的示例环境位于 <code>PythonClient/reinforcement_learning/*_env.py</code> 中。</p>
+<h2 id="rl">RL 与汽车<a class="headerlink" href="#rl" title="Permanent link">#</a></h2>
+<p><a href="https://github.com/Microsoft/AirSim/tree/main/PythonClient/reinforcement_learning">源代码</a></p>
+<p>此示例适用于 <a href="https://github.com/Microsoft/AirSim/releases">发行版</a> 中提供的 AirSimNeighborhood 环境。</p>
+<p>首先，我们需要从模拟中获取图像并对其进行适当的转换。下面，我们将展示如何从自我相机获取深度图像并将其转换为 84x84 的输入到网络。（您也可以使用其他传感器模态和传感器输入——当然，您需要相应地修改代码）。</p>
+<div class="highlight"><pre><span></span><code>responses = client.simGetImages([ImageRequest(0, AirSimImageType.DepthPerspective, True, False)])
+current_state = transform_input(responses)
+</code></pre></div>
+<p>我们进一步定义了代理可以执行的 6 个动作（刹车、直行带油门、左转带油门全开、右转带油门全开、左转半开带油门、右转半开带油门）。这通过函数<code>interpret_action</code>实现：</p>
+<div class="highlight"><pre><span></span><code>def interpret_action(action):
+    car_controls.brake = 0
+    car_controls.throttle = 1
+    if action == 0:
+        car_controls.throttle = 0
+        car_controls.brake = 1
+    elif action == 1:
+        car_controls.steering = 0
+    elif action == 2:
+        car_controls.steering = 0.5
+    elif action == 3:
+        car_controls.steering = -0.5
+    elif action == 4:
+        car_controls.steering = 0.25
+    else:
+        car_controls.steering = -0.25
+    return car_controls
+</code></pre></div>
+<p>然后，我们在<code>_compute_reward</code>中将奖励函数定义为车辆行驶速度与偏离中心线距离的凸组合。当代理快速行驶并保持在车道中心时，代理将获得高奖励。</p>
+<div class="highlight"><pre><span></span><code>def _compute_reward(car_state):
+    MAX_SPEED = 300
+    MIN_SPEED = 10
+    thresh_dist = 3.5
+    beta = 3
+
+    z = 0
+    pts = [np.array([0, -1, z]), np.array([130, -1, z]), np.array([130, 125, z]), np.array([0, 125, z]), np.array([0, -1, z]), np.array([130, -1, z]), np.array([130, -128, z]), np.array([0, -128, z]), np.array([0, -1, z])]
+    pd = car_state.position
+    car_pt = np.array(list(pd.values()))
+
+    dist = 10000000
+    for i in range(0, len(pts)-1):
+        dist = min(dist, np.linalg.norm(np.cross((car_pt - pts[i]), (car_pt - pts[i+1])))/np.linalg.norm(pts[i]-pts[i+1]))
+
+    #print(dist)
+    if dist &gt; thresh_dist:
+        reward = -3
+    else:
+        reward_dist = (math.exp(-beta*dist) - 0.5)
+        reward_speed = (((car_state.speed - MIN_SPEED)/(MAX_SPEED - MIN_SPEED)) - 0.5)
+        reward = reward_dist + reward_speed
+
+    return reward
+</code></pre></div>
+<p>计算奖励函数随后还会判断该场景是否已终止（例如，由于碰撞）。我们会观察车辆的速度，如果速度低于阈值，则认为该场景已终止。</p>
+<div class="highlight"><pre><span></span><code>done = 0
+if reward &lt; -1:
+    done = 1
+if car_controls.brake == 0:
+    if car_state.speed &lt;= 5:
+        done = 1
+return done
+</code></pre></div>
+<p>然后，主循环依次执行获取图像、根据当前策略计算要采取的行动、获得奖励等步骤。如果回合结束，我们会通过 <code>reset()</code> 将车辆重置为原始状态：</p>
+<div class="highlight"><pre><span></span><code>client.reset()
+client.enableApiControl(True)
+client.armDisarm(True)
+car_control = interpret_action(1) // Reset position and drive straight for one second
+client.setCarControls(car_control)
+time.sleep(1)
+</code></pre></div>
+<p>一旦在<code>car_env.py</code>中定义了 gym 风格的环境包装器，我们就可以利用 stable-baselines3 运行 DQN 训练循环。DQN 训练的配置如下，详见<code>dqn_car.py</code>。</p>
+<div class="highlight"><pre><span></span><code>model = DQN(
+    &quot;CnnPolicy&quot;,
+    env,
+    learning_rate=0.00025,
+    verbose=1,
+    batch_size=32,
+    train_freq=4,
+    target_update_interval=10000,
+    learning_starts=200000,
+    buffer_size=500000,
+    max_grad_norm=10,
+    exploration_fraction=0.1,
+    exploration_final_eps=0.01,
+    device=&quot;cuda&quot;,
+    tensorboard_log=&quot;./tb_logs/&quot;,
+)
+</code></pre></div>
+<p>可以定义训练环境和评估环境（参见 <code>dqn_car.py</code> 中的 <code>EvalCallback</code>）。评估环境可以与训练环境不同，具有不同的终止条件/场景配置。Tensorboard 日志目录也作为 DQN 参数的一部分定义。最后，<code>model.learn()</code> 启动 DQN 训练循环。同样，可以从 stable-baselines3 中使用 PPO、A3C 等实现。</p>
+<p>请注意，在执行<code>dqn_car.py</code>之前，需要启动并运行模拟。下方视频展示了 DQN 训练的前几轮。</p>
+<p><a href="https://youtu.be/fv-oFPAqSZ4"><img alt="Reinforcement Learning - Car" src="../images/dqn_car.png" /></a></p>
+<h2 id="rl_1">RL 与四旋翼飞行器<a class="headerlink" href="#rl_1" title="Permanent link">#</a></h2>
+<p><a href="https://github.com/Microsoft/AirSim/tree/main/PythonClient/reinforcement_learning">源代码</a></p>
+<p>此示例适用于 <a href="https://github.com/Microsoft/AirSim/releases">发行版</a> 中可用的 AirSimMountainLandscape 环境。</p>
+<p>类似地，我们可以将强化学习应用于四旋翼飞行器的各种自主飞行场景。以下示例展示了如何使用强化学习训练四旋翼飞行器沿高压电线飞行（例如，能源基础设施巡检应用）。
+这里有七个离散动作，分别对应四旋翼飞行器可以移动的不同方向（6 个方向 + 1 个悬停动作）。</p>
+<div class="highlight"><pre><span></span><code>def interpret_action(self, action):
+    if action == 0:
+        quad_offset = (self.step_length, 0, 0)
+    elif action == 1:
+        quad_offset = (0, self.step_length, 0)
+    elif action == 2:
+        quad_offset = (0, 0, self.step_length)
+    elif action == 3:
+        quad_offset = (-self.step_length, 0, 0)
+    elif action == 4:
+        quad_offset = (0, -self.step_length, 0)
+    elif action == 5:
+        quad_offset = (0, 0, -self.step_length)
+    else:
+        quad_offset = (0, 0, 0)
+</code></pre></div>
+<p>奖励再次是一个函数，它决定了四轮车的行驶速度以及它与已知电力线的距离。</p>
+<div class="highlight"><pre><span></span><code>def compute_reward(quad_state, quad_vel, collision_info):
+    thresh_dist = 7
+    beta = 1
+
+    z = -10
+    pts = [np.array([-0.55265, -31.9786, -19.0225]),np.array([48.59735, -63.3286, -60.07256]),np.array([193.5974, -55.0786, -46.32256]),np.array([369.2474, 35.32137, -62.5725]),np.array([541.3474, 143.6714, -32.07256]),]
+
+    quad_pt = np.array(list((self.state[&quot;position&quot;].x_val, self.state[&quot;position&quot;].y_val,self.state[&quot;position&quot;].z_val,)))
+
+    if self.state[&quot;collision&quot;]:
+        reward = -100
+    else:
+        dist = 10000000
+        for i in range(0, len(pts) - 1):
+            dist = min(dist, np.linalg.norm(np.cross((quad_pt - pts[i]), (quad_pt - pts[i + 1]))) / np.linalg.norm(pts[i] - pts[i + 1]))
+
+        if dist &gt; thresh_dist:
+            reward = -10
+        else:
+            reward_dist = math.exp(-beta * dist) - 0.5
+            reward_speed = (np.linalg.norm([self.state[&quot;velocity&quot;].x_val, self.state[&quot;velocity&quot;].y_val, self.state[&quot;velocity&quot;].z_val,])- 0.5)
+            reward = reward_dist + reward_speed
+</code></pre></div>
+<p>如果事件偏离已知电力线坐标太远，我们会认为该事件终止，然后将无人机重置到其起点。</p>
+<p>一旦在<code>drone_env.py</code>中定义了 gym 风格的环境包装器，我们就可以利用 stable-baselines3 运行 DQN 训练循环。DQN 训练的配置如下，详见<code>dqn_drone.py</code>。</p>
+<div class="highlight"><pre><span></span><code>model = DQN(
+    &quot;CnnPolicy&quot;,
+    env,
+    learning_rate=0.00025,
+    verbose=1,
+    batch_size=32,
+    train_freq=4,
+    target_update_interval=10000,
+    learning_starts=10000,
+    buffer_size=500000,
+    max_grad_norm=10,
+    exploration_fraction=0.1,
+    exploration_final_eps=0.01,
+    device=&quot;cuda&quot;,
+    tensorboard_log=&quot;./tb_logs/&quot;,
+)
+</code></pre></div>
+<p>可以定义训练环境和评估环境（参见 <code>dqn_drone.py</code> 中的 <code>EvalCallback</code>）。评估环境可以与训练环境不同，具有不同的终止条件/场景配置。Tensorboard 日志目录也被定义为 DQN 参数的一部分。最后，<code>model.learn()</code> 启动 DQN 训练循环。同样，可以使用 stable-baselines3 中的 PPO、A3C 等实现。</p>
+<p>以下是训练期间前几代的视频。</p>
+<p><a href="https://youtu.be/uKm15Y3M1Nk"><img alt="Reinforcement Learning - Quadrotor" src="../images/dqn_quadcopter.png" /></a></p>
+<h2 id="_2">相关内容<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>另请参阅 Microsoft 深度学习和机器人车库章节的 <a href="https://aka.ms/AutonomousDrivingCookbook">自动驾驶手册</a>。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../upgrade_settings/" class="btn btn-neutral float-left" title="升级设置"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
+        <a href="../wiki/hexacopter/" class="btn btn-neutral float-right" title="构造六旋翼飞行器">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>OpenHUTB 版权所有 &copy; 2026</p>
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../upgrade_settings/" style="color: #fcfcfc">&laquo; 前一页</a></span>
+    
+    
+      <span><a href="../wiki/hexacopter/" style="color: #fcfcfc">后一页 &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

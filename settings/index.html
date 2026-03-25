@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>设置 - 低空模拟器</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u8bbe\u7f6e";
+        var mkdocs_page_input_path = "settings.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 低空模拟器
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">主页</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">主页</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">构建 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../use_precompiled/">下载二进制文件</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_windows/">在 Windows 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_linux/">在 Linux 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_macos/">在 macOS 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docker_ubuntu/">Linux 上的 Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure 上的 ArSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_custenv/">定制虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_faq/">场景问题和回答</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">使用 AirSim</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../apis/">核心 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../image_apis/">图像 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../apis_cpp/">C++ APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://openhutb.github.io/doc/python_api/#airsim.client.MultirotorClient">无人机 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api_docs/_build/html/">原始 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/">Wiki 文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dev_workflow/">开发工作流</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">设置</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">设置存储在哪里？</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">如何在汽车和多旋翼飞行器之间进行选择？</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">可用设置及其默认值</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#simmode">SimMode</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#viewmode">ViewMode</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#timeofday">TimeOfDay</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#origingeopoint">OriginGeopoint</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#subwindows">SubWindows</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">记录</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clockspeed">ClockSpeed</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">分割设置</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">风的设置</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#camera-director">Camera Director 设置</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">相机设置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#imagetype">关于 ImageType 元素的注释</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#capturesettings">CaptureSettings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#noisesettings">NoiseSettings</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_8">随机噪声</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_9">水平凹凸变形</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_10">水平噪声线</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_11">水平线畸变</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gimbal">Gimbal</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">虚幻引擎</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_13">外接摄像头</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_14">车辆设置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">常用车辆设置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#px4">使用 PX4</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#px4_1">其他 PX4 设置</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ardupilot">使用 ArduPilot</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_16">其他设置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#enginesound">EngineSound</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pawnpaths">PawnPaths</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#physicsenginename">PhysicsEngineName</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#localhostip">LocalHostIp 设置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#apiserverport">ApiServerPort</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#speedunitfactor">SpeedUnitFactor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#speedunitlabel">SpeedUnitLabel</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../map/">地图</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../camera_views/">相机视角</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../using_car/">汽车模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_control/">远程控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../xbox_controller/">XBox 控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../steering_wheel_installation/">方向盘</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../multi_vehicle/">多车辆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >传感器</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../sensors/">传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lidar/">激光雷达</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../distance_sensor/">距离传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../InfraredCamera/">红外相机</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_ros_pkgs/">ROS: AirSim ROS 包装器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_tutorial_pkgs/">ROS: AirSim 教程包</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../gazebo_drone/">导入 Gazebo 模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../retexturing/">域随机化</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../meshes/">网格顶点缓冲区</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../playback/">播放日志</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../voxel_grid/">体素网格生成器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../event_sim/">事件相机</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">设计</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../design/">架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../code_structure/">代码结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../adding_new_apis/">添加新的 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../modify_recording_data/">修改记录数据</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../coding_guidelines/">编码指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../flight_controller/">飞行控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simple_flight/">简单飞行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hello_drone/">Hello Drone</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">外部飞行控制器</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >MavLink 和 PX4</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_setup/">AirSim 的 PX4 设置</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_sitl/">软件在环中的 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_sitl_wsl2/">带有 WSL 2 的 PX4 SITL</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_lockstep/">PX4 Lockstep</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_multi_vehicle/">软件在环中的 PX4 多车辆</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/1oY8Qu5maQQ">AirSim 与 Pixhawk</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/HNWdYrtw3f0">使用 AirSim 设置 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be">调试姿态估计</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages">拦截 MavLink 消息</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Rapid-Descent-on-PX4-drones">PX4 无人机快速下降</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_build/">构建 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_logging/">PX4/MavLink 日志记录</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../log_viewer/">MavLink 日志查看器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom/">MavLinkCom</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom_mocap/">MavLink MoCap</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >ArduPilot</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/building-the-code.html">ArduPilot 软件在环设置</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/sitl-with-airsim.html">AirSim & ArduPilot</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">升级</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_upgrade/">升级虚幻引擎</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_apis/">升级 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_settings/">升级设置</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献教程</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinforcement_learning/">强化学习</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://www.youtube.com/watch?v=y09VbdQWvQY">使用 Marketplace 中的环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://github.com/simondlevy/AirSimTensorFlow">简单的防撞</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://aka.ms/AutonomousDrivingCookbook">Azure 上的自动驾驶</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/hexacopter/">构造六旋翼飞行器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/moveOnPath-demo/">移动路径演示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../point_clouds/">构建点云</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../drone_survey/">使用无人机进行测量</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../orbit/">轨道轨迹</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/Bp86WiLUC80">导入自定义多旋翼网格</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../object_detection/">Object Detection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/ZonkdMcwXH4">带有 MAVROS 和 PX4 的 AirSim</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">杂项</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom_drone/">真实无人机上的 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cmake_linux/">在 Linux 上安装 cmake</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hard_drive/">硬盘繁忙时的提示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pfm/">pfm 格式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_proj/">设置虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_blocks/">Blocks 环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../who_is_using/">谁在使用 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../working_with_plugin_contents/">使用 UE 插件内容</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/technion/technion/">大学生方程式赛车以色列理工学院自驾赛</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">支持</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SUPPORT/">支持</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CHANGELOG/">修改记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../create_issue/">创建问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING/">贡献</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">低空模拟器</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">使用 AirSim</li>
+      <li class="breadcrumb-item active">设置</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="airsim">AirSim 设置<a class="headerlink" href="#airsim" title="Permanent link">#</a></h1>
+<h2 id="_1">设置存储在哪里？<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p>AirSim 正在按以下顺序搜索设置定义。将使用第一个匹配项：</p>
+<ol>
+<li>
+<p>查看 <code>-settings</code> 命令行参数指定的（绝对）路径。
+例如，在 Windows 系统中：<code>AirSim.exe -settings="C:\path\to\settings.json"</code>
+在 Linux 系统中：<code>./Blocks.sh -settings="/home/$USER/path/to/settings.json"</code>  </p>
+</li>
+<li>
+<p>查找通过 <code>-settings</code> 参数作为命令行参数传递的 JSON 文档。
+例如，在 Windows 系统中：<code>AirSim.exe -settings={"foo":"bar"}</code>
+在 Linux 系统中：<code>./Blocks.sh -settings={"foo":"bar"}</code> </p>
+</li>
+<li>
+<p>在可执行文件的文件夹中查找名为<code>settings.json</code>的文件。
+这将是编辑器或二进制文件实际可执行文件的深层位置。
+例如，对于 Blocks 二进制文件，搜索的位置是<code>&lt;path-of-binary&gt;/LinuxNoEditor/Blocks/Binaries/Linux/settings.json</code>。 </p>
+</li>
+<li>
+<p>在<strong>启动可执行文件的文件夹中</strong>搜索<code>settings.json</code> </p>
+<p>这是包含启动脚本或可执行文件的顶级目录。例如，Linux：<code>&lt;path-of-binary&gt;/LinuxNoEditor/settings.json</code>，Windows：<code>&lt;path-of-binary&gt;/WindowsNoEditor/settings.json</code> </p>
+<p>请注意，此路径会根据调用位置而变化。在 Linux 上，如果从 LinuxNoEditor 文件夹内部（例如<code>./Blocks.sh</code>）执行<code>Blocks.sh</code>脚本，则使用前面提到的路径。但是，如果从 LinuxNoEditor 文件夹外部（例如<code>./LinuxNoEditor/Blocks.sh</code>）启动，则将使用<code>&lt;path-of-binary&gt;/settings.json</code>。 </p>
+</li>
+<li>
+<p>在 AirSim 子文件夹中查找名为<code>settings.json</code>的文件。在 Windows 系统中，AirSim 子文件夹位于<code>Documents\AirSim</code>；在 Linux 系统中，AirSim 子文件夹位于<code>~/Documents/AirSim</code>。</p>
+</li>
+</ol>
+<p>该文件采用常见的 <a href="https://en.wikipedia.org/wiki/JSON">json 格式</a>。首次启动时，AirSim 会在用户主文件夹中创建 <code>settings.json</code> 文件，该文件不包含任何设置。为避免出现问题，请始终使用 ASCII 格式保存 json 文件。  </p>
+<h2 id="_2">如何在汽车和多旋翼飞行器之间进行选择？<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>默认使用多旋翼飞行器。要使用汽车，只需设置<code>"SimMode": "Car"</code>，如下所示： </p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;SettingsVersion&quot;: 1.2,
+  &quot;SimMode&quot;: &quot;Car&quot;
+}
+</code></pre></div>
+<p>要选择多旋翼飞行器，请设置 <code>"SimMode": "Multirotor"</code>。如果您想提示用户选择飞行器类型，请使用 <code>"SimMode": ""</code>。</p>
+<h2 id="_3">可用设置及其默认值<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<p>以下是可用设置及其默认值的完整列表。如果 json 文件中缺少任何设置，则使用默认值。某些默认值仅以“""”指定，这意味着实际值可能根据您使用的车辆选择。例如，<code>ViewMode</code>设置的默认值为<code>""</code>，对于无人机，其默认值为<code>"FlyWithMe"</code>，对于汽车，其默认值为<code>"SpringArmChase"</code>。</p>
+<p><strong>警告：</strong> 请勿将以下所有内容复制粘贴到您的 settings.json 中。我们强烈建议您仅添加那些您不想使用默认值的设置。唯一必需的元素是<code>"SettingsVersion"</code>。 </p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;SimMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ClockType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ClockSpeed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LocalHostIp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ApiServerPort&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">41451</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;RecordUIVisible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LogMessagesVisible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ShowLosDebugLines&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ViewMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;RpcEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EngineSound&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;PhysicsEngineName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;SpeedUnitFactor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;SpeedUnitLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Wind&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;CameraDirector&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;FollowDistance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Y&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Z&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Pitch&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Yaw&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Recording&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;RecordOnMove&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RecordInterval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Folder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Cameras&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PixelsAsFloat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Compress&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;CameraDefaults&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;CaptureSettings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">144</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FOV_Degrees&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;AutoExposureSpeed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;AutoExposureBias&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;AutoExposureMaxBrightness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.64</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;AutoExposureMinBrightness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;MotionBlurAmount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TargetGamma&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProjectionMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;OrthoWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.12</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;NoiseSettings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+
+<span class="w">        </span><span class="nt">&quot;RandContrib&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RandSpeed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RandSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RandDensity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+
+<span class="w">        </span><span class="nt">&quot;HorzWaveContrib&quot;</span><span class="p">:</span><span class="mf">0.03</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;HorzWaveStrength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.08</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;HorzWaveVertSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;HorzWaveScreenSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+
+<span class="w">        </span><span class="nt">&quot;HorzNoiseLinesContrib&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;HorzNoiseLinesDensityY&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;HorzNoiseLinesDensityXY&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+
+<span class="w">        </span><span class="nt">&quot;HorzDistortionContrib&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;HorzDistortionStrength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;Gimbal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Stabilization&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Pitch&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Yaw&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Y&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Z&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Pitch&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Yaw&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UnrealEngine&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;PixelFormatOverride&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PixelFormat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;OriginGeopoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">47.641468</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.140165</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Altitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">122</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;TimeOfDay&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;StartDateTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CelestialClockSpeed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;StartDateTimeDst&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UpdateIntervalSecs&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;SubWindows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;WindowID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;External&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;WindowID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;External&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;WindowID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;External&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;SegmentationSettings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;InitMethod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;MeshNamingMethod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;OverrideExisting&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;PawnPaths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;BareboneCar&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;PawnBP&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Class&#39;/AirSim/VehicleAdv/Vehicle/VehicleAdvPawn.VehicleAdvPawn_C&#39;&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;DefaultCar&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;PawnBP&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Class&#39;/AirSim/VehicleAdv/SUV/SuvCarPawn.SuvCarPawn_C&#39;&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;DefaultQuadrotor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;PawnBP&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Class&#39;/AirSim/Blueprints/BP_FlyingPawn.BP_FlyingPawn_C&#39;&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;DefaultComputerVision&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;PawnBP&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Class&#39;/AirSim/Blueprints/BP_ComputerVisionPawn.BP_ComputerVisionPawn_C&#39;&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Vehicles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;SimpleFlight&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;VehicleType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SimpleFlight&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;DefaultVehicleState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Armed&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;AutoCreate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;PawnPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;EnableCollisionPassthrogh&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;EnableCollisions&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;AllowAPIAlways&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;EnableTrace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;RC&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;RemoteControlID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;AllowAPIWhenDisconnected&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Cameras&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">//same elements as CameraDefaults above, key as name</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Y&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Z&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Pitch&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Yaw&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;PhysXCar&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;VehicleType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PhysXCar&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;DefaultVehicleState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;AutoCreate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;PawnPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;EnableCollisionPassthrogh&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;EnableCollisions&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;RC&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;RemoteControlID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Cameras&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;MyCamera1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="c1">//same elements as elements inside CameraDefaults above</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;MyCamera2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="c1">//same elements as elements inside CameraDefaults above</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Y&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Z&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Pitch&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Yaw&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">NaN</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ExternalCameras&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;FixedCamera1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// same elements as in CameraDefaults above</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;FixedCamera2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// same elements as in CameraDefaults above</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="simmode">SimMode<a class="headerlink" href="#simmode" title="Permanent link">#</a></h2>
+<p>SimMode 决定使用哪种模拟模式。以下是当前支持的值：
+- <code>""</code>: 提示用户选择飞行器类型：多旋翼飞行器或汽车
+- <code>"Multirotor"</code>: 使用多旋翼飞行器模拟
+- <code>"Car"</code>: 使用汽车模拟
+- <code>"ComputerVision"</code>: 仅使用摄像头，不使用飞行器或物理系统</p>
+<h2 id="viewmode">ViewMode<a class="headerlink" href="#viewmode" title="Permanent link">#</a></h2>
+<p>ViewMode 决定了默认使用哪个摄像头以及摄像头如何跟随飞行器。对于多旋翼飞行器，默认 ViewMode 为<code>"FlyWithMe"</code>，而对于汽车，默认 ViewMode 为<code>"SpringArmChase"</code>。</p>
+<ul>
+<li><code>FlyWithMe</code>: 以 6 个自由度从后面追赶车辆</li>
+<li><code>GroundObserver</code>: 从距地面 6 英尺的高度追逐车辆，但在 XY 平面上具有完全的自由。</li>
+<li><code>Fpv</code>: 从车辆前置摄像头查看场景</li>
+<li><code>Manual</code>: 不自动移动摄像头。使用箭头键和 ASWD 键手动移动摄像头。</li>
+<li><code>SpringArmChase</code>: 使用安装在（隐形）臂上的摄像头追逐车辆，该臂通过弹簧连接到车辆上（因此在运动中有一定的延迟）。</li>
+<li><code>NoDisplay</code>: 这将冻结主屏幕的渲染，但子窗口、录制和 API 的渲染仍然有效。此模式有助于在“无头”模式下节省资源，因为在“无头”模式下，您只需获取图像，而不关心主屏幕上渲染的内容。这也可能提高录制图像的 FPS。</li>
+</ul>
+<h2 id="timeofday">TimeOfDay<a class="headerlink" href="#timeofday" title="Permanent link">#</a></h2>
+<p>此设置控制环境中太阳的位置。默认情况下，<code>Enabled</code>为 false，这意味着太阳的位置将保留在环境中的默认位置，并且不会随时间变化。如果<code>Enabled</code>为 true，则使用<code>OriginGeopoint</code>部分中指定的经度、纬度和高度，针对<code>StartDateTime</code>中指定的日期（字符串格式为 <a href="https://en.cppreference.com/w/cpp/io/manip/get_time">%Y-%m-%d %H:%M:%S</a> ）计算太阳位置，例如<code>2018-02-12 15:20:00</code>。如果此字符串为空，则使用当前日期和时间。如果<code>StartDateTimeDst</code>为 true，则我们会调整夏令时。然后，太阳的位置将按照<code>UpdateIntervalSecs</code>中指定的间隔持续更新。在某些情况下，可能希望天体时钟运行得比模拟时钟更快或更慢。这可以使用<code>CelestialClockSpeed</code>来指定，例如，值 100 表示模拟时钟每 1 秒，太阳的位置就会前进 100 秒，因此太阳在天空中的移动速度会更快。</p>
+<p>另请参阅 <a href="../apis/#time-of-day-api">时间 API</a> 。</p>
+<h2 id="origingeopoint">OriginGeopoint<a class="headerlink" href="#origingeopoint" title="Permanent link">#</a></h2>
+<p>此设置指定放置在虚幻环境中的玩家起始点组件的纬度、经度和海拔高度。飞行器的起始点使用此变换计算。请注意，所有通过 API 公开的坐标均使用国际单位制 (SI) 的 NED 系统，这意味着每辆车的起始点在 NED 系统中为 (0, 0, 0)。时间设置是根据<code>OriginGeopoint</code>中指定的地理坐标计算的。</p>
+<h2 id="subwindows">SubWindows<a class="headerlink" href="#subwindows" title="Permanent link">#</a></h2>
+<p>此设置决定了按下 1、2、3 键时可见的 3 个子窗口中分别显示的内容。</p>
+<ul>
+<li><code>WindowID</code>: 可以是 0 到 2</li>
+<li><code>CameraName</code>: 车辆上是否有任何 <a href="../image_apis/#available-cameras">可用摄像头</a> 或外部摄像头</li>
+<li><code>ImageType</code>: 整数值根据 <a href="../image_apis/#available-imagetype-values">ImageType 枚举</a> 决定显示哪种类型的图像。  </li>
+<li><code>VehicleName</code>: 此字符串用于指定要使用摄像头的车辆，当设置中指定了多辆车辆时使用。如果出现任何错误，例如车辆名称错误或只有一辆车，则将使用第一辆车的摄像头。</li>
+<li><code>External</code>: 如果摄像头是外置摄像头，则将其设置为<code>true</code>。如果为 true，则<code>VehicleName</code>参数将被忽略</li>
+</ul>
+<p>例如，对于单辆汽车，下面分别显示驾驶员视图、前保险杠视图和后视图作为场景、深度和表面法线。
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">&quot;SubWindows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;WindowID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;WindowID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;WindowID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+</code></pre></div></p>
+<p>如果有多辆车辆，可以按如下方式指定不同的车辆：</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&quot;SubWindows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;WindowID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Car1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;WindowID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Car2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;WindowID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Car1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+</code></pre></div>
+<h2 id="_4">记录<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<p>记录功能允许您以指定的时间间隔记录位置、方向、速度等数据以及捕获的图像。您可以按下右下角的红色录制按钮或 R 键开始录制。数据存储在<code>Documents\AirSim</code>文件夹（或使用<code>Folder</code>指定的文件夹）中，每个录制会话都会有一个带有时间戳的子文件夹，并以制表符分隔的文件形式保存。</p>
+<ul>
+<li><code>RecordInterval</code>: 指定捕获两幅图像之间的最小间隔（以秒为单位）。</li>
+<li><code>RecordOnMove</code>: 指定如果车辆的位置或方向没有改变则不记录帧。</li>
+<li><code>Folder</code>: 父文件夹，用于创建包含时间戳的记录子文件夹。必须指定目录的绝对路径。如果未指定，则将使用<code>Documents/AirSim</code>文件夹。例如：<code>"Folder": "/home/&lt;user&gt;/Documents"</code> </li>
+<li><code>Enabled</code>: 记录是否从头开始，设置为<code>true</code>表示模拟开始时自动开始记录。默认设置为<code>false</code></li>
+<li><code>Cameras</code>: 此元素控制使用哪些摄像头采集图像。默认情况下，摄像头 0 的场景图像会被记录为压缩的 png 格式。此设置是一个 JSON 数组，因此您可以指定多个摄像头采集图像，每个摄像头可能具有不同的<a href="./#image-capture-settings">图像类型</a> 。<ul>
+<li>当 <code>PixelsAsFloat</code> 为真时，图像将保存为 <a href="../pfm/">pfm</a> 文件而不是 png 文件。</li>
+<li><code>VehicleName</code> 选项允许您为每辆车指定单独的摄像头。如果不存在<code>Cameras</code>元素，则将记录每辆车默认摄像头的<code>Scene</code>图像。</li>
+<li>如果您不想记录任何图像而只想记录车辆的物理数据，请指定<code>Cameras</code>元素但将其留空，如下所示：<code>"Cameras": []</code> </li>
+<li>目前不支持外接摄像头记录</li>
+</ul>
+</li>
+</ul>
+<p>例如，下面的<code>Cameras</code>元素记录了<code>Car1</code>的场景和分割图像以及<code>Car2</code>的场景：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;Cameras&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PixelsAsFloat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Car1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Compress&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PixelsAsFloat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Car1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Compress&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;CameraName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PixelsAsFloat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;VehicleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Car2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Compress&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>查看修改记录数据来了解如何 <a href="../modify_recording_data/">修改正在记录的</a> 运动学数据的详细信息。</p>
+<h2 id="clockspeed">ClockSpeed<a class="headerlink" href="#clockspeed" title="Permanent link">#</a></h2>
+<p>此设置允许您设置模拟时钟相对于挂钟的速度。例如，值为 5.0 表示当挂钟已过去 1 秒时，模拟时钟已过去 5 秒（即模拟运行速度更快）。值为 0.1 表示模拟时钟比挂钟慢 10 倍。值为 1 表示模拟实时运行。需要注意的是，模拟时钟运行速度越快，模拟质量可能会下降。您可能会看到一些伪影，例如物体越过障碍物，因为未检测到碰撞。但是，降低模拟时钟速度（即值小于 1.0）通常可以提高模拟质量。</p>
+<h2 id="_5">分割设置<a class="headerlink" href="#_5" title="Permanent link">#</a></h2>
+<p><code>InitMethod</code> 决定了启动时如何初始化对象 ID 以生成 <a href="../image_apis/#segmentation">分割</a>。值为 "" 或 "CommonObjectsRandomIDs"（默认值）表示在启动时为每个对象分配随机 ID。这将生成为每个对象分配随机颜色的分割视图。值为 "None" 表示不初始化对象 ID。这将导致分割视图呈现单一纯色。如果您计划使用 <a href="../image_apis/#segmentation">API</a> 设置对象 ID，此模式非常有用，并且可以在像 CityEnviron 这样的大型环境中节省启动时的大量延迟。</p>
+<p>如果<code>OverrideExisting</code>为假，则初始化不会改变已经分配的非零对象 ID，否则会改变。</p>
+<p>如果<code>MeshNamingMethod</code>为“”或“OwnerName”，则我们使用网格的所有者名称生成随机哈希值作为对象ID。如果为“StaticMeshName”，则我们使用静态网格的名称生成随机哈希值作为对象ID。请注意，这种方式无法区分同一个静态网格的不同实例，但名称通常更直观。</p>
+<h2 id="_6">风的设置<a class="headerlink" href="#_6" title="Permanent link">#</a></h2>
+<p>此设置指定世界坐标系中北纬方向的风速。值以米/秒为单位。默认情况下，速度为 0，即无风。</p>
+<h2 id="camera-director">Camera Director 设置<a class="headerlink" href="#camera-director" title="Permanent link">#</a></h2>
+<p>此元素指定用于在 ViewPort 中跟随车辆的摄像机的设置。</p>
+<ul>
+<li><code>FollowDistance</code>: 摄像头跟随车辆的距离，汽车默认为-8（8米），其他默认为-3。 </li>
+<li><code>X, Y, Z, Yaw, Roll, Pitch</code>: 这些元素允许您指定摄像机相对于车辆的位置和方向。位置采用国际单位制 (SI) 的 NED 坐标系，原点设置为虚幻环境中的玩家起始位置。方向以度为单位。 </li>
+</ul>
+<h2 id="_7">相机设置<a class="headerlink" href="#_7" title="Permanent link">#</a></h2>
+<p>根级别的<code>CameraDefaults</code>元素指定所有摄像头的默认值。这些默认值可以在“Vehicles”类中的<code>Cameras</code>元素中为单个摄像头覆盖，具体方法请见后文。</p>
+<h3 id="imagetype">关于 ImageType 元素的注释<a class="headerlink" href="#imagetype" title="Permanent link">#</a></h3>
+<p>JSON 数组中的 <code>ImageType</code> 元素决定了设置应用于哪种图像类型。有效值在 <a href="../image_apis/#available-imagetype">ImageType 部分</a> 中进行了说明。此外，我们还支持特殊值 <code>ImageType: -1</code>，用于将设置应用于外部摄像头（即您正在屏幕上查看的内容）。</p>
+<p>例如，<code>CaptureSettings</code>元素是 json 数组，因此您可以轻松添加多种图像类型的设置。</p>
+<h3 id="capturesettings">CaptureSettings<a class="headerlink" href="#capturesettings" title="Permanent link">#</a></h3>
+<p><code>CaptureSettings</code> 决定了不同图像类型（例如场景、深度、视差、表面法线和分割视图）的渲染方式。“Width”、“Height” 和 “FOV” 的设置含义不言自明。“AutoExposureSpeed” 决定了人眼适应的速度。我们通常将其设置为较高的值（例如 100），以避免图像采集过程中出现伪影。同样，我们默认将“MotionBlurAmount”设置为 0，以避免地面实况图像中出现伪影。<code>ProjectionMode</code> 决定了采集相机使用的投影方式，可以采用“perspective”（默认）或“orthographic”值。如果投影模式为“orthographic”，则<code>OrthoWidth</code>决定了采集投影区域的宽度（以米为单位）。</p>
+<p>有关其他设置的说明，请参阅<a href="https://docs.unrealengine.com/latest/INT/Engine/Rendering/PostProcessEffects/AutomaticExposure/">本文</a>。</p>
+<h3 id="noisesettings">NoiseSettings<a class="headerlink" href="#noisesettings" title="Permanent link">#</a></h3>
+<p>“噪声设置 (<code>NoiseSettings</code>)” 允许为指定类型的图像添加噪声，以模拟相机传感器噪声、干扰和其他伪影。默认情况下不添加噪声，即<code>Enabled: false</code>。如果设置为<code>Enabled: true</code>，则会启用以下不同类型的噪声和干扰伪影，每种类型都可以通过设置进一步调整。噪声效果通过着色器实现，该着色器在虚幻引擎中作为后期处理材质创建，名为 <a href="https://github.com/Microsoft/AirSim/blob/main/Unreal/Plugins/AirSim/Content/HUDAssets/CameraSensorNoise.uasset">CameraSensorNoise</a>。</p>
+<p>相机噪声和干扰模拟演示：</p>
+<p><a href="https://youtu.be/1BeCEZmQyp0"><img alt="AirSim Drone Demo Video" src="../images/camera_noise_demo.png" /></a></p>
+<h4 id="_8">随机噪声<a class="headerlink" href="#_8" title="Permanent link">#</a></h4>
+<p>这将添加具有以下参数的随机噪声斑点。
+* <code>RandContrib</code>: 这决定了噪声像素与图像像素的混合比，0 表示无噪声，1 表示只有噪声。
+* <code>RandSpeed</code>: 这决定了噪声波动的速度，1 表示没有波动，而更高的值（如 1E6）表示完全波动。
+* <code>RandSize</code>: 这决定了噪声的粗略程度，1 表示每个像素都有自己的噪声，而更高的值表示超过 1 个像素共享相同的噪声值。 
+* <code>RandDensity</code>: 这决定了总共有多少像素会有噪点，1 表示所有像素，而值越高表示像素数量越少（呈指数级）。</p>
+<h4 id="_9">水平凹凸变形<a class="headerlink" href="#_9" title="Permanent link">#</a></h4>
+<p>这会增加水平凹凸/闪烁/重影效果。
+* <code>HorzWaveContrib</code>: 这决定了噪声像素与图像像素的混合比，0 表示无噪声，1 表示只有噪声。
+* <code>HorzWaveStrength</code>: 这决定了效果的整体强度。
+* <code>HorzWaveVertSize</code>: 这决定了有多少垂直像素会受到该效果的影响。
+* <code>HorzWaveScreenSize</code>: 这决定了屏幕的多少部分会受到该效果的影响。</p>
+<h4 id="_10">水平噪声线<a class="headerlink" href="#_10" title="Permanent link">#</a></h4>
+<p>这会在水平线上增加噪声区域。
+* <code>HorzNoiseLinesContrib</code>: 这决定了噪声像素与图像像素的混合比，0 表示无噪声，1 表示只有噪声。
+* <code>HorzNoiseLinesDensityY</code>: 这决定了水平线上有多少像素受到影响。
+* <code>HorzNoiseLinesDensityXY</code>: 这决定了屏幕上有多少行受到影响。</p>
+<h4 id="_11">水平线畸变<a class="headerlink" href="#_11" title="Permanent link">#</a></h4>
+<p>这增加了水平线的波动。
+* <code>HorzDistortionContrib</code>: 这决定了噪声像素与图像像素的混合比，0 表示无噪声，1 表示只有噪声。
+* <code>HorzDistortionStrength</code>: 这决定了失真程度有多大。</p>
+<h3 id="gimbal">Gimbal<a class="headerlink" href="#gimbal" title="Permanent link">#</a></h3>
+<p><code>Gimbal</code>元素允许冻结摄像机的俯仰、横滚和/或偏航方向。除非<code>ImageType</code>为-1，否则此设置将被忽略。<code>Stabilization</code>默认为0，表示无万向节，即摄像机方向在所有轴上随车身方向而变化。值为1表示完全稳定。0到1之间的值作为<code>Pitch</code>、<code>Roll</code>和<code>Yaw</code> 元素中指定的固定角度（以度为单位，在世界坐标系中）和车身方向的权重。当json中省略任何角度或将其设置为NaN时，该角度不稳定（即它会随车身一起移动）。</p>
+<h3 id="_12">虚幻引擎<a class="headerlink" href="#_12" title="Permanent link">#</a></h3>
+<p>此元素包含虚幻引擎特有的设置。这些设置将在 Unity 项目中被忽略。
+* <code>PixelFormatOverride</code>: 这包含一个包含<code>ImageType</code>和<code>PixelFormat</code>设置的元素列表。每个元素都允许您覆盖<code>ImageType</code>设置指定的捕获实例化的 UTextureRenderTarget2D 对象的默认像素格式。指定此元素可以防止由意外像素格式引起的崩溃（有关这些崩溃的示例，请参阅 <a href="https://github.com/microsoft/AirSim/issues/4120">#4120</a> 和 <a href="https://github.com/microsoft/AirSim/issues/4339">#4339</a>。完整的像素格式列表可在<a href="https://docs.unrealengine.com/4.27/en-US/API/Runtime/Core/EPixelFormat/">此处</a>查看。</p>
+<h2 id="_13">外接摄像头<a class="headerlink" href="#_13" title="Permanent link">#</a></h2>
+<p>此元素允许指定独立于车辆上安装的摄像头（例如闭路电视摄像头）。这些摄像头是固定摄像头，不会随车辆移动。该元素中的键是摄像头的名称，值（即设置）与上面描述的<code>CameraDefaults</code>相同。所有摄像头 API 均可与外部摄像头配合使用，包括通过在 API 调用中传递参数<code>external=True</code>来捕获图像、更改姿势等。</p>
+<h2 id="_14">车辆设置<a class="headerlink" href="#_14" title="Permanent link">#</a></h2>
+<p>每种模拟模式都会遍历此设置中指定的车辆列表，并创建具有<code>"AutoCreate": true</code> 的车辆。此设置中指定的每辆车辆都有一个键，该键将成为车辆的名称。如果缺少<code>"Vehicles"</code>元素，则此列表将填充名为“PhysXCar”的默认车辆和名为“SimpleFlight”的默认多旋翼飞行器。</p>
+<h3 id="_15">常用车辆设置<a class="headerlink" href="#_15" title="Permanent link">#</a></h3>
+<ul>
+<li><code>VehicleType</code>: 这可以是以下任意一种：<code>PhysXCar</code>、<code>SimpleFlight</code>、<code>PX4Multirotor</code>、<code>ComputerVision</code>、<code>ArduCopter</code> 和 <code>ArduRover</code>。由于没有默认值，因此必须指定此元素。</li>
+<li><code>PawnPath</code>: 这允许覆盖用于载具的 pawn 蓝图。例如，您可以在 AirSim 代码之外的项目中，为仓库机器人创建一个源自 ACarPawn 的新 pawn 蓝图，然后在此处指定其路径。另请参阅 <a href="./#PawnPaths">PawnPaths</a>。请注意，您必须在全局 <code>PawnPaths</code> 对象中使用您专有定义的对象名称指定自定义 pawn 蓝图类路径，并在 <code>Vehicles</code> 设置中引用该名称。例如： 
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="err">...</span>
+<span class="w">      </span><span class="nt">&quot;PawnPaths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;CustomPawn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;PawnBP&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Class&#39;/Game/Assets/Blueprints/MyPawn.MyPawn_C&#39;&quot;</span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Vehicles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;MyVehicle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;VehicleType&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PawnPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CustomPawn&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="err">...</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div></li>
+<li><code>DefaultVehicleState</code>: 多旋翼飞行器的可能值是<code>Armed</code>或<code>Disarmed</code>。</li>
+<li><code>AutoCreate</code>: 如果为真，那么该车辆就会被生成（如果所选模拟模式支持）。</li>
+<li><code>RC</code>: 此子元素允许使用<code>RemoteControlID</code>指定飞行器使用的遥控器。值为 -1 表示使用键盘（多旋翼飞行器尚不支持）。值 &gt;= 0 表示指定连接到系统的多个遥控器之一。例如，可以在 Windows 系统的“游戏控制器”面板中查看可用的遥控器列表。</li>
+<li><code>X, Y, Z, Yaw, Roll, Pitch</code>: 这些元素允许您指定车辆的初始位置和方向。位置采用国际单位制 (SI) 的 NED 坐标系，原点设置为虚幻环境中的玩家起始位置。方向以度为单位。</li>
+<li><code>IsFpvVehicle</code>: 此设置允许指定当 ViewMode 设置为 FPV 时，哪个车辆摄像头将跟随哪个车辆以及显示的视图。默认情况下，AirSim 选择设置中的第一个车辆作为 FPV 车辆。 </li>
+<li><code>Sensors</code>: 该元素指定与车辆关联的传感器，详情请参阅 <a href="../sensors/">传感器页面</a> 。</li>
+<li><code>Cameras</code>: 此元素指定车辆的摄像头设置。此元素的键是 <a href="../image_apis/#available_cameras">可用摄像头</a> 的名称，值与上文所述的<code>CameraDefaults</code>相同。例如，要将前中央摄像头的视野 (FOV) 更改为 120 度，您可以在“车辆”设置中使用此元素：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;Vehicles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;FishEyeDrone&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;VehicleType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SimpleFlight&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Cameras&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;front-center&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;CaptureSettings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;ImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;FOV_Degrees&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="px4">使用 PX4<a class="headerlink" href="#px4" title="Permanent link">#</a></h3>
+<p>默认情况下，我们使用 <a href="../simple_flight/">simple_flight</a>，因此您无需单独进行 HITL 或 SITL 设置。我们还为高级用户提供 <a href="../px4_setup/">"PX4"</a> 支持。要将 PX4 与 AirSim 配合使用，您可以使用以下<code>Vehicles</code>设置：</p>
+<div class="highlight"><pre><span></span><code>&quot;Vehicles&quot;: {
+    &quot;PX4&quot;: {
+      &quot;VehicleType&quot;: &quot;PX4Multirotor&quot;,
+    }
+}
+</code></pre></div>
+<h4 id="px4_1">其他 PX4 设置<a class="headerlink" href="#px4_1" title="Permanent link">#</a></h4>
+<p>PX4 默认启用 <strong>硬件在环</strong> 设置。PX4 还有其他各种设置及其默认值：</p>
+<div class="highlight"><pre><span></span><code>&quot;Vehicles&quot;: {
+    &quot;PX4&quot;: {
+      &quot;VehicleType&quot;: &quot;PX4Multirotor&quot;,
+      &quot;Lockstep&quot;: true,
+      &quot;ControlIp&quot;: &quot;127.0.0.1&quot;,
+      &quot;ControlPortLocal&quot;: 14540,
+      &quot;ControlPortRemote&quot;: 14580,
+      &quot;LogViewerHostIp&quot;: &quot;127.0.0.1&quot;,
+      &quot;LogViewerPort&quot;: 14388,
+      &quot;OffboardCompID&quot;: 1,
+      &quot;OffboardSysID&quot;: 134,
+      &quot;QgcHostIp&quot;: &quot;127.0.0.1&quot;,
+      &quot;QgcPort&quot;: 14550,
+      &quot;SerialBaudRate&quot;: 115200,
+      &quot;SerialPort&quot;: &quot;*&quot;,
+      &quot;SimCompID&quot;: 42,
+      &quot;SimSysID&quot;: 142,
+      &quot;TcpPort&quot;: 4560,
+      &quot;UdpIp&quot;: &quot;127.0.0.1&quot;,
+      &quot;UdpPort&quot;: 14560,
+      &quot;UseSerial&quot;: true,
+      &quot;UseTcp&quot;: false,
+      &quot;VehicleCompID&quot;: 1,
+      &quot;VehicleSysID&quot;: 135,
+      &quot;Model&quot;: &quot;Generic&quot;,
+      &quot;LocalHostIp&quot;: &quot;127.0.0.1&quot;,
+      &quot;Logs&quot;: &quot;d:\\temp\\mavlink&quot;,
+      &quot;Sensors&quot;: {
+        ...
+      }
+      &quot;Parameters&quot;: {
+        ...
+      }
+    }
+}
+</code></pre></div>
+<p>这些设置定义了 MavLink 模拟器的 SystemId 和 ComponentId（SimSysID、SimCompID）、飞行器（VehicleSysID、VehicleCompID）以及允许从其他应用程序远程控制无人机的节点（称为机外节点）（OffboardSysID、OffboardCompID）。</p>
+<p>如果您希望模拟器也能将 mavlink 消息转发到您的地面控制应用程序（例如 QGroundControl），您也可以设置该应用程序的 UDP 地址，以便在其他机器上运行该应用程序（QgcHostIp、QgcPort）。默认地址为本地主机，因此 QGroundControl 应该“仅在”同一台机器上运行即可正常工作。</p>
+<p>您可以通过设置 UDP 地址（LogViewerHostIp、LogViewerPort）将模拟器连接到此 repo 中提供的 LogViewer 应用程序。</p>
+<p>对于每个添加到模拟器的飞行无人机，都有一个命名的附加设置块。在上图中，您可以看到默认名称“PX4”。您可以在虚幻编辑器中添加新的 BP_FlyingPawn 资源时更改此名称。您将看到这些属性分组在“MavLink”类别下。
+此 Pawn 的 MavLink 节点可以通过 UDP 远程连接，也可以连接到本地串行端口。
+如果是串行连接，则将 UseSerial 设置为 true，否则将 UseSerial 设置为 false。对于串行连接，您还需要设置适当的 SerialBaudRate。默认值 115200 适用于 Pixhawk 2 版本，
+通过 USB 连接。</p>
+<p>通过串口与 PX4 无人机通信时，HIL_* 消息和飞行器控制消息共享同一串口。通过 UDP 或 TCP 通信时，PX4 需要两个独立的通道。如果 UseTcp 为 false，则使用 UdpIp 和 UdpPort 发送 HIL_* 消息，否则使用 TcpPort。PX4 在 1.9.2 版本中新增了 TCP 支持，并添加了 <code>lockstep</code> 功能，因为 TCP 提供的消息传递保证是 lockstep 正常运行的必要条件。
+在这种情况下，AirSim 将成为 TCP 服务器，并等待来自 PX4 应用程序的连接。用于控制飞行器的第二个通道由 (ControlIp, ControlPort) 定义，并且始终为 UDP 通道。</p>
+<p>传感器 <code>Sensors</code> 部分可以为模拟传感器提供自定义设置，请参阅
+<a href="../sensors/">Sensors</a>。<code>Parameters</code> 部分可以在 PX4 连接初始化期间设置 PX4 参数。有关示例，请参阅 <a href="../px4_sitl/">设置 PX4 软件在环</a> 。</p>
+<h3 id="ardupilot">使用 ArduPilot<a class="headerlink" href="#ardupilot" title="Permanent link">#</a></h3>
+<p><a href="https://ardupilot.org/">ArduPilot</a> 直升机和漫游车在最新的 AirSim 主分支及版本 <code>v1.3.0</code> 及更高版本中均受支持。有关设置和使用方法，请参阅 <a href="https://ardupilot.org/dev/docs/sitl-with-airsim.html">ArduPilot SITL 与 AirSim 的配合使用</a> 。</p>
+<h2 id="_16">其他设置<a class="headerlink" href="#_16" title="Permanent link">#</a></h2>
+<h3 id="enginesound">EngineSound<a class="headerlink" href="#enginesound" title="Permanent link">#</a></h3>
+<p>要关闭引擎声音，请使用 <a href="./">设置</a> <code>"EngineSound": false</code>。目前此设置仅适用于汽车。</p>
+<h3 id="pawnpaths">PawnPaths<a class="headerlink" href="#pawnpaths" title="Permanent link">#</a></h3>
+<p>这允许您指定自己的车辆 pawn 蓝图，例如，您可以用自己的车辆替换 AirSim 中的默认车辆。您的车辆蓝图可以位于您自己的虚幻项目的 Content 文件夹中（即 AirSim 插件文件夹之外）。例如，如果您的项目中有一个位于<code>Content\MyCar\MySedanBP.uasset</code>文件中的车辆蓝图，那么您可以设置<code>"DefaultCar": {"PawnBP":"Class'/Game/MyCar/MySedanBP.MySedanBP_C'"}</code>。<code>XYZ.XYZ_C</code>是指定 BP<code>XYZ</code>类所需的特殊符号。请注意，您的 BP 必须衍生自 CarPawn 类。默认情况下并非如此，但您可以在打开 BP 后，使用 UE 编辑器工具栏中的“类设置”按钮，然后在“类选项”中选择“Car Pawn”作为父类设置，从而重新设置 BP 的父类。建议禁用“自动附身玩家”和“自动附身AI”，并在BP详情中将AI控制器类别设置为“无”。如果您正在创建二进制文件，请确保您的资源已包含在打包选项中以供烘焙。</p>
+<h3 id="physicsenginename">PhysicsEngineName<a class="headerlink" href="#physicsenginename" title="Permanent link">#</a></h3>
+<p>对于汽车，我们目前仅支持 PhysX（无论此设置中的值如何）。对于多旋翼飞行器，我们支持<code>"FastPhysicsEngine"</code>和<code>"ExternalPhysicsEngine"</code>。<code>"ExternalPhysicsEngine"</code>允许通过 setVehiclePose () 控制无人机，使无人机保持原位直到下一次调用。这对于使用外部模拟器或沿已保存的路径移动 AirSim 无人机尤其有用。</p>
+<h3 id="localhostip">LocalHostIp 设置<a class="headerlink" href="#localhostip" title="Permanent link">#</a></h3>
+<p>现在，当连接到远程机器时，您可能需要选择一个特定的以太网适配器来连接这些机器，例如，它可能是通过以太网、Wi-Fi、其他特殊的虚拟适配器或VPN。您的电脑可能有多个网络，而这些网络可能不允许相互通信，在这种情况下，来自一个网络的UDP消息将无法传递到其他网络。</p>
+<p>因此，LocalHostIp 允许您配置如何访问这些机器。默认值 127.0.0.1 无法访问外部机器，
+仅当您要通信的所有内容都包含在一台 PC 上时才使用此默认值。</p>
+<h3 id="apiserverport">ApiServerPort<a class="headerlink" href="#apiserverport" title="Permanent link">#</a></h3>
+<p>此设置决定了 airsim 客户端使用的服务器端口，默认端口为 41451。通过指定不同的端口，用户可以并行运行多个环境以加速数据收集过程。</p>
+<h3 id="speedunitfactor">SpeedUnitFactor<a class="headerlink" href="#speedunitfactor" title="Permanent link">#</a></h3>
+<p>与“米/秒”相关的速度单位换算系数，默认值为 1。与 SpeedUnitLabel 结合使用。该系数仅可用于显示目的，例如在汽车行驶时显示速度。例如，要获取 “英里/小时”(<code>miles/hr</code>) 的速度，请使用系数 2.23694。</p>
+<h3 id="speedunitlabel">SpeedUnitLabel<a class="headerlink" href="#speedunitlabel" title="Permanent link">#</a></h3>
+<p>速度单位标签，默认为 <code>m/s</code>。与 SpeedUnitFactor 配合使用。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../dev_workflow/" class="btn btn-neutral float-left" title="开发工作流"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
+        <a href="../map/" class="btn btn-neutral float-right" title="地图">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>OpenHUTB 版权所有 &copy; 2026</p>
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../dev_workflow/" style="color: #fcfcfc">&laquo; 前一页</a></span>
+    
+    
+      <span><a href="../map/" style="color: #fcfcfc">后一页 &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

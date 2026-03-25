@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>编码指南 - 低空模拟器</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u7f16\u7801\u6307\u5357";
+        var mkdocs_page_input_path = "coding_guidelines.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 低空模拟器
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">主页</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">主页</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">构建 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../use_precompiled/">下载二进制文件</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_windows/">在 Windows 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_linux/">在 Linux 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_macos/">在 macOS 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docker_ubuntu/">Linux 上的 Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../azure/">Azure 上的 ArSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_custenv/">定制虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../build_faq/">场景问题和回答</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">使用 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../apis/">核心 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../image_apis/">图像 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../apis_cpp/">C++ APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://openhutb.github.io/doc/python_api/#airsim.client.MultirotorClient">无人机 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api_docs/_build/html/">原始 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/">Wiki 文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dev_workflow/">开发工作流</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../settings/">设置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../map/">地图</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../camera_views/">相机视角</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../using_car/">汽车模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_control/">远程控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../xbox_controller/">XBox 控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../steering_wheel_installation/">方向盘</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../multi_vehicle/">多车辆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >传感器</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../sensors/">传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lidar/">激光雷达</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../distance_sensor/">距离传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../InfraredCamera/">红外相机</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_ros_pkgs/">ROS: AirSim ROS 包装器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../airsim_tutorial_pkgs/">ROS: AirSim 教程包</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../gazebo_drone/">导入 Gazebo 模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../retexturing/">域随机化</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../meshes/">网格顶点缓冲区</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../playback/">播放日志</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../voxel_grid/">体素网格生成器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../event_sim/">事件相机</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">设计</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../design/">架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../code_structure/">代码结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../adding_new_apis/">添加新的 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../modify_recording_data/">修改记录数据</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">编码指南</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">快速笔记</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clang-format">clang-format</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">命名约定</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">头文件</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">括在括弧内</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#const">Const 和引用</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">重写</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">指针</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">空值检查</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">缩进</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">换行符</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">这太短了，是吗？</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../flight_controller/">飞行控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simple_flight/">简单飞行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hello_drone/">Hello Drone</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">外部飞行控制器</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >MavLink 和 PX4</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_setup/">AirSim 的 PX4 设置</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_sitl/">软件在环中的 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_sitl_wsl2/">带有 WSL 2 的 PX4 SITL</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_lockstep/">PX4 Lockstep</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_multi_vehicle/">软件在环中的 PX4 多车辆</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/1oY8Qu5maQQ">AirSim 与 Pixhawk</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/HNWdYrtw3f0">使用 AirSim 设置 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be">调试姿态估计</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages">拦截 MavLink 消息</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Rapid-Descent-on-PX4-drones">PX4 无人机快速下降</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_build/">构建 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../px4_logging/">PX4/MavLink 日志记录</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../log_viewer/">MavLink 日志查看器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom/">MavLinkCom</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mavlinkcom_mocap/">MavLink MoCap</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >ArduPilot</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/building-the-code.html">ArduPilot 软件在环设置</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/sitl-with-airsim.html">AirSim & ArduPilot</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">升级</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_upgrade/">升级虚幻引擎</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_apis/">升级 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrade_settings/">升级设置</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献教程</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinforcement_learning/">强化学习</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://www.youtube.com/watch?v=y09VbdQWvQY">使用 Marketplace 中的环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://github.com/simondlevy/AirSimTensorFlow">简单的防撞</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://aka.ms/AutonomousDrivingCookbook">Azure 上的自动驾驶</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/hexacopter/">构造六旋翼飞行器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/moveOnPath-demo/">移动路径演示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../point_clouds/">构建点云</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../drone_survey/">使用无人机进行测量</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../orbit/">轨道轨迹</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/Bp86WiLUC80">导入自定义多旋翼网格</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../object_detection/">Object Detection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/ZonkdMcwXH4">带有 MAVROS 和 PX4 的 AirSim</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">杂项</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom_drone/">真实无人机上的 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cmake_linux/">在 Linux 上安装 cmake</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hard_drive/">硬盘繁忙时的提示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pfm/">pfm 格式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_proj/">设置虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../unreal_blocks/">Blocks 环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../who_is_using/">谁在使用 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../working_with_plugin_contents/">使用 UE 插件内容</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wiki/technion/technion/">大学生方程式赛车以色列理工学院自驾赛</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">支持</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SUPPORT/">支持</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CHANGELOG/">修改记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../create_issue/">创建问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING/">贡献</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">低空模拟器</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">设计</li>
+      <li class="breadcrumb-item active">编码指南</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="c">现代 C++ 编码指南<a class="headerlink" href="#c" title="Permanent link">#</a></h1>
+<p>我们正在使用现代 C++11。智能指针、Lambda 表达式和 C++11 多线程原语都是您的好帮手。</p>
+<h2 id="_1">快速笔记<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p>“标准” 的优点在于有很多可供选择：<a href="https://isocpp.org/wiki/faq/coding-standards">ISO</a>、<a href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md">Sutter &amp; Stroustrup</a>、<a href="http://wiki.ros.org/CppStyleGuide">ROS</a>、<a href="https://www.kernel.org/doc/Documentation/process/coding-style.rst">LINUX</a>、<a href="https://google.github.io/styleguide/cppguide.html">Google</a>、<a href="https://msdn.microsoft.com/en-us/library/888a6zcz.aspx">Microsoft</a>、<a href="http://atlas-computing.web.cern.ch/atlas-computing/projects/qa/draft_guidelines.html">CERN</a>、<a href="https://gcc.gnu.org/wiki/CppConventions">GCC</a> <a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0475c/CJAJAJCJ.html">ARM</a>、<a href="http://llvm.org/docs/CodingStandards.html">LLVM</a> 以及其他数千个标准。遗憾的是，这些标准中的大多数甚至连像如何命名类或常量这样基本的规范都无法达成一致。这可能是因为这些标准由于支持现有代码库而经常存在许多遗留问题。本文档旨在创建尽可能接近 ISO、Sutter &amp; Stroustrup 和 ROS 标准的指南，同时尽可能解决它们之间的冲突、缺点和不一致之处。</p>
+<h2 id="clang-format">clang-format<a class="headerlink" href="#clang-format" title="Permanent link">#</a></h2>
+<p>C++ 语法的格式化由 clang-format 工具进行规范化，该工具已将设置签入到本项目中的 <code>.clang-format</code> 文件中。这些设置符合以下列出的格式指南。您可以使用 clang-format 命令行或在每次编辑或保存文件时启用 Visual Studio 自动 clang 格式化来“格式化”文件。所有文件均已按此格式格式化，名为 <code>clang-format</code> 的 GitHub 工作流也将确保所有拉取请求都格式正确，因此应该保持简洁。显然，这不包括 <code>Eigen</code> 或 <code>rpclib</code> 等外部代码。</p>
+<p>如果您发现 clang-format 中存在错误，您可以使用以下注释对禁用特定代码块的 clang 格式：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// clang-format off</span>
+<span class="p">...</span>
+<span class="c1">// clang-format on</span>
+</code></pre></div>
+<h2 id="_2">命名约定<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>避免在名称上使用任何类型的匈牙利表示法，避免在指针上使用“_ptr”。</p>
+<table>
+<thead>
+<tr>
+<th><strong>代码元素</strong></th>
+<th><strong>风格</strong></th>
+<th><strong>评论</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命名空间</td>
+<td>under_scored</td>
+<td>与类名区分</td>
+</tr>
+<tr>
+<td>类名</td>
+<td>CamelCase</td>
+<td>为了与 ISO 推荐的 STL 类型区分开来（不要使用“C”或“T”前缀）</td>
+</tr>
+<tr>
+<td>函数名</td>
+<td>camelCase</td>
+<td>除了 .Net 世界之外，小写字母开头几乎是通用的</td>
+</tr>
+<tr>
+<td>参数/局部变量</td>
+<td>under_scored</td>
+<td>绝大多数标准都推荐这样做，因为 _ 对于 C++ 人群来说更具可读性（尽管对于 Java/.Net 人群来说并不多）</td>
+</tr>
+<tr>
+<td>成员变量</td>
+<td>under_scored_with_</td>
+<td>由于 ISO 对保留 _identifiers 有规定，因此强烈不建议使用前缀 _，因此我们建议使用后缀</td>
+</tr>
+<tr>
+<td>枚举及其成员</td>
+<td>CamelCase</td>
+<td>除了非常古老的标准外，大多数标准都同意这一点</td>
+</tr>
+<tr>
+<td>全局变量</td>
+<td>g_under_scored</td>
+<td>你首先就不应该拥有这些！</td>
+</tr>
+<tr>
+<td>常量</td>
+<td>UPPER_CASE</td>
+<td>非常有争议，我们只需要在这里选择一个，除非它是类或方法中的私有常量，然后使用成员或本地命名</td>
+</tr>
+<tr>
+<td>文件名</td>
+<td>匹配文件中的类名的大小写</td>
+<td>无论如何，都有很多优点和缺点，但这消除了自动生成代码中的不一致性（对于 ROS 很重要）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">头文件<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<p>使用命名空间限定的 #ifdef 来防止多重包含：</p>
+<div class="highlight"><pre><span></span><code>#ifndef msr_airsim_MyHeader_hpp
+#define msr_airsim_MyHeader_hpp
+
+//--你的代码
+
+#endif
+</code></pre></div>
+<p>我们不使用 #pragma once 的原因是，如果相同的头文件存在于多个地方（这在 ROS 构建系统下可能是可能的！），则不支持。</p>
+<h2 id="_4">括在括弧内<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<p>在函数或方法体内，将花括号放在同一行。在函数或方法体外，命名空间、类和方法级别则单独一行。这被称为 <a href="https://en.wikipedia.org/wiki/Indent_style#K.26R_style">K&amp;R 风格</a>，其变体在 C++ 中被广泛使用，而其他风格在其他语言中更受欢迎。请注意，如果语句单一，则无需使用花括号，但复杂的语句使用大括号更容易保持正确。</p>
+<p>在函数或方法体内，将花括号放在同一行。
+除此之外，命名空间、类和方法级别使用单独的一行。
+这称为 <a href="https://en.wikipedia.org/wiki/Indent_style#K.26R_style">K&amp;R 风格</a>，其变体在 C++ 中被广泛使用，而其他风格在其他语言中更受欢迎。
+请注意，如果语句单一，则无需使用花括号，但复杂的语句使用大括号更容易保持正确。</p>
+<div class="highlight"><pre><span></span><code>int main(int argc, char* argv[])
+{
+     while (x == y) {
+        f0();
+        if (cont()) {
+            f1();
+        } else {
+            f2();
+            f3();
+        }
+        if (x &gt; 100)
+            break;
+    }
+}
+</code></pre></div>
+<h2 id="const">Const 和引用<a class="headerlink" href="#const" title="Permanent link">#</a></h2>
+<p>认真检查所有声明为 const 和引用的非标量参数。如果您之前使用过 C#/Java/Python 等语言，最常犯的错误就是按值传递参数，而不是使用 <code>const T&amp;;</code>。尤其是大多数字符串、向量和映射，如果它们是只读的，则应使用 <code>const T&amp;;</code>；如果它们是可写的，则应使用 <code>T&amp;</code>。此外，尽可能为方法添加 <code>const</code> 后缀。</p>
+<h2 id="_5">重写<a class="headerlink" href="#_5" title="Permanent link">#</a></h2>
+<p>重写虚方法时，使用 override 后缀。</p>
+<h2 id="_6">指针<a class="headerlink" href="#_6" title="Permanent link">#</a></h2>
+<p>这实际上与内存管理有关。模拟器包含许多性能关键代码，因此我们尽量避免通过大量调用 new/delete 来导致内存管理器过载。我们还希望避免在堆栈上进行过多的内容复制，因此我们尽可能通过引用传递内容。
+但是，当对象确实需要比调用堆栈存活更长时间时，通常需要在堆上分配该对象，因此需要一个指针。现在，如果管理该对象的生命周期比较棘手，我们建议使用
+<a href="https://cppstyle.wordpress.com/c11-smart-pointers/">C++ 11 智能指针</a>。
+但是智能指针确实存在成本，因此不要盲目地在所有地方使用它们。对于性能至关重要的私有代码，可以使用原始指针。在与仅接受指针类型的旧系统（例如套接字 API）交互时，通常也需要使用原始指针。但我们尝试尽可能地包装这些遗留接口，并避免这种编程风格泄露到更大的代码库中。</p>
+<p>务必检查是否可以在所有地方使用 const，例如 <code>const float * const xP</code>。避免在变量名中使用前缀或后缀来指示指针类型，例如，除非为了更好地区分变量，否则请使用 <code>my_obj</code> 而不是 <code>myobj_ptr</code>，例如 <code>int mynum = 5; int* mynum_ptr = mynum;</code>。</p>
+<h2 id="_7">空值检查<a class="headerlink" href="#_7" title="Permanent link">#</a></h2>
+<p>在虚幻 C++ 代码中，检查指针是否为空时，最好使用“IsValid(ptr)”。除了检查空指针之外，此函数还会返回 UObject 是否已正确初始化。这在 UObject 正在被垃圾回收但仍设置为非空值的情况下非常有用。</p>
+<h2 id="_8">缩进<a class="headerlink" href="#_8" title="Permanent link">#</a></h2>
+<p>C++ 代码库使用四个空格进行缩进（而不是制表符）。</p>
+<h2 id="_9">换行符<a class="headerlink" href="#_9" title="Permanent link">#</a></h2>
+<p>提交文件时应使用 Unix 换行符。在 Windows 上工作时，可以配置 git 检出带有 Windows 换行符的文件，并在提交时自动将 Windows 换行符转换为 Unix 换行符，具体操作如下：</p>
+<div class="highlight"><pre><span></span><code>git config --global core.autocrlf true
+</code></pre></div>
+<p>在 Linux 上工作时，最好通过运行以下命令将 git 配置为检出带有 Unix 换行符的文件：</p>
+<div class="highlight"><pre><span></span><code>git config --global core.autocrlf input
+</code></pre></div>
+<p>有关此设置的更多详细信息，请参阅<a href="https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings">此文档</a>。</p>
+<h2 id="_10">这太短了，是吗？<a class="headerlink" href="#_10" title="Permanent link">#</a></h2>
+<p>是的，这是故意的，因为没人喜欢读200页的编码指南。这里的目标是只涵盖最重要的内容，这些内容
+在<a href="http://shitalshah.com/p/how-to-enable-and-use-gcc-strict-mode-compilation/">GCC中的严格模式编译</a>和VC++中的4级警告错误中尚未涵盖。如果你想了解如何用C++编写更好的代码，请参阅<a href="https://herbsutter.com/gotw/">GotW</a>
+和<a href="http://shop.oreilly.com/product/0636920033707.do">Effective Modern C++</a>这本书。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../modify_recording_data/" class="btn btn-neutral float-left" title="修改记录数据"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
+        <a href="../flight_controller/" class="btn btn-neutral float-right" title="飞行控制器">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>OpenHUTB 版权所有 &copy; 2026</p>
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../modify_recording_data/" style="color: #fcfcfc">&laquo; 前一页</a></span>
+    
+    
+      <span><a href="../flight_controller/" style="color: #fcfcfc">后一页 &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

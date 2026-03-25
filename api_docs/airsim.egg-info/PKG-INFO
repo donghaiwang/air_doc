@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: airsim
+Version: 2.2.1
+Summary: Open source simulator based on Unreal Engine for autonomous vehicles from Microsoft AI & Research
+Home-page: https://github.com/microsoft/airsim
+Author: Shital Shah
+Author-email: shitals@microsoft.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: msgpack-rpc-python
+Requires-Dist: numpy
+Requires-Dist: opencv-contrib-python
+
+# 低空模拟器的 Python API
+
+此软件包包含 [air](https://github.com/OpenHUTB/air) 的 Python API。
+
+## 使用方式
+
+请参阅 [car/hello_car.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/car/hello_car.py) 或 [multirotor/hello_drone.py](https://github.com/OpenHUTB/air/blob/main/PythonClient/multirotor/hello_drone.py) 中的示例。
+
+## 依赖
+
+此软件包依赖于序列化包 `msgpack`，并将自动安装 `msgpack-rpc-python`（该包是在 MessagePack（二进制序列化格式）之上实现的 RPC（远程过程调用）库。它把函数调用/返回值封装为 MessagePack 编码的消息，通过网络/套接字传输，实现进程间或主机间的远程方法调用。这可能需要管理员权限/sudo 命令提示符）：
+```
+pip install msgpack-rpc-python
+```
+
+有些示例还需要 OpenCV。
+
+## 更多信息
+
+有关低空模拟器 Python API 的更多信息，请访问 [api.md](https://github.com/OpenHUTB/air_doc/blob/master/docs/apis.md)
+
