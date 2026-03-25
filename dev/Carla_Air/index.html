@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Carla Air - 低空模拟器</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Carla Air";
+        var mkdocs_page_input_path = "dev/Carla_Air.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 低空模拟器
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">主页</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">主页</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">构建 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../use_precompiled/">下载二进制文件</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../build_windows/">在 Windows 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../build_linux/">在 Linux 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../build_macos/">在 macOS 上构建</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../docker_ubuntu/">Linux 上的 Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../azure/">Azure 上的 ArSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../unreal_custenv/">定制虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../build_faq/">场景问题和回答</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">使用 AirSim</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../apis/">核心 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../image_apis/">图像 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../apis_cpp/">C++ APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://openhutb.github.io/doc/python_api/#airsim.client.MultirotorClient">无人机 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api_docs/_build/html/">原始 API 参考文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../wiki/">Wiki 文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev_workflow/">开发工作流</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../settings/">设置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../map/">地图</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../camera_views/">相机视角</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../using_car/">汽车模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_control/">远程控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../xbox_controller/">XBox 控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../steering_wheel_installation/">方向盘</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../multi_vehicle/">多车辆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >传感器</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../sensors/">传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lidar/">激光雷达</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../distance_sensor/">距离传感器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../InfraredCamera/">红外相机</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../airsim_ros_pkgs/">ROS: AirSim ROS 包装器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../airsim_tutorial_pkgs/">ROS: AirSim 教程包</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gazebo_drone/">导入 Gazebo 模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../retexturing/">域随机化</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../meshes/">网格顶点缓冲区</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../playback/">播放日志</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../voxel_grid/">体素网格生成器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../event_sim/">事件相机</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">设计</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../design/">架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../code_structure/">代码结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../adding_new_apis/">添加新的 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../modify_recording_data/">修改记录数据</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../coding_guidelines/">编码指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../flight_controller/">飞行控制器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../simple_flight/">简单飞行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hello_drone/">Hello Drone</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">外部飞行控制器</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >MavLink 和 PX4</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_setup/">AirSim 的 PX4 设置</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_sitl/">软件在环中的 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_sitl_wsl2/">带有 WSL 2 的 PX4 SITL</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_lockstep/">PX4 Lockstep</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_multi_vehicle/">软件在环中的 PX4 多车辆</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/1oY8Qu5maQQ">AirSim 与 Pixhawk</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://youtu.be/HNWdYrtw3f0">使用 AirSim 设置 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be">调试姿态估计</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages">拦截 MavLink 消息</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://github.com/Microsoft/AirSim/wiki/Rapid-Descent-on-PX4-drones">PX4 无人机快速下降</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_build/">构建 PX4</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../px4_logging/">PX4/MavLink 日志记录</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../log_viewer/">MavLink 日志查看器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mavlinkcom/">MavLinkCom</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mavlinkcom_mocap/">MavLink MoCap</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >ArduPilot</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/building-the-code.html">ArduPilot 软件在环设置</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="https://ardupilot.org/dev/docs/sitl-with-airsim.html">AirSim & ArduPilot</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">升级</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../unreal_upgrade/">升级虚幻引擎</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../upgrade_apis/">升级 APIs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../upgrade_settings/">升级设置</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献教程</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reinforcement_learning/">强化学习</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://www.youtube.com/watch?v=y09VbdQWvQY">使用 Marketplace 中的环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://github.com/simondlevy/AirSimTensorFlow">简单的防撞</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://aka.ms/AutonomousDrivingCookbook">Azure 上的自动驾驶</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../wiki/hexacopter/">构造六旋翼飞行器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../wiki/moveOnPath-demo/">移动路径演示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../point_clouds/">构建点云</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../drone_survey/">使用无人机进行测量</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../orbit/">轨道轨迹</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/Bp86WiLUC80">导入自定义多旋翼网格</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../object_detection/">Object Detection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://youtu.be/ZonkdMcwXH4">带有 MAVROS 和 PX4 的 AirSim</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">杂项</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../custom_drone/">真实无人机上的 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cmake_linux/">在 Linux 上安装 cmake</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hard_drive/">硬盘繁忙时的提示</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../pfm/">pfm 格式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../unreal_proj/">设置虚幻引擎环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../unreal_blocks/">Blocks 环境</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../who_is_using/">谁在使用 AirSim</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../working_with_plugin_contents/">使用 UE 插件内容</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../wiki/technion/technion/">大学生方程式赛车以色列理工学院自驾赛</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">支持</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../SUPPORT/">支持</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG/">修改记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../create_issue/">创建问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING/">贡献</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">低空模拟器</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Carla Air</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <table>
+  <tr>
+    <td width="160" valign="middle" align="center">
+      <img src="logo_upload.png" alt="CarlaAir Logo" width="140"/>
+    </td>
+    <td valign="middle" align="left">
+      <h1>CarlaAir</h1>
+      <p><b>在 CARLA 世界里飞无人机。</b><br/>
+      将 CARLA 与 AirSim 融合为一——地面车辆与空中无人机，同一世界，同一脚本。</p>
+      <p>
+        <a href="https://youtu.be/a0fZG2dmT1Q"><img src="https://img.shields.io/badge/版本-v0.1.7-blue" alt="Version"/></a>
+        <img src="https://img.shields.io/badge/许可证-MIT-yellow.svg" alt="License: MIT"/>
+        <img src="https://img.shields.io/badge/python-3.8+-blue" alt="Python 3.8+"/>
+        <img src="https://img.shields.io/badge/CARLA-0.9.16-green" alt="CARLA 0.9.16"/>
+        <img src="https://img.shields.io/badge/AirSim-1.8.1-orange" alt="AirSim 1.8.1"/>
+        <img src="https://img.shields.io/badge/平台-Ubuntu%2020.04%20%7C%2022.04-lightgrey" alt="Platform"/>
+        <img src="https://img.shields.io/badge/arXiv-即将发布-b31b1b" alt="arXiv"/>
+      </p>
+      <p>
+        <a href="README.md">English</a> | <a href="README_CN.md">简体中文</a>
+      </p>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <a href="https://www.bilibili.com/video/BV1pTQzBkES7/">
+    <img src="teaser_upload.gif" alt="CarlaAir Teaser — 点击观看完整演示视频" width="100%"/>
+  </a>
+</p>
+
+<p align="center">
+  <i>点击 GIF 或 </i><a href="https://www.bilibili.com/video/BV1pTQzBkES7/"><b>B站观看 30 秒完整演示视频（汉斯·季默配乐）</b></a> 🎵 | <a href="https://youtu.be/a0fZG2dmT1Q">YouTube</a>
+</p>
+
+<hr />
+<h2 id="_1">🔥 最新动态<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<ul>
+<li><strong>[2026-03]</strong> <code>v0.1.7</code> 发布 — VSync 全屏修复、稳定交通系统、一键环境配置、无人机录制工具、坐标系文档</li>
+<li><strong>[2026-03]</strong> <code>v0.1.6</code> 发布 — 自动交通生成、UE4 原生 Sweep 碰撞、地面夹紧系统</li>
+<li><strong>[2026-03]</strong> <code>v0.1.5</code> 发布 — 12 方向碰撞系统、双语帮助菜单（<code>H</code>）</li>
+<li><strong>[2026-03]</strong> <code>v0.1.4</code> 发布 — ROS2 验证（63 个话题）、首个官方二进制发布</li>
+</ul>
+<hr />
+<p><strong>CarlaAir</strong> 是一个开源的空地联合仿真平台。它通过在底层 C++ 将全球领先的自动驾驶仿真器（CARLA）与机器人仿真器（AirSim）合并为单一的 <code>ASimWorldGameMode</code>，实现了真正的帧级传感器同步、统一的物理引擎，以及无缝的双 Python API 交互。</p>
+<h2 id="_2">✨ 核心亮点<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<ul>
+<li>🚀 <strong>单进程深度集成</strong>：拒绝跨进程通信桥接（Bridge），无延迟损耗。CARLA 与 AirSim 共享同一个 UE4 世界、天气系统与物理引擎。</li>
+<li>🎯 <strong>绝对坐标对齐</strong>：彻底解决 CARLA（左手系）与 AirSim（NED）之间的坐标转换问题，误差精确控制在 <code>0.0000m</code>。</li>
+<li>🚁 <strong>内置 FPS 无人机控制</strong>：无需编写任何代码，在仿真窗口内直接使用 <code>WASD</code> + 鼠标 即可像玩 FPS 游戏一样丝滑驾驶无人机。</li>
+<li>🚦 <strong>开箱即用的城市交通</strong>：启动器默认自动生成 30 辆背景车辆与 50 个行人，立即构建逼真城市场景。</li>
+<li>📸 <strong>18路同步传感器</strong>：支持在地面车辆和空中无人机上同时挂载 RGB、激光雷达、深度图、语义分割、IMU 和 GNSS，数据严格对齐。</li>
+<li>🐍 <strong>双 API 无缝协作</strong>：在同一个 Python 脚本中，同时调用 <code>carla.Client</code>（端口 2000）和 <code>airsim.MultirotorClient</code>（端口 41451）。</li>
+</ul>
+<hr />
+<h2 id="_3">🎮 快速开始<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<h3 id="a">选项 A：使用预编译版本（推荐）<a class="headerlink" href="#a" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 下载并解压 CarlaAir-v0.1.7</span>
+tar<span class="w"> </span>xzf<span class="w"> </span>CarlaAir-v0.1.7.tar.gz
+<span class="nb">cd</span><span class="w"> </span>CarlaAir-v0.1.7
+
+<span class="c1"># 2. 一键环境配置（仅首次需要）</span>
+bash<span class="w"> </span>env_setup/setup_env.sh<span class="w">      </span><span class="c1"># 创建 conda 环境，安装依赖，部署 carla 模块</span>
+conda<span class="w"> </span>activate<span class="w"> </span>carlaAir
+bash<span class="w"> </span>env_setup/test_env.sh<span class="w">        </span><span class="c1"># 验证环境：应全部显示 PASS</span>
+
+<span class="c1"># 3. 启动仿真器（自动生成交通流）</span>
+./CarlaAir.sh<span class="w"> </span>Town10HD
+
+<span class="c1"># 4. 运行展示脚本！（另开一个终端）</span>
+conda<span class="w"> </span>activate<span class="w"> </span>carlaAir
+python3<span class="w"> </span>examples/quick_start_showcase.py
+</code></pre></div>
+<blockquote>
+<p><strong>你将看到：</strong> 一辆特斯拉在城市中自动巡航，无人机从空中追踪。4 分屏同时展示 <strong>RGB · 深度图 · 语义分割 · LiDAR 鸟瞰</strong> — 全部实时同步。天气自动轮换。</p>
+</blockquote>
+<h3 id="b">选项 B：从源码编译<a class="headerlink" href="#b" title="Permanent link">#</a></h3>
+<p>如果您需要修改底层 C++ 代码，请参考 <a href="CarlaAir_Release/source/BUILD_GUIDE.md">源码编译指南</a>，了解如何使用 UE4.26 编译 CarlaAir。</p>
+<hr />
+<h2 id="_4">🐍 一个脚本，两个世界<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<p>两套 API 共享<strong>同一个仿真世界</strong> — 无桥接、无同步烦恼。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">carla</span><span class="o">,</span><span class="w"> </span><span class="nn">airsim</span>
+
+<span class="n">carla_client</span> <span class="o">=</span> <span class="n">carla</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">air_client</span>   <span class="o">=</span> <span class="n">airsim</span><span class="o">.</span><span class="n">MultirotorClient</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">41451</span><span class="p">)</span>
+<span class="n">world</span> <span class="o">=</span> <span class="n">carla_client</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span>
+
+<span class="c1"># 一次天气调用，影响所有传感器 — 地面和空中</span>
+<span class="n">world</span><span class="o">.</span><span class="n">set_weather</span><span class="p">(</span><span class="n">carla</span><span class="o">.</span><span class="n">WeatherParameters</span><span class="o">.</span><span class="n">HardRainSunset</span><span class="p">)</span>
+
+<span class="c1"># 生成一辆汽车，自动驾驶</span>
+<span class="n">vehicle</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">spawn_actor</span><span class="p">(</span><span class="n">vehicle_bp</span><span class="p">,</span> <span class="n">spawn_point</span><span class="p">)</span>
+<span class="n">vehicle</span><span class="o">.</span><span class="n">set_autopilot</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 无人机起飞 — 同一个世界，同一场雨，同一套物理</span>
+<span class="n">air_client</span><span class="o">.</span><span class="n">takeoffAsync</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">air_client</span><span class="o">.</span><span class="n">moveToPositionAsync</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>6 个演示脚本</strong> — 逐个试试：</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>examples/quick_start_showcase.py<span class="w">   </span><span class="c1"># 🎬 4分屏传感器 + 无人机追踪 + 天气轮换</span>
+python3<span class="w"> </span>examples/drive_vehicle.py<span class="w">          </span><span class="c1"># 🚗 WASD 驾驶特斯拉</span>
+python3<span class="w"> </span>examples/walk_pedestrian.py<span class="w">        </span><span class="c1"># 🚶 鼠标+键盘 城市漫步</span>
+python3<span class="w"> </span>examples/switch_maps.py<span class="w">            </span><span class="c1"># 🗺️  自动飞越全部 13 张地图</span>
+python3<span class="w"> </span>examples/sensor_gallery.py<span class="w">         </span><span class="c1"># 📸 单车 6 传感器网格展示</span>
+python3<span class="w"> </span>examples/air_ground_sync.py<span class="w">        </span><span class="c1"># 🔄 车+无人机分屏：同一场雨，同一世界</span>
+</code></pre></div>
+<p><strong>录制工具</strong> — 录制车辆、无人机、行人轨迹，然后用导演相机回放：</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>examples/recording/record_vehicle.py<span class="w">     </span><span class="c1"># 🚗 键盘驾驶并录制车辆轨迹</span>
+python3<span class="w"> </span>examples/recording/record_drone.py<span class="w">       </span><span class="c1"># 🚁 飞行并录制无人机轨迹（零侵入）</span>
+python3<span class="w"> </span>examples/recording/record_walker.py<span class="w">      </span><span class="c1"># 🚶 行走并录制行人轨迹</span>
+python3<span class="w"> </span>examples/recording/demo_director.py<span class="w"> </span><span class="se">\ </span><span class="w">   </span><span class="c1"># 🎬 多轨迹回放 + 自由相机 + MP4 录制</span>
+<span class="w">    </span>trajectories/vehicle_*.json<span class="w"> </span>trajectories/drone_*.json
+</code></pre></div>
+<blockquote>
+<p><strong>文档：</strong> <a href="CarlaAir_Release/guide/COORDINATE_SYSTEMS.md">坐标系换算 (CARLA↔AirSim)</a> · <a href="CarlaAir_Release/guide/Quick-Start.md">快速入门指南</a> · <a href="CarlaAir_Release/guide/FAQ.md">常见问题</a></p>
+</blockquote>
+<hr />
+<h2 id="_5">⌨️ 飞行控制说明<a class="headerlink" href="#_5" title="Permanent link">#</a></h2>
+<p>在 CarlaAir 窗口中，使用内置 FPS 控制器直接驾驶无人机（无需代码）：</p>
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>W</code> / <code>A</code> / <code>S</code> / <code>D</code></td>
+<td>前进 / 左移 / 后退 / 右移</td>
+</tr>
+<tr>
+<td><code>Space</code> / <code>Shift</code></td>
+<td>上升 / 下降</td>
+</tr>
+<tr>
+<td><code>Mouse</code></td>
+<td>偏航转向</td>
+</tr>
+<tr>
+<td><code>Scroll</code></td>
+<td>调节速度</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>切换天气</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>碰撞模式切换</td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>帮助菜单</td>
+</tr>
+<tr>
+<td><code>1</code> / <code>2</code> / <code>3</code></td>
+<td>传感器画面</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_6">📚 文档与示例<a class="headerlink" href="#_6" title="Permanent link">#</a></h2>
+<p><strong>完整文档：</strong>
+- <a href="CarlaAir_Release/guide/Quick-Start.md">快速入门指南</a>
+- <a href="CarlaAir_Release/source/ARCHITECTURE.md">技术架构详解</a>
+- <a href="examples_record_demo/COORDINATE_SYSTEMS.md">坐标系换算</a>
+- <a href="CarlaAir_Release/source/MODIFICATIONS.md">上游代码修改清单</a></p>
+<hr />
+<h2 id="_7">📜 许可证与致谢<a class="headerlink" href="#_7" title="Permanent link">#</a></h2>
+<p>CarlaAir 站在巨人的肩膀上。我们诚挚感谢以下开源项目的开发者：
+- <a href="https://github.com/carla-simulator/carla">CARLA Simulator</a> (MIT License)
+- <a href="https://github.com/microsoft/AirSim">Microsoft AirSim</a> (MIT License)
+- <a href="https://www.unrealengine.com/">Unreal Engine</a></p>
+<p>CarlaAir 特有的代码基于 <strong>MIT 许可证</strong> 开源。CARLA 相关的资产遵循 CC-BY 许可证。</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>OpenHUTB 版权所有 &copy; 2026</p>
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
