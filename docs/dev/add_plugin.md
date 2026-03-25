@@ -125,3 +125,10 @@ PrivateDependencyModuleNames.AddRange(new string[] { "AirSim" });
 2025-09-20T12:56:36.2273244Z   [6/61] Module.AirSim.gen.cpp
 2025-09-20T12:56:36.2303779Z   C:\actions-runner\_work\hutb\hutb\Unreal\CarlaUE4\Plugins\AirSim\Source/AirBlueprintLib.h(23): fatal error C1083: �޷��򿪰����ļ�: ��common/AirSimSettings.hpp��: No such file or directory
 ```
+
+## 其他（和 Carla 兼容）
+
+<!-- 更新至 b3178ba -->
+
+* [融合 CARLA 与 AirSim ](Carla_Air.md)
+
